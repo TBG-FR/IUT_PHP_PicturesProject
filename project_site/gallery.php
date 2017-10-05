@@ -1,0 +1,1 @@
+// Displays the public gallery (without login, watermarked pictures)
