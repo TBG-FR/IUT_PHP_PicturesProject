@@ -1,0 +1,88 @@
+/* ----- ----- ----- ----- [ "Custom" CSS : Overrides & Complete the Bootstrap CSS ] ----- ----- ----- ----- */
+
+/* ----- -----  General (Page) ----- ----- */
+
+html { 
+    /* ATTRIBUTES */
+}
+
+body {
+    /* ATTRIBUTES */    
+}
+
+/* ----- Added Fonts & Font Modifications ----- */
+
+@font-face {
+    font-family: 'Archive';
+    src: url('fonts/Archive.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Champagne';
+    src: url('fonts/Champagne & Limousines.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Champagne'; /* Italic version */
+    src: url('fonts/Champagne & Limousines Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'ChampagneBold';
+    src: url('fonts/Champagne & Limousines Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ChampagneBold'; /* Italic version */
+    src: url('fonts/Champagne & Limousines Bold Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+/* False bold, to get ChampagneBold in Bold */
+strong { text-shadow: 1px 0px 1px currentColor; /* 1px 0px 0px pour enlever le "flou" */ }
+
+/* ----- ----- Header (Page's Upper Part) ----- ----- */
+
+header {
+    /* ATTRIBUTES */
+}
+
+/* ----- -----  Content (Page's Body) ----- ----- */
+
+.content {
+    /* ATTRIBUTES */
+}
+
+/* ----- ----- Footer (Page's Lower Part)  ----- ----- */
+
+footer {
+    /* ATTRIBUTES */
+}
+
+.legal {
+    font-family: 'ChampagneBold','Trebuchet MS', Arial, sans-serif; /* Polices, dans l'ordre */
+    font-size:calc(1em + 0.2vw);
+    color: #000;
+}
+
+/* ----- ----- ----- ----- CSS "@media" (Responsive) ----- ----- ----- ----- */
+
+/*@media all and (max-width:500px) { /* Sur tous les médias, si la largeur d'affichage est plus petite que 500px *//*  
+    #header_head {
+        flex-flow: column wrap;     /* Header_Head : Afficher les éléments en colonne, les uns sous les autres *//*
+    }
+}*/
+
+/* ----- ----- ----- ----- [ CSS "Backend" : Administration Elements ] ----- ----- ----- ----- */
+
+#admin {
+    /* ATTRIBUTES */
+
+}
