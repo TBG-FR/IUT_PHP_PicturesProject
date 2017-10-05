@@ -1,0 +1,5 @@
+<aside class="sidebar_secret"> <! aside avec un attribut >
+	<p> <! saisir du text >
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sem odio, tempus et eros eu, dapibus rutrum sapien. Maecenas rutrum eleifend elementum. Nulla sed ante ac orci dapibus blandit. Proin vehicula, velit at faucibus maximus, dolor nunc egestas orci, in mollis nisi nisi at metus. Morbi neque mi, egestas non commodo ac, lobortis laoreet libero. Aliquam convallis eros quam, eu gravida velit aliquet vel. Integer sodales scelerisque placerat. Suspendisse potenti. Cras aliquam nunc arcu, nec pellentesque sem rhoncus et. Aenean ullamcorper magna et sagittis tristique. Quisque viverra ullamcorper lacus sed porttitor. Ut vel diam mollis, venenatis elit sed, tincidunt justo. Curabitur a tempor ipsum. Ut auctor nunc quis bibendum hendrerit. Aliquam luctus volutpat eros, vitae faucibus ligula.
+	</p>					
+</aside>

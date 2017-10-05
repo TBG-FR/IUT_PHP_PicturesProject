@@ -1,0 +1,30 @@
+/* ----- ----- ----- ----- [CSS - Page "Sidebar Only"] ----- ----- ----- ----- */
+
+#sidebar .btn {
+    font-size:calc(1em + 0.5vw);
+}
+
+#sidebar {
+    width: auto;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5;
+    text-align: center;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    background-color: rgba(122,181,160,0.9);
+}
+
+#returnbutton {
+    display: block;     /* Redonner son affichage normal au Bouton */
+    margin-top: 2.5%;
+}
+
+#returnbutton button {    
+    background-color: royalblue;    /* Couleur du Bouton */
+}
+
+#nosidebar {
+    display: none;
+}
