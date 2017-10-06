@@ -33,7 +33,10 @@ session_start(); // Session Creation or Recovery
 
     <body>
 
-        <header><?php include_once("header.php"); ?></header>
+        <header>
+            <?php include_once("header.php"); ?>
+            <?php include_once("navbar.php"); ?>
+        </header>
 
         <div class="content">
 
@@ -45,7 +48,9 @@ session_start(); // Session Creation or Recovery
 
         </div>
 
-        <footer><?php include_once("footer.php"); ?></footer>
+        <footer>
+            <?php include_once("footer.php"); ?>
+        </footer>
 
     </body>
 
