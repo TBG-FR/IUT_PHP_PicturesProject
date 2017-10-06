@@ -15,7 +15,7 @@ session_start(); // Session Creation or Recovery
     <head>
         <meta charset="UTF-8">
 
-        <title>JoJoPhoto - Professional Photographer - Gallery</title>
+        <title>Andrew Blind - Professional Photographer - Gallery</title>
         <!-- <meta name="description" content=""> -->
         <!-- <meta name="author" content=""> -->
 
