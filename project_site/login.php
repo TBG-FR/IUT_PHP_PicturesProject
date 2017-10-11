@@ -56,7 +56,7 @@ if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = '
             ----------------------------------------------------------------------------------------*/
             
             
-            /* IF A FORM HAS BEEN SENT => Validate the form, check the values and get the result */            
+            /* ===== ===== ===== IF A FORM HAS BEEN SENT => VALIDATE THE FORM, CHECK THE VALUES AND GET THE RESULTS ===== ===== ===== */            
             if ( $_POST ) {
                 
                 foreach ($_POST as $champ => $valeur)
@@ -79,7 +79,7 @@ if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = '
                 
             }
 
-            /* IF USER IS LOGGED/CONNECTED/REGISTERED => DISPLAY USEFUL LINKS (AND SUCCESS MESSAGE) */
+            /* ===== ===== ===== IF USER IS LOGGED/CONNECTED/REGISTERED => DISPLAY USEFUL LINKS (AND SUCCESS MESSAGE) ===== ===== ===== */
             if( $_SESSION['login_status'] == "CONNECTED" || $_SESSION['login_status'] == "JUST_CONNECTED" || $_SESSION['login_status'] == "JUST_REGISTERED"  ) {
                 
                 if( $_SESSION['login_status'] == "JUST_CONNECTED" ) { echo "GREEN : JUST CONNECTED"; }
@@ -100,16 +100,16 @@ if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = '
                 $_SESSION['login_status'] = "CONNECTED";
             }
             
-            /* ELSE (FIRST ACCESS, OR ERRORS WERE FOUND WHILE PROCESSING THE FORM) => DISPLAY THE FORMS (AND THE ERRORS) */
+            /* ===== ===== ===== ELSE (FIRST ACCESS, OR ERRORS WERE FOUND WHILE PROCESSING THE FORM) => DISPLAY THE FORMS (AND THE ERRORS) ===== ===== ===== */
             else {
                  
                 if( $_SESSION['login_errors'] != '' ) { echo $_SESSION['login_errors']; /* HTML FORMATTING TO DO : 1 ERR = 1 MSG ? + http://coredogs.com/lesson/form-and-php-validation-one-page.html */ }
                 
                 /* KEEP THE USER'S ENTRIES IN CASE OF ERRORS => DEPENDING ON THE ERROR ? */
-                $temp_user = '';
-                $temp_mail = '';
-                $temp_firstname = '';
-                $temp_lastname = '';
+                $temp_user = 'USER';
+                $temp_mail = 'MAIL';
+                $temp_firstname = 'F.NAME';
+                $temp_lastname = 'L.NAME';
 
                 echo "
 
