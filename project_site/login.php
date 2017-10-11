@@ -47,8 +47,8 @@ session_start(); // Session Creation or Recovery
                  
                  <form action="login.php" method="post">
                      <!-- ADD : Mail or Username -->
-                     Username : <input type="text" name="user" required> <br />
-                     Password : <input type="password" name="pass" required> <br />
+                     Username : <input type="text" name="username" required> <br />
+                     Password : <input type="password" name="password" required> <br />
                      <!-- ADD : Captcha [] -->
                      
                      <?php
@@ -72,11 +72,11 @@ session_start(); // Session Creation or Recovery
                  
                  <form action="login.php" method="post">
                      <!-- ADD : Mail : <input type="text" name="mail"> <br /> -->
-                     First name : <input type="text" name="f_name" required> <br />
-                     Last name : <input type="text" name="l_name" required> <br />
+                     First name : <input type="text" name="firstname" required> <br />
+                     Last name : <input type="text" name="lastname" required> <br />
                      <br />
-                     Username : <input type="text" name="user" required> <br />
-                     Password : <input type="password" name="pass" required> <br />
+                     Username : <input type="text" name="username" required> <br />
+                     Password : <input type="password" name="password" required> <br />
                      <!-- ADD : Captcha [] -->
                      
                      <?php
