@@ -1,8 +1,8 @@
 <?php
 
-session_start(); // Session Creation or Recovery
+    session_start(); // Session Creation or Recovery
 
-// require_once(""); // COMMENT
+    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
 
 if( isset($_SESSION['login_status'] ) == FALSE ) { $_SESSION['login_status'] = ''; }
 if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = ''; }
