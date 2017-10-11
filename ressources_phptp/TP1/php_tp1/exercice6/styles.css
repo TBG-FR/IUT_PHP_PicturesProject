@@ -1,0 +1,16 @@
+.tab_header {
+    background-color: yellow;
+}
+
+.tab_pair {
+    background-color: deepskyblue;
+}
+
+.tab_impair {
+    background-color: greenyellow;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+}

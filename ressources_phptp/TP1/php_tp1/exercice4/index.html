@@ -1,0 +1,60 @@
+<!doctype html>
+
+<html lang="fr">
+    
+<head>
+  <meta charset="utf-8">
+
+  <title>PHP - TP1 - Ex4</title>
+  <meta name="description" content="PHP - TP1 - Ex4">
+  <meta name="author" content="Tom-Brian Garcia (p1520325)">
+
+  <link href="style.css" rel="stylesheet" media="all" type="text/css">
+</head>
+
+<body>
+    
+    <!-- Début du Formulaire -->
+    <form action="affiche_parametres.php" method="post">
+        
+        <!-- Zone de Texte -->
+        Texte : <input type="text" name="texte"> <br />
+        
+        <!-- Zone 'Mot de Passe' -->
+        Mot de Passe : <input type="password" name="passe"> <br />
+        
+        <!-- Zone Liste Déroulante -->
+        Choix :
+        <select name="choix[]" multiple> <!-- Début de la Liste Déroulante -->
+            <option value="choix1">Choix #1</option>
+            <option value="choix2">Choix #2</option>
+            <option value="choix3">Choix #3</option>
+            <option value="choix4">Choix #4</option>
+        </select> <br /> <!-- Fin de la Liste Déroulante -->
+        
+        <!-- Boutons 'Radio' -->
+        Genre :
+        <input type="radio" name="genre" value="NC" checked> NC
+        <input type="radio" name="genre" value="homme"> Homme
+        <input type="radio" name="genre" value="femme"> Femme
+        <br />
+        
+        <!-- Checkboxes -->
+        Animaux possédés :
+        <input type="checkbox" name="animal[]" value="chien"> Chien
+        <input type="checkbox" name="animal[]" value="chat" checked> Chat
+        <input type="checkbox" name="animal[]" value="poney"> Poney
+        <input type="checkbox" name="animal[]" value="étalon"> Étalon
+        <br />
+        
+        <!-- Reset -->
+        <input type="reset" value="Réinitialiser">
+        
+        <!-- Submit -->
+        <input type="submit" value="Envoyer">
+        
+    </form> <!-- Fin du Formulaire -->
+    
+</body>
+    
+</html>

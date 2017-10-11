@@ -1,5 +1,3 @@
-<!-- gallery.php ~ Displays the public gallery (without login, and with watermarked pictures) -->
-
 <?php
 
 session_start(); // Session Creation or Recovery
@@ -7,6 +5,8 @@ session_start(); // Session Creation or Recovery
 // require_once(""); // COMMENT
 
 ?>
+
+<!-- gallery.php ~ Displays the public gallery (without login, and with watermarked pictures) -->
 
 <!doctype html>
 

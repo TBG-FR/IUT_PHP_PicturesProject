@@ -40,7 +40,19 @@ session_start(); // Session Creation or Recovery
 
         <div class="content">
 
-            
+             <!-- Short Description -->
+            <p class="short_text">
+                I'm Andrew Blind, a professional photographer since 2012, located in the USA. <br />
+                Welcome to my Website, where you can have a look at my pictures, and even buy them if you like them and want to support my work ! <br />
+                Don't hesitate to contact me for any questions or inquiries ~ <br />
+            </p>
+
+            <!-- Carousel / Slider -->
+            <div class="Carousel_container">
+            <img src="public_images/observation_deck___wallpaper_by_z_design-d2q7jic.jpg" alt="" title="" height="250px"></div>
+
+            <!-- Link to Gallery -->
+            <h3><a href="gallery.php">See/Buy all my Pictures</a></h3>
 
         </div>
 
