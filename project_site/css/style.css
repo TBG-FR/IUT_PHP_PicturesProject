@@ -54,6 +54,44 @@ header {
     /* ATTRIBUTES */
 }
 
+/* ----- Menu de Navigation (navbar) ----- */
+
+
+.menu-bar {
+    position: absolute;
+    top: 20px;    
+    left: 50%;
+    height: 14px;
+    margin-left: -10px;
+}
+
+.menu {
+    display: block !important;
+    width: 100%;
+    padding: 15px 10px 15px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #fff;
+    font-size: calc(0.75em + 0.75vw);
+}
+
+.menu ul {
+    margin-bottom: 0;
+}
+
+.menu a {
+    color: grey; 
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.menu a:hover {
+    text-decoration: none;
+    background-image:radial-gradient(white 100%, black 100%);
+    color: black;
+    opacity: 0.8; 
+} 
+
 /* ----- -----  Content (Page's Body) ----- ----- */
 
 .content {
@@ -86,3 +124,5 @@ footer {
     /* ATTRIBUTES */
 
 }
+
+

@@ -1,5 +1,5 @@
 <!-- ------ "Navbar" : Menu de Navigation ------ -->
-<div class="collapse menu" id="menu">
+<div class="collapse menu">
     <ul class="list-inline">
         <li><a href="index.php">Home</a></li>
         <li><a href="gallery.php">Gallery</a></li>
