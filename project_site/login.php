@@ -52,6 +52,7 @@ if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = '
             APRES ENVOI :
                 SI OK -> AFFICHER "CONNECTE" + MESSAGE GREEN
                 SI ERREUR(S) -> AFFICHER ERREURS (MESSAGE RED) + FORMULAIRE REMPLI
+                    https://getbootstrap.com/docs/4.0/components/alerts/
             ----------------------------------------------------------------------------------------*/
             
             
