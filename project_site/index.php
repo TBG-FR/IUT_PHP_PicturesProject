@@ -35,7 +35,7 @@ session_start(); // Session Creation or Recovery
 
         <header>
             <?php include_once("header.php"); ?>
-            <?php include_once("navbar_original.php"); ?>
+            <?php include_once("navbar.php"); ?>
         </header>
 
         <div class="content">
