@@ -87,7 +87,14 @@ if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = '
                     
                         if( $req[0]['password'] == $password) {
                             
-                            echo "CONNECT USER";
+                            echo "
+                            
+                            <div class=\"alert alert-success\" role=\"alert\">You've been succesfully authentified !</div><br />
+                            
+                            ";
+                            
+                            $_SESSION['login_status'] = "CONNECTED";
+                            $_SESSION['username'] = $username;
                             
                         }
                         
@@ -121,24 +128,26 @@ if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = '
             }
 
             /* ===== ===== ===== IF USER IS LOGGED/CONNECTED/REGISTERED => DISPLAY USEFUL LINKS (AND SUCCESS MESSAGE) ===== ===== ===== */
-            if( $_SESSION['login_status'] == "CONNECTED" || $_SESSION['login_status'] == "JUST_CONNECTED" || $_SESSION['login_status'] == "JUST_REGISTERED"  ) {
+            if( $_SESSION['login_status'] == "CONNECTED" /*|| $_SESSION['login_status'] == "JUST_CONNECTED" || $_SESSION['login_status'] == "JUST_REGISTERED" */ ) {
                 
-                if( $_SESSION['login_status'] == "JUST_CONNECTED" ) { echo "GREEN : JUST CONNECTED"; }
-                else if( $_SESSION['login_status'] == "JUST_REGISTERED"  ) { echo "GREEN : JUST REGISTERED"; }
+                /*if( $_SESSION['login_status'] == "JUST_CONNECTED" ) { echo "GREEN : JUST CONNECTED"; }
+                else if( $_SESSION['login_status'] == "JUST_REGISTERED"  ) { echo "GREEN : JUST REGISTERED"; }*/
 
                 echo "
+                    <div class='mini_menu'>
+                        <!-- Connected - Header -->
+                        <h3>Logged as ".$_SESSION['username']."</h3><br />
 
-                    <!-- Connected - Header -->
-                    <h3>Logged as ".$_SESSION['username']."</h3>< br />
-
-                    <!-- Connected - Links -->
-                    <a href=\"account.php\">Account Informations</a>< br />
-                    <a href=\"gallery_p.php\">Private[Personal] Gallery</a>< br />
-                    <a href=\"logout.php\">Logout</a>< br />
-
+                        <!-- Connected - Links -->
+                        <a href=\"account.php\" class=\"btn btn-primary btn-block\" role=\"button\"><h4>Account Informations</h4></a>
+                        <a href=\"gallery_p.php\" class=\"btn btn-primary btn-block\" role=\"button\"><h4>Personal Gallery</h4></a>
+                        <a href=\"history_p.php\" class=\"btn btn-primary btn-block\" role=\"button\"><h4>Purchase History</h4></a>
+                        <a href=\"logout.php\" class=\"btn btn-danger btn-block\" role=\"button\"><h4>Log out</h4></a>
+                    </div>
+                    
                 "; /* Echo[HTML] : End */             
 
-                $_SESSION['login_status'] = "CONNECTED";
+                /*$_SESSION['login_status'] = "CONNECTED";*/
             }
             
             /* ===== ===== ===== ELSE (FIRST ACCESS, OR ERRORS WERE FOUND WHILE PROCESSING THE FORM) => DISPLAY THE FORMS (AND THE ERRORS) ===== ===== ===== */
