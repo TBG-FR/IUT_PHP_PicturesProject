@@ -149,7 +149,8 @@ class Database
         $req = $this->getPdo()->prepare($query);
         $req->execute($values);
         //$req->setFetchMode(PDO::FETCH_OBJ); //**MODIF_PROJ***
-		$req->setFetchMode(PDO::FETCH_BOTH);
+		//$req->setFetchMode(PDO::FETCH_BOTH);
+		$req->setFetchMode(PDO::FETCH_ASSOC);
         if(is_bool($req)){
             return $req;
         }
