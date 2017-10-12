@@ -59,21 +59,62 @@ if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = '
             /* ===== ===== ===== IF A FORM HAS BEEN SENT => VALIDATE THE FORM, CHECK THE VALUES AND GET THE RESULTS ===== ===== ===== */            
             if ( $_POST ) {
                 
+                $db = new Database();
+                
                 foreach ($_POST as $champ => $valeur)
                     echo $champ.' --- '.$valeur.'<br />';
                 //print_r($_POST);
                 
                 if ($_POST['action'] == 'login') {
                     
+                    
                     /* AUTH THE USER *//* VALIDATE / CHECK / MODIFY VARIABLES / ETC */
-                    echo "AUTH";
+                    echo " ===== ===== ===== AUTH ===== ===== ===== ";
+                    
+                    $username=var_secure($_POST['username']);
+                    $password=var_secure($_POST['password']);
+                    $password_removethat=$db->hash($password);
+                    echo "CC -> $password_removethat" ;
+                    
+                    $req = $db->read('phpproj_user', array(
+                        'conditions' => array(
+                            'username LIKE' => "$username" // Check if there is an entry with the same username
+                        ),
+                        'fields' => array('id', 'username', 'password'), // get id, username and password
+                    ));
+                    
+                    if( empty($req) == FALSE) { 
+                    
+                        if( $req[0]['password'] == $password) {
+                            
+                            echo "CONNECT USER";
+                            
+                        }
+                        
+                        else { $_SESSION['login_errors'] .= /* ADD THE FOLLOWING MESSAGE INTO THE ERRORS */ "
+                    <br /><div class=\"alert alert-danger\" role=\"alert\">Error : Wrong User/Password combination ! Please try again.</div>"; }
+                    
+                    }
+                    else { $_SESSION['login_errors'] .= /* ADD THE FOLLOWING MESSAGE INTO THE ERRORS */ "
+                    <br /><div class=\"alert alert-danger\" role=\"alert\">Error : Unknown Username ! Please try again.</div>"; }
+                    
+                    var_dump($req);
+                    
+                    /*                    
+                    if ( CDT ) { $_SESSION['login_errors'] .= "HTML + MESSAGE" }
+                    */
                     
                 }
                 
                 else if ($_POST['action'] == 'register') {
                     
                     /* REGISTER THE USER *//* VALIDATE / CHECK / MODIFY VARIABLES / ETC */
-                    echo "REGISTER";
+                    echo " ===== ===== ===== REGISTER ===== ===== ===== ";
+                    
+                    $username=var_secure($_POST['username']);
+                    $password=var_secure($_POST['password']);
+                    $firstname=var_secure($_POST['firstname']);
+                    $lastname=var_secure($_POST['lastname']);
                     
                 }
                 
@@ -103,7 +144,17 @@ if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = '
             /* ===== ===== ===== ELSE (FIRST ACCESS, OR ERRORS WERE FOUND WHILE PROCESSING THE FORM) => DISPLAY THE FORMS (AND THE ERRORS) ===== ===== ===== */
             else {
                  
-                if( $_SESSION['login_errors'] != '' ) { echo $_SESSION['login_errors']; /* HTML FORMATTING TO DO : 1 ERR = 1 MSG ? + http://coredogs.com/lesson/form-and-php-validation-one-page.html */ }
+                if( $_SESSION['login_errors'] != '' ) {
+                    
+                    echo $_SESSION['login_errors'];
+                    /* HTML FORMATTING TO DO : 1 ERR = 1 MSG ? + http://coredogs.com/lesson/form-and-php-validation-one-page.html */
+                
+                    // Empty the Errors once they've been displayed
+                    echo $_SESSION['login_errors']='';
+                
+                }
+                
+                
                 
                 /* KEEP THE USER'S ENTRIES IN CASE OF ERRORS => DEPENDING ON THE ERROR ? */
                 $temp_user = 'USER';
