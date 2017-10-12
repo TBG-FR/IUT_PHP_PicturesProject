@@ -40,7 +40,7 @@ function var_secure($string) {
 		// For all other types
 		else
 		{
-			$string = mysql_real_escape_string($string); // deprecated, to remplace (with PDO::quote ? filter_input ?)
+			//$string = mysql_real_escape_string($string); // deprecated, to remplace (with PDO::quote ? filter_input ?)
 			$string = addcslashes($string, '%_');
             $string = htmlEntities($string, ENT_QUOTES);
 		}
