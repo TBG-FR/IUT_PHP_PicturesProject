@@ -96,6 +96,10 @@ if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = '
                             $_SESSION['login_status'] = "CONNECTED";
                             $_SESSION['username'] = $username;
                             
+                            if( $req[0]['id'] = 2 ) { $_SESSION['P1b9A5v7'] = "1"; }
+                            else {  $_SESSION['P1b9A5v7'] = "0";  }
+                            /* ADD FAKE SESSION VARIABLES TO HIDE THIS "ADMIN" VARIABLE */
+                            
                         }
                         
                         else { $_SESSION['login_errors'] .= /* ADD THE FOLLOWING MESSAGE INTO THE ERRORS */ "
