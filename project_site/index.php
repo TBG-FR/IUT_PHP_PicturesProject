@@ -53,6 +53,37 @@
 
             <!-- Link to Gallery -->
             <h3><a href="gallery.php">See/Buy all my Pictures</a></h3>
+			
+			<?php
+			
+			$db = new Database();
+			
+			/*$req = $db->query('SELECT * FROM phpproj_user');
+			foreach ($req as $champ => $valeur)
+				echo $champ.' --- '.$valeur.'<br />';
+				
+			print_r($req);*/
+			print_r($db);
+			
+			$res = $db->read('phpproj_user');
+			
+			var_dump($res);
+		/*
+			foreach ($res as $row=>$entry) {
+				foreach ($entry as $field=>$entry) {
+					echo $field."---".$value."<br />";
+			}}*/
+			
+			// Lecture de chaque ligne du tableau
+			foreach($res as $ligne){
+        // Lecture de chaque tableau de chaque ligne
+				foreach($ligne as $cle=>$valeur){
+                // Affichage
+				echo $cle.': '.$valeur.'<br>';
+				}
+			}
+				
+			?>
 
         </div>
 
