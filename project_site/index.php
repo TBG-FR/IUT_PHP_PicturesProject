@@ -4,7 +4,6 @@
 
     require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
 
-$bdd_table_user = 'phpproj_User';
 ?>
 
 <!-- index.php ~ Homepage -->
