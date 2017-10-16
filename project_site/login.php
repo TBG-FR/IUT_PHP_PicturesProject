@@ -55,6 +55,17 @@ if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = '
                     https://getbootstrap.com/docs/4.0/components/alerts/
             ----------------------------------------------------------------------------------------*/
             
+            if ( $_GET ) {
+                
+                if ($_GET['action'] == 'disconnect') {
+                    
+                    $_SESSION['login_status'] = "";
+                    $_SESSION['PrKz5gfNz'] = 0;
+                    
+                }
+                
+            }
+            
             
             /* ===== ===== ===== IF A FORM HAS BEEN SENT => VALIDATE THE FORM, CHECK THE VALUES AND GET THE RESULTS ===== ===== ===== */            
             if ( $_POST ) {
@@ -80,12 +91,12 @@ if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = '
                         'conditions' => array(
                             'username LIKE' => "$username" // Check if there is an entry with the same username
                         ),
-                        'fields' => array('id', 'username', 'password'), // get id, username and password
+                        'fields' => array('id', 'username', 'password','admin'), // get id, username and password
                     ));
                     
                     if( empty($req) == FALSE) { 
                     
-                        if( $req[0]['password'] == $password) {
+                        if( $db->hash($req[0]['password']) == $db->hash($password) ) {
                             
                             echo "
                             
@@ -96,8 +107,27 @@ if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = '
                             $_SESSION['login_status'] = "CONNECTED";
                             $_SESSION['username'] = $username;
                             
-                            if( $req[0]['id'] = 2 ) { $_SESSION['admin'] = "1"; }
-                            else {  $_SESSION['admin'] = "0";  }
+                            if( $req[0]['admin'] = '1' ) {
+                                
+                                $_SESSION['PrKz5gfNz'] = "1";   //$_SESSION['admin'] = "1";
+                                
+                                // The following variables are "fake" ones, used to hide the "admin" variable
+                                $_SESSION['Zv8Tqs6Ta'] = rand(0,1);
+                                $_SESSION['tR1E5Zt4r'] = rand(0,1);
+                                $_SESSION['a2erTR8z7'] = rand(0,1);
+                                $_SESSION['85FRedcRt'] = rand(0,1);
+                            }
+                            
+                            else {
+                                
+                                $_SESSION['PrKz5gfNz'] = "0";   //$_SESSION['admin'] = "0";
+                                
+                                // The following variables are "fake" ones, used to hide the "admin" variable
+                                $_SESSION['Zv8Tqs6Ta'] = rand(0,1);
+                                $_SESSION['tR1E5Zt4r'] = rand(0,1);
+                                $_SESSION['a2erTR8z7'] = rand(0,1);
+                                $_SESSION['85FRedcRt'] = rand(0,1);
+                            }
                             /* 
                                - Use "admin" field (in BDD) instead of id=2 !!!
                                - "CRYPT" THE ADMIN VARIABLE WITH SOMETHING LIKE ['PrKz5gfNz']
@@ -151,7 +181,7 @@ if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = '
                         <a href=\"account.php\" class=\"btn btn-primary btn-block\" role=\"button\"><h4>Account Informations</h4></a>
                         <a href=\"gallery_p.php\" class=\"btn btn-primary btn-block\" role=\"button\"><h4>Personal Gallery</h4></a>
                         <a href=\"history_p.php\" class=\"btn btn-primary btn-block\" role=\"button\"><h4>Purchase History</h4></a>
-                        <a href=\"logout.php\" class=\"btn btn-danger btn-block\" role=\"button\"><h4>Log out</h4></a>
+                        <a href=\"?action=disconnect\" class=\"btn btn-danger btn-block\" role=\"button\"><h4>Log out</h4></a>
                     </div>
                     
                 "; /* Echo[HTML] : End */             
