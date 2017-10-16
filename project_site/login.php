@@ -76,7 +76,7 @@ if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = '
                     $password_removethat=$db->hash($password);
                     echo "CC -> $password_removethat" ;
                     
-                    $req = $db->read('phpproj_user', array(
+                    $req = $db->read($bdd_table_user, array(
                         'conditions' => array(
                             'username LIKE' => "$username" // Check if there is an entry with the same username
                         ),

@@ -4,6 +4,7 @@
 
     require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
 
+$bdd_table_user = 'phpproj_User';
 ?>
 
 <!-- index.php ~ Homepage -->
@@ -55,6 +56,8 @@
             <h3><a href="gallery.php">See/Buy all my Pictures</a></h3>
 			
 			<?php
+            
+            //include_once("classes/all.inc.php");
 			
 			$db = new Database();
 			
@@ -65,7 +68,7 @@
 			print_r($req);*/
 			print_r($db);
 			
-			$res = $db->read('phpproj_user');
+			$res = $db->read($bdd_table_user);
 			
 			var_dump($res);
 		/*
