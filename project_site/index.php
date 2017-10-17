@@ -1,8 +1,7 @@
 <?php
 
-    session_start(); // Session Creation or Recovery
-
     require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
+    session_start(); // Session Creation or Recovery
 
 ?>
 
