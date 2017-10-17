@@ -5,5 +5,6 @@
     include_once("database.php"); // COMMENT
     //include_once("example.inc.php"); // COMMENT
     //include_once("imgwatermark.inc.php"); // COMMENT
+    include_once("Picture.php"); // COMMENT
 
 ?>
