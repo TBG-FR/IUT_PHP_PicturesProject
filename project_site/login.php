@@ -1,11 +1,11 @@
 <?php
 
-    session_start(); // Session Creation or Recovery
-
     require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
+    session_start(); // Session Creation or Recovery
 
 if( isset($_SESSION['login_status'] ) == FALSE ) { $_SESSION['login_status'] = ''; }
 if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = ''; }
+if( isset($_SESSION['user'] ) == FALSE ) { $_SESSION['user'] = ''; }
 
 ?>
 
@@ -59,8 +59,11 @@ if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = '
                 
                 if ($_GET['action'] == 'disconnect') {
                     
-                    $_SESSION['login_status'] = "";
-                    $_SESSION['PrKz5gfNz'] = 0;
+                    //$_SESSION['login_status'] = "";
+                    //$_SESSION['PrKz5gfNz'] = 0;
+                    
+                    $_SESSION['user']->disconnect();
+                    $_SESSION['user']='';
                     
                 }
                 
@@ -87,64 +90,28 @@ if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = '
                     $password_removethat=$db->hash($password);
                     echo "CC -> $password_removethat" ;
                     
-                    $req = $db->read($bdd_table_user, array(
-                        'conditions' => array(
-                            'username LIKE' => "$username" // Check if there is an entry with the same username
-                        ),
-                        'fields' => array('id', 'username', 'password','admin'), // get id, username and password
-                    ));
+                    //$user = new User($username, $password);
                     
-                    if( empty($req) == FALSE) { 
-                    
-                        if( $db->hash($req[0]['password']) == $db->hash($password) ) {
+                    try {
+                        $_SESSION['user'] = new User($username, $password);
+                        
+                    } catch (Exception $e) {
+                        
+                        if($e->getMessage() == 'Err_Credentials') {
                             
-                            echo "
-                            
-                            <div class=\"alert alert-success\" role=\"alert\">You've been succesfully authentified !</div><br />
-                            
-                            ";
-                            
-                            $_SESSION['login_status'] = "CONNECTED";
-                            $_SESSION['username'] = $username;
-                            
-                            if( $req[0]['admin'] = '1' ) {
-                                
-                                $_SESSION['PrKz5gfNz'] = "1";   //$_SESSION['admin'] = "1";
-                                
-                                // The following variables are "fake" ones, used to hide the "admin" variable
-                                $_SESSION['Zv8Tqs6Ta'] = rand(0,1);
-                                $_SESSION['tR1E5Zt4r'] = rand(0,1);
-                                $_SESSION['a2erTR8z7'] = rand(0,1);
-                                $_SESSION['85FRedcRt'] = rand(0,1);
-                            }
-                            
-                            else {
-                                
-                                $_SESSION['PrKz5gfNz'] = "0";   //$_SESSION['admin'] = "0";
-                                
-                                // The following variables are "fake" ones, used to hide the "admin" variable
-                                $_SESSION['Zv8Tqs6Ta'] = rand(0,1);
-                                $_SESSION['tR1E5Zt4r'] = rand(0,1);
-                                $_SESSION['a2erTR8z7'] = rand(0,1);
-                                $_SESSION['85FRedcRt'] = rand(0,1);
-                            }
-                            /* 
-                               - Use "admin" field (in BDD) instead of id=2 !!!
-                               - "CRYPT" THE ADMIN VARIABLE WITH SOMETHING LIKE ['PrKz5gfNz']
-                               - ADD FAKE SESSION VARIABLES TO HIDE THIS "ADMIN" VARIABLE
-                               
-                            */
+                            echo "<br /><div class=\"alert alert-danger\" role=\"alert\">Error : Wrong User/Password combination ! Please try again.</div>";
                             
                         }
                         
-                        else { $_SESSION['login_errors'] .= /* ADD THE FOLLOWING MESSAGE INTO THE ERRORS */ "
-                    <br /><div class=\"alert alert-danger\" role=\"alert\">Error : Wrong User/Password combination ! Please try again.</div>"; }
-                    
+                        else if ($e->getMessage() == 'Err_Username') {
+                            
+                            echo "<br /><div class=\"alert alert-danger\" role=\"alert\">Error : Unknown Username ! Please try again.</div>";
+                            
+                        }
                     }
-                    else { $_SESSION['login_errors'] .= /* ADD THE FOLLOWING MESSAGE INTO THE ERRORS */ "
-                    <br /><div class=\"alert alert-danger\" role=\"alert\">Error : Unknown Username ! Please try again.</div>"; }
+
                     
-                    var_dump($req);
+                    /* ALL IN USER CLASS */
                     
                     /*                    
                     if ( CDT ) { $_SESSION['login_errors'] .= "HTML + MESSAGE" }
@@ -167,15 +134,28 @@ if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = '
             }
 
             /* ===== ===== ===== IF USER IS LOGGED/CONNECTED/REGISTERED => DISPLAY USEFUL LINKS (AND SUCCESS MESSAGE) ===== ===== ===== */
-            if( $_SESSION['login_status'] == "CONNECTED" /*|| $_SESSION['login_status'] == "JUST_CONNECTED" || $_SESSION['login_status'] == "JUST_REGISTERED" */ ) {
+//            if( $_SESSION['login_status'] == "CONNECTED" || /*((isset($SESSION['user'])) && ($SESSION['user'] instanceof User) && ($SESSION['user']->getStatus() == "connected"))*/  /*|| $_SESSION['login_status'] == "JUST_CONNECTED" || $_SESSION['login_status'] == "JUST_REGISTERED" */ ) {
+            
+            //if( $SESSION['user']->getStatus() == TRUE) {
+            
+            echo "___________ [_]_[_] ___________ [_]_[_] ___________ [_]_[_] ___________";
+            var_dump($_SESSION['user']);
+                
+            if( $_SESSION['user'] instanceof User ) {      
+                
+                //((isset($user)) && ($user instanceof User) && ($user.getStatus() == "connected"))
+                $stat=$_SESSION['user']->getStatus();
+                echo "AAA : $stat";
                 
                 /*if( $_SESSION['login_status'] == "JUST_CONNECTED" ) { echo "GREEN : JUST CONNECTED"; }
                 else if( $_SESSION['login_status'] == "JUST_REGISTERED"  ) { echo "GREEN : JUST REGISTERED"; }*/
 
+                $l_username=$_SESSION['user']->getUsername();
+                
                 echo "
                     <div class='mini_menu'>
                         <!-- Connected - Header -->
-                        <h3>Logged as ".$_SESSION['username']."</h3><br />
+                        <h3>Logged as ".$l_username."</h3><br />
 
                         <!-- Connected - Links -->
                         <a href=\"account.php\" class=\"btn btn-primary btn-block\" role=\"button\"><h4>Account Informations</h4></a>
@@ -192,15 +172,15 @@ if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = '
             /* ===== ===== ===== ELSE (FIRST ACCESS, OR ERRORS WERE FOUND WHILE PROCESSING THE FORM) => DISPLAY THE FORMS (AND THE ERRORS) ===== ===== ===== */
             else {
                  
-                if( $_SESSION['login_errors'] != '' ) {
-                    
-                    echo $_SESSION['login_errors'];
-                    /* HTML FORMATTING TO DO : 1 ERR = 1 MSG ? + http://coredogs.com/lesson/form-and-php-validation-one-page.html */
-                
-                    // Empty the Errors once they've been displayed
-                    echo $_SESSION['login_errors']='';
-                
-                }
+//                if( $_SESSION['login_errors'] != '' ) {
+//                    
+//                    echo $_SESSION['login_errors'];
+//                    /* HTML FORMATTING TO DO : 1 ERR = 1 MSG ? + http://coredogs.com/lesson/form-and-php-validation-one-page.html */
+//                
+//                    // Empty the Errors once they've been displayed
+//                    echo $_SESSION['login_errors']='';
+//                
+//                }
                 
                 
                 
