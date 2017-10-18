@@ -1,11 +1,10 @@
 <?php
 
-    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
-    session_start(); // Session Creation or Recovery
+    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start
 
-if( isset($_SESSION['login_status'] ) == FALSE ) { $_SESSION['login_status'] = ''; }
-if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = ''; }
-if( isset($_SESSION['user'] ) == FALSE ) { $_SESSION['user'] = ''; }
+    if( isset($_SESSION['login_status'] ) == FALSE ) { $_SESSION['login_status'] = ''; }
+    if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = ''; }
+    if( isset($_SESSION['user'] ) == FALSE ) { $_SESSION['user'] = ''; }
 
 ?>
 
