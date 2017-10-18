@@ -6,6 +6,22 @@
     if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = ''; }
     if( isset($_SESSION['user'] ) == FALSE ) { $_SESSION['user'] = ''; }
 
+    if ( $_GET ) {
+        
+        if ($_GET['action'] == 'disconnect') {
+            
+            //$_SESSION['login_status'] = "";
+            //$_SESSION['PrKz5gfNz'] = 0;
+            
+            $_SESSION['user']->disconnect();
+            $_SESSION['user']='';
+            
+            $loc = "Location: ".$_GET['source'];
+            header($loc);
+        
+        }
+    }
+
 ?>
 
 <!-- index.php ~ Homepage -->
@@ -54,7 +70,7 @@
                     https://getbootstrap.com/docs/4.0/components/alerts/
             ----------------------------------------------------------------------------------------*/
             
-            if ( $_GET ) {
+            /*if ( $_GET ) {
                 
                 if ($_GET['action'] == 'disconnect') {
                     
@@ -66,7 +82,7 @@
                     
                 }
                 
-            }
+            }*/
             
             
             /* ===== ===== ===== IF A FORM HAS BEEN SENT => VALIDATE THE FORM, CHECK THE VALUES AND GET THE RESULTS ===== ===== ===== */            
