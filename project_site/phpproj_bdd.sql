@@ -21,7 +21,7 @@ drop table if exists phpproj_User;
 create table phpproj_Gallery
 (
    id                   int not null AUTO_INCREMENT,
-   title                varchar(254) not null,
+   title                varchar(100) not null,
    type                 int not null,
    primary key (id)
 )
@@ -49,7 +49,7 @@ COLLATE utf8_bin;
 create table phpproj_Keyword
 (
    id                   int not null AUTO_INCREMENT,
-   name                 varchar(254) not null,
+   name                 varchar(100) not null,
    active               bool not null,
    primary key (id)
 )
@@ -63,8 +63,8 @@ COLLATE utf8_bin;
 create table phpproj_Picture
 (
    id                   int not null AUTO_INCREMENT,
-   title                varchar(254) not null,
-   description          varchar(254),
+   title                varchar(255) not null,
+   description          varchar(510),
    date                 datetime,
    public               bool not null,
    filename_original    int not null,
@@ -94,8 +94,8 @@ COLLATE utf8_bin;
 create table phpproj_User
 (
    id                   int not null AUTO_INCREMENT,
-   username             VARCHAR(25) not null,
-   password             VARCHAR(50) not null,
+   username             VARCHAR(30) not null,
+   password             VARCHAR(255) not null,
    admin                bool not null DEFAULT 0,
    primary key (id)
 )
@@ -125,9 +125,14 @@ alter table phpproj_PictureKeyword add constraint FK_PictureKeywordP foreign key
 INSERT INTO phpproj_User VALUES
 #('0','NA','NA','FALSE'),
 #('1','NA','NA','FALSE'),
-('2','Admin','Admin','1');
+
+#('2','Admin','Admin','1');
+('2','Admin','$2y$10$WmJrNnMyaSEhP3ZzK190TOrcnj44qc3XtgS961U6tmc2.WFc.ibtC','1');
 
 /* ===== ===== Tests d'Insertion ===== ===== */
 INSERT INTO phpproj_User (username, password) VALUES
-('Roger','Rabbit'),
-('Jojo','LaCompote');
+#('Roger','Rabbit'),
+('Roger','$2y$10$WmJrNnMyaSEhP3ZzK190TOBWxGRWdmiqjoCSCNR/xFCoyKgMYAB2q'),
+
+#('Jojo','LaCompote');
+('Jojo','$2y$10$WmJrNnMyaSEhP3ZzK190TO6ZngeZdGcIttAQ7Jaf3UZv4MLv9DMWa');
