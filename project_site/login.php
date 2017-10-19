@@ -119,10 +119,10 @@
                     catch (Exception $e) {
                         
                         if($e->getMessage() == 'Err_BadCredentials') {                             
-                            echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Wrong User/Password combination ! Please try again.</div>"; }
+                            echo "<div class=\"notification alert alert-danger\" role=\"alert\">Error : Wrong User/Password combination ! Please try again.</div>"; }
                         
                         else if ($e->getMessage() == 'Err_UnknownUsername') {
-                            echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Unknown Username ! Please try again.</div>"; }
+                            echo "<div class=\"notification alert alert-danger\" role=\"alert\">Error : Unknown Username ! Please try again.</div>"; }
                         
                     }
                     
@@ -144,13 +144,13 @@
                     catch (Exception $e) {
                         
                         if($e->getMessage() == 'Err_UsernameExists') {                             
-                            echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Username already taken ! Please try again with another one.</div>"; }
+                            echo "<div class=\"notification alert alert-danger\" role=\"alert\">Error : Username already taken ! Please try again with another one.</div>"; }
                         
                         else if ($e->getMessage() == 'Err_PasswordMatch') {
-                            echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Passwords aren't matching ! Please try again.</div>"; }
+                            echo "<div class=\"notification alert alert-danger\" role=\"alert\">Error : Passwords aren't matching ! Please try again.</div>"; }
                         
                         else if ($e->getMessage() == 'Err_RegisterFail') {
-                            echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Registering failed ! Please try again.</div>"; }
+                            echo "<div class=\"notification alert alert-danger\" role=\"alert\">Error : Registering failed ! Please try again.</div>"; }
                         
                     }
                     

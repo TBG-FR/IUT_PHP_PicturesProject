@@ -73,7 +73,7 @@ class User
 
         if( empty($req) == FALSE) { 
 
-            if( $db->hash($req[0]['password']) == $db->hash($pass) ) {
+            if( $req[0]['password'] == $db->hash($pass) ) {
                 
                 $user = New User();
                 $user->id = $req[0]['id'];
@@ -133,7 +133,7 @@ class User
         // If an User with the same Username has been found => Throw Exception
         if( empty($req) == FALSE) {
             
-            //echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Username already taken ! Please try again with another one.</div>";
+            //echo "<div class=\"notification alert alert-danger\" role=\"alert\">Error : Username already taken ! Please try again with another one.</div>";
             throw new Exception('Err_UsernameExists');
             
         }
@@ -141,7 +141,7 @@ class User
         // Else, If the Password and the "Verification Password" aren't the same => Throw Exception
         else if ( $pass != $pass_v ) {
             
-            //echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Passwords aren't matching ! Please try again.</div>";
+            //echo "<div class=\"notification alert alert-danger\" role=\"alert\">Error : Passwords aren't matching ! Please try again.</div>";
             throw new Exception('Err_PasswordMatch');
             
         }
@@ -150,7 +150,8 @@ class User
         else {
             
             // Normally, we would use the "save()" method from "Database" class here, but it doesn't work... [+ $db->hash($pass) ]
-            $up = $db->query("INSERT INTO $bdd_table_user (username, password, admin) VALUES ('$login', '$pass', '0')", array(), TRUE);
+            $hash = $db->hash($pass);
+            $up = $db->query("INSERT INTO $bdd_table_user (username, password, admin) VALUES ('$login', '$hash', '0')", array(), TRUE);
             
             // Normally, this part would be unnecessary, we would just check if $up return TRUE            
             $req = $db->read($bdd_table_user, array(
@@ -166,15 +167,15 @@ class User
                 
                 echo "<div class=\"notification alert alert-success\" role=\"alert\">You've been succesfully registered !</div><br />";
                 
-                //Then try to log the User, the same way as if he logged himself with the Login form                
+                //Then try to log the User, the same way as if he logged himself with the Login form (with Exceptions management, even if it shouldn't happen just after registering)           
                 try { $user = User::constructByLogin($login, $pass); }
                     catch (Exception $e) {
                         
                         if($e->getMessage() == 'Err_BadCredentials') {                             
-                            echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Wrong User/Password combination ! Please try again.</div>"; }
+                            echo "<div class=\"notification alert alert-danger\" role=\"alert\">Error : Wrong User/Password combination ! Please try again.</div>"; }
                         
                         else if ($e->getMessage() == 'Err_UnknownUsername') {
-                            echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Unknown Username ! Please try again.</div>"; }
+                            echo "<div class=\"notification alert alert-danger\" role=\"alert\">Error : Unknown Username ! Please try again.</div>"; }
                         
                     }
                 
