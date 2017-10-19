@@ -140,14 +140,17 @@
                     $lastname=var_secure($_POST['lastname']);
                     
                     // Create a new Instance of User Class with the given credentials (and catch errors if they're wrong)                    
-                    try { $_SESSION['user'] = new User($username, $password, $password_verif, $firstname, $lastname); }
+                    try { $_SESSION['user'] = User::constructByRegister($username, $password, $password_verif, $firstname, $lastname); }
                     catch (Exception $e) {
                         
-                        if($e->getMessage() == 'Err_XXX') {                             
-                            echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : XXX ! Please try again.</div>"; }
+                        if($e->getMessage() == 'Err_UsernameExists') {                             
+                            echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Username already taken ! Please try again with another one.</div>"; }
                         
-                        else if ($e->getMessage() == 'Err_YYY') {
-                            echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : YYY ! Please try again.</div>"; }
+                        else if ($e->getMessage() == 'Err_PasswordMatch') {
+                            echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Passwords aren't matching ! Please try again.</div>"; }
+                        
+                        else if ($e->getMessage() == 'Err_RegisterFail') {
+                            echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Registering failed ! Please try again.</div>"; }
                         
                     }
                     

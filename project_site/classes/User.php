@@ -149,21 +149,36 @@ class User
         // Else, add the User into the Database
         else {
             
-            $up = $db->save("Users", array(
-            'username' => $login,
-            'password' => $pass, // Password will be automatically crypted using hash() method from Database class
-            'firstname' => $f_name,
-            'lastname' => $l_name,
-            'admin' => 0,
+            // Normally, we would use the "save()" method from "Database" class here, but it doesn't work... [+ $db->hash($pass) ]
+            $up = $db->query("INSERT INTO $bdd_table_user (username, password, admin) VALUES ('$login', '$pass', '0')", array(), TRUE);
+            
+            // Normally, this part would be unnecessary, we would just check if $up return TRUE            
+            $req = $db->read($bdd_table_user, array(
+                'conditions' => array(
+                    'username LIKE' => "$login" // Check if there is an entry with the same username
+                ),
+                'fields' => array('id', 'username'), // get result (id, username)
             ));
             
             // If the Insertion succeeded => Display a success message and add those values into the User instance created
-            if($up) {
-                
-                /* LOGIN */
+            //if($up) {
+            if( empty($req) == FALSE ) {
                 
                 echo "<div class=\"notification alert alert-success\" role=\"alert\">You've been succesfully registered !</div><br />";
                 
+                //Then try to log the User, the same way as if he logged himself with the Login form                
+                try { $user = User::constructByLogin($login, $pass); }
+                    catch (Exception $e) {
+                        
+                        if($e->getMessage() == 'Err_BadCredentials') {                             
+                            echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Wrong User/Password combination ! Please try again.</div>"; }
+                        
+                        else if ($e->getMessage() == 'Err_UnknownUsername') {
+                            echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Unknown Username ! Please try again.</div>"; }
+                        
+                    }
+                
+                return $user;                
             }
             
             // Else, if the Insertion failed => Throw Exception
