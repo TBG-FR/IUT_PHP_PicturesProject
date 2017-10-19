@@ -8,16 +8,20 @@
 
     if ( $_GET ) {
         
-        if ($_GET['action'] == 'disconnect') {
+        // If the User clicks on "Logout" AND is logged (An instance of User is still in his Session)
+        if ($_GET['action'] == 'disconnect' &&  $_SESSION['user'] instanceof User ) {
             
+            // Disconnect the user and empty the corresponding variable in Session
             //$_SESSION['login_status'] = "";
-            //$_SESSION['PrKz5gfNz'] = 0;
-            
+            //$_SESSION['PrKz5gfNz'] = 0;            
             $_SESSION['user']->disconnect();
             $_SESSION['user']='';
             
+            // Send the User back on the page where he was
             $loc = "Location: ".$_GET['source'];
             header($loc);
+            
+            // +++ Display a disconnection message ?
         
         }
     }
