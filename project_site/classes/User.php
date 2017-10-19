@@ -31,20 +31,27 @@ class User
     private $admin;
 
     /**
-     * @var bool : Determines if the user is Logged
+     * @var bool : Determines if the user is Logged (TRUE) or not (FALSE)
      */
     private $status;
 
     /* ----- ----- ----- Constructors ----- ----- ----- */
 
     /**
+     * User simple constructor
+     */
+    public function __construct(){
+        
+    }
+
+    /**
      * User constructor by Login
      * @param string $login
      * @param string $pass
      */
-    public function __construct($login,$pass){
+    public static function constructByLogin($login,$pass){
         
-        /* TEMP TEMP TEMP TEMP */
+        /* TEMP TEMP ----- ----- TEMP TEMP */
 
         $bdd_table_user = 'phpproj_user';
         $bdd_table_picture = 'phpproj_picture';
@@ -53,79 +60,122 @@ class User
         $bdd_table_gallery = 'phpproj_gallery';
         $bdd_table_gal_pic = 'phpproj_galleryPicture';
         
+        /* TEMP TEMP ----- ----- TEMP TEMP */
+        
         $db = new Database();
 
         $req = $db->read($bdd_table_user, array(
             'conditions' => array(
                 'username LIKE' => "$login" // Check if there is an entry with the same username
             ),
-            'fields' => array('id', 'username', 'password','admin'), // get id, username and password
+            'fields' => array('id', 'username', 'password', 'admin'), // get id, username and password
         ));
 
         if( empty($req) == FALSE) { 
 
             if( $db->hash($req[0]['password']) == $db->hash($pass) ) {
-
-                echo "
-
-                            <div class=\"alert alert-success\" role=\"alert\">You've been succesfully authentified !</div><br />
-
-                            ";
                 
-                $this->id = $req[0]['id'];
-                $this->username = $req[0]['username'];
-                $this->password = $db->hash($req[0]['password']);
-                $this->admin = $req[0]['admin'];
-                $this->status = 1;
+                $user = New User();
+                $user->id = $req[0]['id'];
+                $user->username = $req[0]['username'];
+                $user->password = $db->hash($req[0]['password']);
+                $user->admin = $req[0]['admin'];
+                $user->status = TRUE;
 
-                //$_SESSION['login_status'] = "CONNECTED";
-                //$_SESSION['username'] = $username;
-
-//                if( $req[0]['admin'] = '1' ) {
-//
-//                    $_SESSION['PrKz5gfNz'] = "1";   //$_SESSION['admin'] = "1";
-//
-//                    // The following variables are "fake" ones, used to hide the "admin" variable
-//                    $_SESSION['Zv8Tqs6Ta'] = rand(0,1);
-//                    $_SESSION['tR1E5Zt4r'] = rand(0,1);
-//                    $_SESSION['a2erTR8z7'] = rand(0,1);
-//                    $_SESSION['85FRedcRt'] = rand(0,1);
-//                }
-//
-//                else {
-//
-//                    $_SESSION['PrKz5gfNz'] = "0";   //$_SESSION['admin'] = "0";
-//
-//                    // The following variables are "fake" ones, used to hide the "admin" variable
-//                    $_SESSION['Zv8Tqs6Ta'] = rand(0,1);
-//                    $_SESSION['tR1E5Zt4r'] = rand(0,1);
-//                    $_SESSION['a2erTR8z7'] = rand(0,1);
-//                    $_SESSION['85FRedcRt'] = rand(0,1);
-//                }
-                /* 
-                               - Use "admin" field (in BDD) instead of id=2 !!!
-                               - "CRYPT" THE ADMIN VARIABLE WITH SOMETHING LIKE ['PrKz5gfNz']
-                               - ADD FAKE SESSION VARIABLES TO HIDE THIS "ADMIN" VARIABLE
-
-                            */
+                echo "<div class=\"notification alert alert-success\" role=\"alert\">You've been succesfully authentified !</div><br />";
+                
+                return $user;
 
             }
 
-            else { throw new Exception('Err_Credentials');
-                  //$_SESSION['login_errors'] .= /* ADD THE FOLLOWING MESSAGE INTO THE ERRORS */ "
-                    //<br /><div class=\"alert alert-danger\" role=\"alert\">Error : Wrong User/Password combination ! Please try again.</div>";
+            else {
+                //echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Wrong User/Password combination ! Please try again.</div>";
+                throw new Exception('Err_BadCredentials');
                  }
 
         }
-        else { throw new Exception('Err_Username');
-              //$_SESSION['login_errors'] .= /* ADD THE FOLLOWING MESSAGE INTO THE ERRORS */ "
-                    //<br /><div class=\"alert alert-danger\" role=\"alert\">Error : Unknown Username ! Please try again.</div>";
+        else {
+            //echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Unknown Username ! Please try again.</div>";
+            throw new Exception('Err_UnknownUsername');
              }
 
         var_dump($req);
 
     }
 
+    /**
+     * User constructor by Registration
+     * @param string $login
+     * @param string $pass
+     */
+    public static function constructByRegister($login, $pass, $pass_v, $f_name, $l_name) {
+        
+        /* TEMP TEMP ----- ----- TEMP TEMP */
+
+        $bdd_table_user = 'phpproj_user';
+        $bdd_table_picture = 'phpproj_picture';
+        $bdd_table_pic_key = 'phpproj_pictureKeyword';
+        $bdd_table_keyword = 'phpproj_keyword';
+        $bdd_table_gallery = 'phpproj_gallery';
+        $bdd_table_gal_pic = 'phpproj_galleryPicture';
+        
+        /* TEMP TEMP ----- ----- TEMP TEMP */
+        
+        $db = new Database();
+
+        $req = $db->read($bdd_table_user, array(
+            'conditions' => array(
+                'username LIKE' => "$login" // Check if there is an entry with the same username
+            ),
+            'fields' => array('username'), // get that result (username)
+        ));
+
+        // If an User with the same Username has been found => Throw Exception
+        if( empty($req) == FALSE) {
+            
+            //echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Username already taken ! Please try again with another one.</div>";
+            throw new Exception('Err_UsernameExists');
+            
+        }
+        
+        // Else, If the Password and the "Verification Password" aren't the same => Throw Exception
+        else if ( $pass != $pass_v ) {
+            
+            //echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Passwords aren't matching ! Please try again.</div>";
+            throw new Exception('Err_PasswordMatch');
+            
+        }
+        
+        // Else, add the User into the Database
+        else {
+            
+            $up = $db->save("Users", array(
+            'username' => $login,
+            'password' => $pass, // Password will be automatically crypted using hash() method from Database class
+            'firstname' => $f_name,
+            'lastname' => $l_name,
+            'admin' => 0,
+            ));
+            
+            // If the Insertion succeeded => Display a success message and add those values into the User instance created
+            if($up) {
+                
+                /* LOGIN */
+                
+                echo "<div class=\"notification alert alert-success\" role=\"alert\">You've been succesfully registered !</div><br />";
+                
+            }
+            
+            // Else, if the Insertion failed => Throw Exception
+            else {
+            
+                //echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Registering failed ! Please try again.</div>";
+                throw new Exception('Err_RegisterFail');
+                
+            }
+            
+        }
+    }
     
     /* ----- ----- ----- Functions ----- ----- ----- */
 
@@ -143,7 +193,7 @@ class User
     
     /**
      * { DESCRIPTION }
-     * @return string $status
+     * @return bool $status
      */
     public function getStatus() {
         
