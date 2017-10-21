@@ -11,7 +11,7 @@
         // If the User has just been disconnected
         if ($_GET['action'] == 'disconnected') {
             
-            echo "<div class=\"notification alert alert-warning\" role=\"alert\">You've been succesfully disconnected !</div><br />";
+            echo "<div class='notification alert alert-warning' role='alert'>You've been succesfully disconnected !</div><br />";
         
         }
         
@@ -119,10 +119,10 @@
                     catch (Exception $e) {
                         
                         if($e->getMessage() == 'Err_BadCredentials') {                             
-                            echo "<div class=\"notification alert alert-danger\" role=\"alert\">Error : Wrong User/Password combination ! Please try again.</div>"; }
+                            echo "<div class='notification alert alert-danger' role='alert'>Error : Wrong User/Password combination ! Please try again.</div>"; }
                         
                         else if ($e->getMessage() == 'Err_UnknownUsername') {
-                            echo "<div class=\"notification alert alert-danger\" role=\"alert\">Error : Unknown Username ! Please try again.</div>"; }
+                            echo "<div class='notification alert alert-danger' role='alert'>Error : Unknown Username ! Please try again.</div>"; }
                         
                     }
                     
@@ -145,13 +145,13 @@
                     catch (Exception $e) {
                         
                         if($e->getMessage() == 'Err_UsernameExists') {                             
-                            echo "<div class=\"notification alert alert-danger\" role=\"alert\">Error : Username already taken ! Please try again with another one.</div>"; }
+                            echo "<div class='notification alert alert-danger' role='alert'>Error : Username already taken ! Please try again with another one.</div>"; }
                         
                         else if ($e->getMessage() == 'Err_PasswordMatch') {
-                            echo "<div class=\"notification alert alert-danger\" role=\"alert\">Error : Passwords aren't matching ! Please try again.</div>"; }
+                            echo "<div class='notification alert alert-danger' role='alert'>Error : Passwords aren't matching ! Please try again.</div>"; }
                         
                         else if ($e->getMessage() == 'Err_RegisterFail') {
-                            echo "<div class=\"notification alert alert-danger\" role=\"alert\">Error : Registering failed ! Please try again or Contact us.</div>"; }
+                            echo "<div class='notification alert alert-danger' role='alert'>Error : Registering failed ! Please try again or Contact us.</div>"; }
                         
                     }
                     
@@ -174,10 +174,10 @@
                         <h3>Logged as ".$l_username."</h3><br />
 
                         <!-- Connected - Links -->
-                        <a href=\"account.php\" class=\"btn btn-primary btn-block\" role=\"button\"><h4>Account Informations</h4></a>
-                        <a href=\"gallery_p.php\" class=\"btn btn-primary btn-block\" role=\"button\"><h4>Personal Gallery</h4></a>
-                        <a href=\"history_p.php\" class=\"btn btn-primary btn-block\" role=\"button\"><h4>Purchase History</h4></a>
-                        <a href=\"?action=disconnect\" class=\"btn btn-danger btn-block\" role=\"button\"><h4>Log out</h4></a>
+                        <a href='account.php' class='btn btn-primary btn-block' role='button'><h4>Account Informations</h4></a>
+                        <a href='gallery_p.php' class='btn btn-primary btn-block' role='button'><h4>Personal Gallery</h4></a>
+                        <a href='history_p.php' class='btn btn-primary btn-block' role='button'><h4>Purchase History</h4></a>
+                        <a href='?action=disconnect' class='btn btn-danger btn-block' role='button'><h4>Log out</h4></a>
                     </div>
                     
                 "; /* Echo[HTML] : End */
@@ -195,41 +195,41 @@
                 echo "
                 
                     <!-- Logging Form -->
-                    <div id=\"login\">
+                    <div id='login'>
 
                         <h2>Login</h2>
 
-                        <form action=\"login.php\" method=\"post\">
+                        <form action='login.php' method='post'>
                         
                             <!-- ADD : Mail or Username -->
-                            Username : <input type=\"text\" name=\"username\" value=\"$temp_user\" required> <br />
-                            Password : <input type=\"password\" name=\"password\" required> <br />
+                            Username : <input type='text' name='username' value='$temp_user' required> <br />
+                            Password : <input type='password' name='password' required> <br />
                             <!-- ADD : Captcha [] -->
                             
-                            <input type=\"hidden\" name=\"action\" value=\"login\"/>                
-                            <input type=\"submit\" value=\"Login\">
+                            <input type='hidden' name='action' value='login'/>                
+                            <input type='submit' value='Login'>
                         </form>
 
                     </div>
 
                     <!-- Registering Form -->
-                    <div id=\"register\">
+                    <div id='register'>
 
                          <h2>Register</h2>
 
-                         <form action=\"login.php\" method=\"post\">
+                         <form action='login.php' method='post'>
                          
-                             Mail : <input type=\"text\" name=\"mail\" value=\"$temp_mail\" required> <br />
-                             First name : <input type=\"text\" name=\"firstname\" value=\"$temp_firstname\"> <br />
-                             Last name : <input type=\"text\" name=\"lastname\" value=\"$temp_lastname\"> <br />
+                             Mail : <input type='text' name='mail' value='$temp_mail' required> <br />
+                             First name : <input type='text' name='firstname' value='$temp_firstname'> <br />
+                             Last name : <input type='text' name='lastname' value='$temp_lastname'> <br />
                              <br />
-                             Username : <input type=\"text\" name=\"username\" value=\"$temp_user\" required> <br />
-                             Password : <input type=\"password\" name=\"password\" required> <br />
-                             Password (Repeat) : <input type=\"password\" name=\"password_verif\" required> <br />
+                             Username : <input type='text' name='username' value='$temp_user' required> <br />
+                             Password : <input type='password' name='password' required> <br />
+                             Password (Repeat) : <input type='password' name='password_verif' required> <br />
                              <!-- ADD : Captcha [] -->
                              
-                             <input type=\"hidden\" name=\"action\" value=\"register\"/>                
-                             <input type=\"submit\" value=\"Register\">
+                             <input type='hidden' name='action' value='register'/>                
+                             <input type='submit' value='Register'>
                          </form>
 
                     </div>
