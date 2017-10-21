@@ -10,11 +10,14 @@ class User
 {
 
     /* ----- ----- ----- Attributes ----- ----- ----- */
+    
+    /* === Login & Technical Informations === */
 
     /**
      * @var int : ID (Useful for database link)
      */
     private $id;
+    
     /**
      * @var string : Username
      */
@@ -34,6 +37,38 @@ class User
      * @var bool : Determines if the user is Logged (TRUE) or not (FALSE)
      */
     private $status;
+    
+    /* === Personal & Contact Informations === */
+
+    /**
+     * @var string : Firstname
+     */
+    private $firstname;
+
+    /**
+     * @var string : Lastname
+     */
+    private $lastname;
+
+    /**
+     * @var string : Postal Address
+     */
+    private $address;
+
+    /**
+     * @var int : Postal Code/ZIP
+     */
+    private $zip;
+
+    /**
+     * @var string : City
+     */
+    private $city;
+
+    /**
+     * @var string : Email Address
+     */
+    private $email;
 
     /* ----- ----- ----- Constructors ----- ----- ----- */
 
@@ -68,7 +103,7 @@ class User
             'conditions' => array(
                 'username LIKE' => "$login" // Check if there is an entry with the same username
             ),
-            'fields' => array('id', 'username', 'password', 'admin'), // get id, username and password
+            'fields' => array('id', 'username', 'password', 'admin', 'firstname', 'lastname', 'address', 'zip', 'city', 'email'), // Get informations from the Database
         ));
 
         if( empty($req) == FALSE) { 
@@ -81,6 +116,12 @@ class User
                 $user->password = $db->hash($req[0]['password']);
                 $user->admin = $req[0]['admin'];
                 $user->status = TRUE;
+                $user->firstname = $req[0]['firstname'];
+                $user->lastname = $req[0]['lastname'];
+                $user->address = $req[0]['address'];
+                $user->zip = $req[0]['zip'];
+                $user->city = $req[0]['city'];
+                $user->email = $req[0]['email'];
 
                 echo "<div class=\"notification alert alert-success\" role=\"alert\">You've been succesfully authentified !</div><br />";
                 
@@ -99,7 +140,7 @@ class User
             throw new Exception('Err_UnknownUsername');
              }
 
-        var_dump($req);
+        var_dump($req); /* TEMP */
 
     }
 
@@ -108,7 +149,7 @@ class User
      * @param string $login
      * @param string $pass
      */
-    public static function constructByRegister($login, $pass, $pass_v, $f_name, $l_name) {
+    public static function constructByRegister($login, $pass, $pass_v, $f_name, $l_name, $mail) {
         
         /* TEMP TEMP ----- ----- TEMP TEMP */
 
@@ -151,7 +192,7 @@ class User
             
             // Normally, we would use the "save()" method from "Database" class here, but it doesn't work... [+ $db->hash($pass) ]
             $hash = $db->hash($pass);
-            $up = $db->query("INSERT INTO $bdd_table_user (username, password, admin) VALUES ('$login', '$hash', '0')", array(), TRUE);
+            $up = $db->query("INSERT INTO $bdd_table_user (username, password, admin, firstname, lastname, email) VALUES ('$login', '$hash', '0', '$f_name', '$l_name', '$mail')", array(), TRUE);
             
             // Normally, this part would be unnecessary, we would just check if $up return TRUE            
             $req = $db->read($bdd_table_user, array(

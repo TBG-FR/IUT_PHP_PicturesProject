@@ -115,7 +115,7 @@
                     $password=var_secure($_POST['password']);
                     
                     // Create a new Instance of User Class with the given credentials (and catch errors if they're wrong)                    
-                    try { $_SESSION['user'] = User::constructByLogin($username, $password); }
+                    try { $_SESSION['user'] = User::constructByLogin($username, $password); var_dump($_SESSION['user']); /* TEMP */ }
                     catch (Exception $e) {
                         
                         if($e->getMessage() == 'Err_BadCredentials') {                             
@@ -138,9 +138,10 @@
                     $password_verif=var_secure($_POST['password_verif']);
                     $firstname=var_secure($_POST['firstname']);
                     $lastname=var_secure($_POST['lastname']);
+                    $mail=var_secure($_POST['mail']);
                     
                     // Create a new Instance of User Class with the given credentials (and catch errors if they're wrong)                    
-                    try { $_SESSION['user'] = User::constructByRegister($username, $password, $password_verif, $firstname, $lastname); }
+                    try { $_SESSION['user'] = User::constructByRegister($username, $password, $password_verif, $firstname, $lastname, $mail); }
                     catch (Exception $e) {
                         
                         if($e->getMessage() == 'Err_UsernameExists') {                             
@@ -150,7 +151,7 @@
                             echo "<div class=\"notification alert alert-danger\" role=\"alert\">Error : Passwords aren't matching ! Please try again.</div>"; }
                         
                         else if ($e->getMessage() == 'Err_RegisterFail') {
-                            echo "<div class=\"notification alert alert-danger\" role=\"alert\">Error : Registering failed ! Please try again.</div>"; }
+                            echo "<div class=\"notification alert alert-danger\" role=\"alert\">Error : Registering failed ! Please try again or Contact us.</div>"; }
                         
                     }
                     
@@ -218,9 +219,9 @@
 
                          <form action=\"login.php\" method=\"post\">
                          
-                             <!-- ADD : Mail : <input type=\"text\" name=\"mail\" value=\"$temp_mail\" > <br /> -->
-                             First name : <input type=\"text\" name=\"firstname\" value=\"$temp_firstname\" required> <br />
-                             Last name : <input type=\"text\" name=\"lastname\" value=\"$temp_lastname\" required> <br />
+                             Mail : <input type=\"text\" name=\"mail\" value=\"$temp_mail\" required> <br />
+                             First name : <input type=\"text\" name=\"firstname\" value=\"$temp_firstname\"> <br />
+                             Last name : <input type=\"text\" name=\"lastname\" value=\"$temp_lastname\"> <br />
                              <br />
                              Username : <input type=\"text\" name=\"username\" value=\"$temp_user\" required> <br />
                              Password : <input type=\"password\" name=\"password\" required> <br />
