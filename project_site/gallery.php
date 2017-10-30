@@ -1,17 +1,6 @@
 <?php
 
-    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start
-
-    if ( $_GET ) {
-        
-        // If the User has just been disconnected
-        if ($_GET['action'] == 'disconnected') {
-            
-            echo "<div class=\"notification alert alert-warning\" role=\"alert\">You've been succesfully disconnected !</div><br />";
-        
-        }
-        
-    }
+    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management    
 
 ?>
 

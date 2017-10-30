@@ -1,33 +1,10 @@
 <?php
 
-    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start
-
-    if ( $_GET ) {
-        
-        // If the User has just been disconnected
-        if ($_GET['action'] == 'disconnected') {
-            
-            echo "<div class='notification alert alert-warning' role='alert'>You've been succesfully disconnected !</div><br />";
-        
-        }
-        
-        // If the User clicks on "Logout" AND is logged (An instance of User is still in his Session)
-        if ($_GET['action'] == 'disconnect' &&  $_SESSION['user'] instanceof User ) {
-            
-            // Disconnect the user and empty the corresponding variable in Session         
-            $_SESSION['user']->disconnect();
-            $_SESSION['user']='';
-            
-            // Send the User back on the page where he was
-            $loc = "Location: ".$_GET['source']."?action=disconnected";
-            header($loc);
-        
-        }
-    }
+    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management    
 
 ?>
 
-<!-- index.php ~ Homepage -->
+<!-- 'login.php' ~ Login & Registering Management -->
 
 <!doctype html>
 
@@ -142,9 +119,9 @@
                         <h3>Logged as ".$l_username."</h3><br />
 
                         <!-- Connected - Links -->
-                        <a href='account.php' class='btn btn-primary btn-block' role='button'><h4>Account Informations</h4></a>
-                        <a href='gallery_p.php' class='btn btn-primary btn-block' role='button'><h4>Personal Gallery</h4></a>
-                        <a href='history_p.php' class='btn btn-primary btn-block' role='button'><h4>Purchase History</h4></a>
+                        <a href='p_account.php' class='btn btn-primary btn-block' role='button'><h4>Account Informations</h4></a>
+                        <a href='p_gallery.php' class='btn btn-primary btn-block' role='button'><h4>Personal Gallery</h4></a>
+                        <a href='p_history.php' class='btn btn-primary btn-block' role='button'><h4>Purchase History</h4></a>
                         <a href='?action=disconnect' class='btn btn-danger btn-block' role='button'><h4>Log out</h4></a>
                     </div>
                     
