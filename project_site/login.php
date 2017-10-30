@@ -14,17 +14,13 @@
         // If the User clicks on "Logout" AND is logged (An instance of User is still in his Session)
         if ($_GET['action'] == 'disconnect' &&  $_SESSION['user'] instanceof User ) {
             
-            // Disconnect the user and empty the corresponding variable in Session
-            //$_SESSION['login_status'] = "";
-            //$_SESSION['PrKz5gfNz'] = 0;            
+            // Disconnect the user and empty the corresponding variable in Session         
             $_SESSION['user']->disconnect();
             $_SESSION['user']='';
             
             // Send the User back on the page where he was
             $loc = "Location: ".$_GET['source']."?action=disconnected";
             header($loc);
-            
-            // +++ Display a disconnection message ?
         
         }
     }
@@ -65,32 +61,7 @@
 
         <div class="content">
 
-            <?php
-
-            /* -------------------------------------------------------------------------------------
-            SI CONNECTE : AFFICHER [COMPTE] [GALLERIE PERSO] [DECONNEXION]
-            SINON : FORMULAIRES
-
-            APRES ENVOI :
-                SI OK -> AFFICHER "CONNECTE" + MESSAGE GREEN
-                SI ERREUR(S) -> AFFICHER ERREURS (MESSAGE RED) + FORMULAIRE REMPLI
-                    https://getbootstrap.com/docs/4.0/components/alerts/
-            ----------------------------------------------------------------------------------------*/
-            
-            /*if ( $_GET ) {
-                
-                if ($_GET['action'] == 'disconnect') {
-                    
-                    //$_SESSION['login_status'] = "";
-                    //$_SESSION['PrKz5gfNz'] = 0;
-                    
-                    $_SESSION['user']->disconnect();
-                    $_SESSION['user']='';
-                    
-                }
-                
-            }*/
-            
+            <?php            
             
             /* ===== ===== ===== IF A FORM HAS BEEN SENT => VALIDATE THE FORM, CHECK THE VALUES AND GET THE RESULTS ===== ===== ===== */            
             if ( $_POST ) {
@@ -124,6 +95,7 @@
                     
                 }
                 
+                // If the User tried to Register a new account
                 else if ($_POST['action'] == 'register') {
                     
                     echo " ===== ===== ===== REGISTER ===== ===== ===== ".$db->hash(var_secure($_POST['password']))." ========== ";
