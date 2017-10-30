@@ -1,4 +1,4 @@
-<?php
+<?php       // File "conf.bdd.php" : ___decription__
 
 // For security reasons, we could rename this file with a "weird" (unexpected) name, making it harder to find for potential "hackers"
 
