@@ -29,7 +29,7 @@ class User
     private $password;
 
     /**
-     * @var bool : Determines if the user is an Administrator
+     * @var int : Determines if the user is an Administrator
      */
     private $admin;
 
@@ -255,6 +255,15 @@ class User
     public function getStatus() {
         
         return $this->status;
+    }
+    
+    /**
+     * { DESCRIPTION }
+     * @return string $admin
+     */
+    public function getAdmin() {
+        
+        return $this->admin;
     }
     
     /**
