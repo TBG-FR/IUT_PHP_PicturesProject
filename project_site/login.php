@@ -2,10 +2,6 @@
 
     require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start
 
-    if( isset($_SESSION['login_status'] ) == FALSE ) { $_SESSION['login_status'] = ''; }
-    if( isset($_SESSION['login_errors'] ) == FALSE ) { $_SESSION['login_errors'] = ''; }
-    if( isset($_SESSION['user'] ) == FALSE ) { $_SESSION['user'] = ''; }
-
     if ( $_GET ) {
         
         // If the User has just been disconnected
@@ -55,8 +51,8 @@
         <link href="css/style.css" rel="stylesheet" media="all" type="text/css">
 
         <!-- Javascript -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
     </head>
 

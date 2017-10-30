@@ -9,4 +9,8 @@
 
     session_start(); // Session Creation or Recovery
 
+    if( isset($_SESSION['login_status']) == FALSE ) { $_SESSION['login_status'] = ''; }
+    if( isset($_SESSION['login_errors']) == FALSE ) { $_SESSION['login_errors'] = ''; }
+    if( isset($_SESSION['user']) == FALSE ) { $_SESSION['user'] = ''; }
+
 ?>
