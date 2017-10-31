@@ -29,7 +29,7 @@
 header ("Content-type: image/jpeg");
 
 // on crée deux variables contenant les chemins d'accès à nos deux fichiers : $fichier_source contenant le lien vers l'image à "copyrighter", $fichier_copyright contenant le lien vers la petite vignette contenant le copyright (bien sur, on prendra soin de placer les images sources dans un répertoire "caché" sinon le copyright ne sert à rien si les visiteurs ont accès aux images sources)
-$src_file = "4.jpg";
+$src_file = "source0.jpg";
 //$src_wtmk = "watermark.png";
 
 // Creation of two images ressources : one for the source image, one for the watermark
@@ -46,7 +46,7 @@ $height_wtmk = $height_dest / 4;
 /* ------------------------------------------------------------------------------------------------ */
 
 // on crée une ressource pour notre image qui aura comme largeur $largeur et $hauteur comme hauteur (on place également un or die si la création se passait mal afin d'avoir un petit message d'alerte)
-$img_wtmk = @ImageCreate($width_wtmk, $height_wtmk) or die ("Erreur lors de la création de l'image");
+$img_wtmk = ImageCreate($width_wtmk, $height_wtmk) or die ("Error while creating Watermark...");
 
 // Create the color 'black'
 //$black = imagecolorallocate($img_wtmk, 0, 0, 0);
@@ -55,8 +55,8 @@ $img_wtmk = @ImageCreate($width_wtmk, $height_wtmk) or die ("Erreur lors de la c
 //imagecolortransparent($img_wtmk, $black);
 
 $white = imagecolorallocate($img_wtmk, 255, 255, 255);
-$black = imagecolorallocate($img_wtmk, 255, 255, 255);
-//$black = imagecolorallocate($img_wtmk, 0, 0, 0);
+//$black = imagecolorallocate($img_wtmk, 255, 255, 255);
+$black = imagecolorallocate($img_wtmk, 0, 0, 0);
 imagefilledrectangle($img_wtmk, 0, 0, 150, 150, $white);
 imagecolortransparent($img_wtmk, $white);
 
@@ -84,6 +84,6 @@ for ($i=4; $i>=0; $i--) {
 }
 
 // Image displaying
-ImageJpeg ($img_src, "render.jpg");
+ImageJpeg($img_src, "render.jpg");
 
 ?>
