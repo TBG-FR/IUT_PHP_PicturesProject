@@ -37,8 +37,42 @@ class Picture
      * @var arraylist<keyword> to identify the picture
      */
     private $keywords;
-   
-
+    
+    
+    
+    function Picture($pic_name="",$pic_desc="",$pic_date="",$pic_visible=false,$pic_id=-1) {
+        $this->id=$pic_id;
+        $this->name=$pic_name;
+        $this->desc=$pic_desc;
+        $this->date=$pic_date;
+        $this->visible=$pic_visible;
+        /*echo "1".$pic_name;
+        echo "2".$pic_desc;
+        echo "3".$pic_date;
+        echo "4".$name;
+        echo "5".$desc;
+        echo "6".$date;*/
+    }
+    
+    
+    
+    public function addKeword($new_keyword){
+        $this->keywords[]=$new_keyword;
+        
+    }
+    
+    public function getNbKeyword(){
+        return $nbkeywords;
+    }
+    
+    public function displayPicInfo(){
+        echo $this->name."</br>";
+        echo $this->desc."</br>";
+        echo $this->date."</br>";
+        echo $this->visible."</br>";
+        var_dump($this->keywords);
+    }
+    
     
     public function addImage($pic_name,$pic_error,$tmp_pic_name){
         if ($pic_error > 0) $erreur = "Erreur lors du transfert";
