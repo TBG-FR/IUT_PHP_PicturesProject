@@ -45,7 +45,41 @@
 
                 echo "
                 
-                    <div id='_'>
+                    <!-- Logging Form -->
+                    <div id='account'>
+
+                        <h2>Account Informations</h2>
+
+                        <form action='p_account.php' method='post'>
+                        
+                            Username : <input type='text' name='username' value='JeanJean' disabled> <br />
+                            Email :  <input type='text' name='mail' value='Jean@hotmail.fr' disabled> <br />
+                            Old Password : <input type='password' name='password_old' placeholder='Enter your current password'> <br />
+                            New Password : <input type='password' name='password_new' placeholder='Enter your desired password'> <br />
+                            Repeat Password : <input type='password' name='password_verif' placeholder='Repeat your desired password'> <br />
+                            
+                            <input type='hidden' name='action' value='account_info'/>                
+                            <input type='submit' value='Validate modifications'>
+                        </form>
+
+                    </div>
+
+                    <!-- Registering Form -->
+                    <div id='billing'>
+
+                         <h2>Billing Details</h2>
+
+                         <form action='p_account.php' method='post'>
+                         
+                            First Name : <input type='text' name='firstname' value='Jean'> <br />
+                            Last Name : <input type='text' name='lastname' value='Michel'> <br />
+                            Complete Address : <input type='text' name='address' value='5 rue des champs'> <br />
+                            City Name : <input type='text' name='city' value='Lyon'> <br />
+                            ZIP Code : <input type='text' name='zipcode' value='69000'> <br />
+                             
+                             <input type='hidden' name='action' value='billing'/>                
+                             <input type='submit' value='Validate modifications'>
+                         </form>
 
                     </div>
 
