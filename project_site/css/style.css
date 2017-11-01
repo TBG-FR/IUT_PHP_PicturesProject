@@ -95,7 +95,70 @@ header {
 /* ----- -----  Content (Page's Body) ----- ----- */
 
 .content {
-    /* ATTRIBUTES */
+    
+    background-color: aqua;
+    width: 100%;
+    
+}
+
+.gallery  {
+
+    background-color: red;
+    width: 95%;
+    margin: auto;
+    text-align: center;
+    
+}
+
+.gal_element {
+
+    position: relative;
+    display: inline-block;
+    
+    margin:auto;
+    margin-bottom: 1%;
+
+}
+
+.gal_element > img {
+
+   /**/
+
+}
+
+.gal_overlay {
+
+    /* Placing the overlay on the image */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    
+    /* Adding visual effects and hiding the overlay when not hovered */
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgba(70,70,70,0.8);
+
+    text-align: center;
+
+}
+
+
+.gal_element:hover .gal_overlay {
+
+    opacity: 1; /* Displaying the overlay only when hovered */
+
+}
+
+.gal_overlay > .btn {
+
+    display: block;
+    width: 50%;
+    margin: auto;
+    margin-top: 12.5%;
 }
 
 /* ----- ----- Footer (Page's Lower Part)  ----- ----- */
@@ -113,9 +176,9 @@ footer {
 /* ----- ----- ----- ----- CSS "@media" (Responsive) ----- ----- ----- ----- */
 
 /*@media all and (max-width:500px) { /* Sur tous les médias, si la largeur d'affichage est plus petite que 500px *//*  
-    #header_head {
-        flex-flow: column wrap;     /* Header_Head : Afficher les éléments en colonne, les uns sous les autres *//*
-    }
+#header_head {
+flex-flow: column wrap;     /* Header_Head : Afficher les éléments en colonne, les uns sous les autres *//*
+}
 }*/
 
 /* ----- ----- ----- ----- [ CSS "Backend" : Administration Elements ] ----- ----- ----- ----- */
