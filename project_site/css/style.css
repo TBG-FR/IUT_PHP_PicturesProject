@@ -161,6 +161,14 @@ header {
     margin-top: 12.5%;
 }
 
+.mini_menu {
+    background-color: lightgrey;
+    width: 35%;
+    margin: auto;
+    text-align: center;
+    padding: 2.5%;
+}
+
 /* ----- ----- Footer (Page's Lower Part)  ----- ----- */
 
 footer {

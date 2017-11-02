@@ -1,12 +1,10 @@
 <?php
 
-    session_start(); // Session Creation or Recovery
-
-    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
+    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management    
 
 ?>
 
-<!-- index.php ~ Homepage -->
+<!-- 'index.php' ~ Homepage -->
 
 <!doctype html>
 
@@ -55,6 +53,8 @@
             <h3><a href="gallery.php">See/Buy all my Pictures</a></h3>
 			
 			<?php
+            
+            //include_once("classes/all.inc.php");
 			
 			$db = new Database();
 			
@@ -65,7 +65,7 @@
 			print_r($req);*/
 			print_r($db);
 			
-			$res = $db->read('phpproj_user');
+			$res = $db->read($bdd_table_user);
 			
 			var_dump($res);
 		/*

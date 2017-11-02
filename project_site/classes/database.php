@@ -49,13 +49,15 @@ class Database
      * @param string $password
      * @return string hashed
      */
-    private function hash($password){
+    //private function hash($password){ //***MODIF_PROJECT***
+    public function hash($password){
         // on choisira ici la méthode de cryptage de mot de passe
         //return md5($password);
         $options = array(
             'salt' => 'Zbk6s2i!!?vs+_tM2-&-=mvTpW4ReC945VH64Vb9&7$+R2UxW6Gb!@6eH#7P' // on choisi un code pour que l'algo de cryptage soit réversible
         );
         return password_hash($password, CRYPT_BLOWFISH, $options);
+                                        /* PASSWORD_BCRYPT ? */
 
     }
 

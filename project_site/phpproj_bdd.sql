@@ -1,139 +1,166 @@
 /*==============================================================*/
-/* Nom de SGBD :  MySQL 5.0                                     */
-/* Date de création :  05/10/2017 10:20:41                      */
+/*   PHP_Pictures_Project : SQL Script for Database Creation    */
+/*                     (SGBD :  MySQL 5.0)                      */
 /*==============================================================*/
 
-drop table if exists phpproj_PictureKeyword;
-
-drop table if exists phpproj_GalleryPicture;
-
-drop table if exists phpproj_Keyword;
-
-drop table if exists phpproj_Picture;
-
-drop table if exists phpproj_Gallery;
-
-drop table if exists phpproj_User;
 
 /*==============================================================*/
-/* Table : phpproj_Gallery                                      */
+/* TABLES CLEANING                                              */
 /*==============================================================*/
-create table phpproj_Gallery
+DROP TABLE IF EXISTS phpproj_PictureKEYword;
+DROP TABLE IF EXISTS phpproj_GalleryPicture;
+DROP TABLE IF EXISTS phpproj_KEYword;
+DROP TABLE IF EXISTS phpproj_Picture;
+DROP TABLE IF EXISTS phpproj_Gallery;
+DROP TABLE IF EXISTS phpproj_User;
+
+
+/*==============================================================*/
+/* TABLE CREATION : phpproj_Gallery                             */
+/*==============================================================*/
+CREATE TABLE phpproj_Gallery
 (
-   id                   int not null AUTO_INCREMENT,
-   title                varchar(254) not null,
-   primary key (id)
+    id          INT NOT NULL AUTO_INCREMENT,
+    title       VARCHAR(100) NOT NULL,
+    
+    PRIMARY KEY (id)
 )
 ENGINE=InnoDB
 CHARACTER SET utf8
 COLLATE utf8_bin
 AUTO_INCREMENT=3;
 
+
 /*==============================================================*/
-/* Table : phpproj_GalleryPicture                               */
+/* TABLE CREATION : phpproj_GalleryPicture                      */
 /*==============================================================*/
-create table phpproj_GalleryPicture
+CREATE TABLE phpproj_GalleryPicture
 (
-   pic_id               int not null,
-   gal_id               int not null,
-   primary key (pic_id, gal_id)
+    pic_id      INT NOT NULL,
+    gal_id      INT NOT NULL,
+    
+    PRIMARY KEY (pic_id, gal_id)
 )
 ENGINE=InnoDB
 CHARACTER SET utf8
 COLLATE utf8_bin;
 
+
 /*==============================================================*/
-/* Table : phpproj_Keyword                                      */
+/* TABLE CREATION : phpproj_KEYword                             */
 /*==============================================================*/
-create table phpproj_Keyword
+CREATE TABLE phpproj_KEYword
 (
-   id                   int not null AUTO_INCREMENT,
-   name                 varchar(254) not null,
-   active               bool not null,
-   primary key (id)
+    id          INT NOT NULL AUTO_INCREMENT,
+    name        VARCHAR(100) NOT NULL,
+    active      BOOL NOT NULL,
+    
+    PRIMARY KEY (id)
 )
 ENGINE=InnoDB
 CHARACTER SET utf8
 COLLATE utf8_bin;
 
+
 /*==============================================================*/
-/* Table : phpproj_Picture                                      */
+/* TABLE CREATION : phpproj_Picture                             */
 /*==============================================================*/
-create table phpproj_Picture
+CREATE TABLE phpproj_Picture
 (
-   id                   int not null AUTO_INCREMENT,
-   title                varchar(254) not null,
-   description          varchar(254),
-   date                 datetime,
-   public               bool not null,
-   path_original    varchar(254) not null,
-   path_watermarked varchar(254),
-   primary key (id)
+    id                      INT NOT NULL AUTO_INCREMENT,
+    title                   VARCHAR(255) NOT NULL,
+    description             VARCHAR(510),
+    date                    DATETIME,
+    public                  BOOL NOT NULL,
+    path_original           VARCHAR(255) NOT NULL,
+    path_watermarked        VARCHAR(255),
+    
+    PRIMARY KEY (id)
 )
 ENGINE=InnoDB
 CHARACTER SET utf8
 COLLATE utf8_bin;
 
+
 /*==============================================================*/
-/* Table : phpproj_PictureKeyword                               */
+/* TABLE CREATION : phpproj_PictureKEYword                      */
 /*==============================================================*/
-create table phpproj_PictureKeyword
+CREATE TABLE phpproj_PictureKEYword
 (
-   pic_id               int not null,
-   key_id               int not null,
-   primary key (pic_id, key_id)
+    pic_id      INT NOT NULL,
+    KEY_id      INT NOT NULL,
+    
+    PRIMARY KEY (pic_id, KEY_id)
 )
 ENGINE=InnoDB
 CHARACTER SET utf8
 COLLATE utf8_bin;
 
+
 /*==============================================================*/
-/* Table : phpproj_User                                         */
+/* TABLE CREATION : phpproj_User                                */
 /*==============================================================*/
-create table phpproj_User
+CREATE TABLE phpproj_User
 (
-   id                   int not null AUTO_INCREMENT,
-   username             VARCHAR(25) not null,
-   password             VARCHAR(50) not null,
-   admin                bool not null DEFAULT 0,
-   primary key (id)
+    id          INT NOT NULL AUTO_INCREMENT,
+    username    VARCHAR(30) NOT NULL,
+    password    VARCHAR(255) NOT NULL,
+    admin       BOOL NOT NULL DEFAULT 0,
+    firstname   VARCHAR(50),
+    lastname    VARCHAR(75),
+    address     VARCHAR(255),
+    zip         INT(6),
+    city        VARCHAR(100),
+    email       VARCHAR(200) NOT NULL,
+    
+    PRIMARY KEY (id)
 )
 ENGINE=InnoDB
 CHARACTER SET utf8
 COLLATE utf8_bin
 AUTO_INCREMENT=3;
 
-alter table phpproj_Gallery add constraint FK_UserGallery foreign key (id)
+
+/*==============================================================*/
+/* ADDING CONSTRAINTS (FOREIGN KEYS)                            */
+/*==============================================================*/
+alter TABLE phpproj_Gallery add constraINT FK_UserGallery foreign KEY (id)
       references phpproj_User (id) on delete restrict on update restrict;
-
-alter table phpproj_GalleryPicture add constraint FK_GalleryPictureG foreign key (gal_id)
+alter TABLE phpproj_GalleryPicture add constraINT FK_GalleryPictureG foreign KEY (gal_id)
       references phpproj_Gallery (id) on delete restrict on update restrict;
-
-alter table phpproj_GalleryPicture add constraint FK_GalleryPictureP foreign key (pic_id)
+alter TABLE phpproj_GalleryPicture add constraINT FK_GalleryPictureP foreign KEY (pic_id)
+      references phpproj_Picture (id) on delete restrict on update restrict;
+alter TABLE phpproj_PictureKEYword add constraINT FK_PictureKEYwordK foreign KEY (KEY_id)
+      references phpproj_KEYword (id) on delete restrict on update restrict;
+alter TABLE phpproj_PictureKEYword add constraINT FK_PictureKEYwordP foreign KEY (pic_id)
       references phpproj_Picture (id) on delete restrict on update restrict;
 
-alter table phpproj_PictureKeyword add constraint FK_PictureKeywordK foreign key (key_id)
-      references phpproj_Keyword (id) on delete restrict on update restrict;
 
-alter table phpproj_PictureKeyword add constraint FK_PictureKeywordP foreign key (pic_id)
-      references phpproj_Picture (id) on delete restrict on update restrict;
-      
 /*==============================================================*/
-/*                                        */
+/* INSERTING DEFAULT/TEST VALUES                                */
 /*==============================================================*/
-INSERT INTO phpproj_User VALUES
-#('0','NA','NA','FALSE'),
-#('1','NA','NA','FALSE'),
-('2','Admin','Admin','1');
+
+INSERT INTO phpproj_User (id, username, password, email, admin) VALUES
+
+#('0','NA','NA','na@na.com','0'), #This value should not exist, ids start from 3, and user with id=2 is the Admin
+#('1','NA','NA','na@na.com','0'), #This value should not exist, ids start from 3, and user with id=2 is the Admin
+
+#('2','Admin','Admin','1'); #This is the same entry, without hashed password
+('2','Admin','$2y$10$WmJrNnMyaSEhP3ZzK190TOrcnj44qc3XtgS961U6tmc2.WFc.ibtC','admin@phpprojpictures.fr','1'); #This is the same entry, with hashed password
 
 INSERT INTO phpproj_Gallery (id, title) VALUES
 ('2','Admin Gallery');
 
 /* ===== ===== Tests d'Insertion ===== ===== */
-INSERT INTO phpproj_User (username, password) VALUES
-('Roger','Rabbit'),
-('Jojo','LaCompote');
+
+INSERT INTO phpproj_User (username, password, firstname, lastname, address, zip, city, email) VALUES
+
+#('OSS 117','OSS117'),
+('OSS 117','$2y$10$WmJrNnMyaSEhP3ZzK190TOScGHQ6QVpxRDR9O8spBsDqqdrlbMduy','Hubert','Bonisseur de La Bath','5, rue du nid d\'espions','1954','Le Caire','cebonvieuxhubert@gmail.com'),
+
+#('Jojo','LaCompote');
+('Jojo','$2y$10$WmJrNnMyaSEhP3ZzK190TO6ZngeZdGcIttAQ7Jaf3UZv4MLv9DMWa','Jojo','DuRU','13 Rue Peter Fink','01000','Bourg-en-Bresse','jojo-labonnecompote@univ-lyon1.fr');
 
 INSERT INTO phpproj_Gallery (title) VALUES
-('Roger''s Gallery'),
+('OSS117''s Gallery'),
 ('Jojo''s Gallery');

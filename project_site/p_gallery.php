@@ -4,7 +4,7 @@
 
 ?>
 
-<!-- 'gallery.php' ~ Displays the public gallery (without login, and with watermarked pictures) -->
+<!-- 'p_gallery.php' ~ Displays the personal gallery (login required, purchased pictures without watermarks) -->
 
 <!doctype html>
 
