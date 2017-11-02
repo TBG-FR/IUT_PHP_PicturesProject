@@ -22,7 +22,6 @@ CREATE TABLE phpproj_Gallery
 (
     id          INT NOT NULL AUTO_INCREMENT,
     title       VARCHAR(100) NOT NULL,
-    type        INT NOT NULL,
     
     PRIMARY KEY (id)
 )
@@ -73,8 +72,8 @@ CREATE TABLE phpproj_Picture
     description             VARCHAR(510),
     date                    DATETIME,
     public                  BOOL NOT NULL,
-    filename_original       INT NOT NULL,
-    filename_watermarked    INT,
+    path_original           VARCHAR(255) NOT NULL,
+    path_watermarked        VARCHAR(255),
     
     PRIMARY KEY (id)
 )
@@ -149,10 +148,19 @@ INSERT INTO phpproj_User (id, username, password, email, admin) VALUES
 #('2','Admin','Admin','1'); #This is the same entry, without hashed password
 ('2','Admin','$2y$10$WmJrNnMyaSEhP3ZzK190TOrcnj44qc3XtgS961U6tmc2.WFc.ibtC','admin@phpprojpictures.fr','1'); #This is the same entry, with hashed password
 
+INSERT INTO phpproj_Gallery (id, title) VALUES
+('2','Admin Gallery');
+
 /* ===== ===== Tests d'Insertion ===== ===== */
+
 INSERT INTO phpproj_User (username, password, firstname, lastname, address, zip, city, email) VALUES
-#('Roger','Rabbit'),
+
+#('OSS 117','OSS117'),
 ('OSS 117','$2y$10$WmJrNnMyaSEhP3ZzK190TOScGHQ6QVpxRDR9O8spBsDqqdrlbMduy','Hubert','Bonisseur de La Bath','5, rue du nid d\'espions','1954','Le Caire','cebonvieuxhubert@gmail.com'),
 
 #('Jojo','LaCompote');
 ('Jojo','$2y$10$WmJrNnMyaSEhP3ZzK190TO6ZngeZdGcIttAQ7Jaf3UZv4MLv9DMWa','Jojo','DuRU','13 Rue Peter Fink','01000','Bourg-en-Bresse','jojo-labonnecompote@univ-lyon1.fr');
+
+INSERT INTO phpproj_Gallery (title) VALUES
+('OSS117''s Gallery'),
+('Jojo''s Gallery');
