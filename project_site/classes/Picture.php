@@ -76,7 +76,7 @@ class Picture
     
     public function addImage($pic_name,$pic_error,$tmp_pic_name){
         if ($pic_error > 0) $erreur = "Erreur lors du transfert";
-        $extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
+        $extensions_valides = array( 'jpg' , 'jpeg' , 'png' );
         $extension_upload = strtolower(substr(strrchr($pic_name, '.'),1));
         
         if ( in_array($extension_upload,$extensions_valides) )
