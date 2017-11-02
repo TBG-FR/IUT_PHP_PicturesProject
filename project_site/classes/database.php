@@ -212,14 +212,15 @@ class Database
      * ajoute des données dans la table (si l'id est défini dans $datas alors la requète fera un UPDATE
      * @param string $table le nom de la table
      * @param array $datas un tableau des valeurs à ajouter ex: array('col1' => 'val1', 'col2' => 'val2', 'col3' => 'val3', ...)
+     * @param bool $forceinsert If we want to insert something with the id, without updating but inserting !
      * @return bool
      */
-    public function save($table, $datas){
+    public function save($table, $datas, $forceinsert = TRUE){
         if(count($datas) == 0){
             return false;
         }
         $datas = $this->filtre($datas);
-        if(isset($datas['id']) && is_numeric($datas['id'])){
+        if(isset($datas['id']) && is_numeric($datas['id'] && $forceinsert==FALSE)){
             $id = $datas['id'];
             unset($datas['id']);
         }

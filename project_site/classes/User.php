@@ -1,6 +1,6 @@
 <?php
 
-    require_once('conf.bdd.php');
+    //require_once('conf.bdd.php');
 
 /**
  * Class User
