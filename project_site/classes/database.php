@@ -220,7 +220,7 @@ class Database
             return false;
         }
         $datas = $this->filtre($datas);
-        if(isset($datas['id']) && is_numeric($datas['id'] && $forceinsert==FALSE)){
+        if(isset($datas['id']) && is_numeric($datas['id'])){
             $id = $datas['id'];
             unset($datas['id']);
         }
@@ -230,7 +230,7 @@ class Database
         $datas = array_merge($datas, $this->setDate($table, !isset($id))); // on appelle la méthode qui vérifie pour compléter les dates created/updated
         $keys = array_keys($datas);
         $values = substr(str_repeat('?,',count($keys)),0,-1);
-        if(isset($id)){ // si l'id existe on va faire une mise à jour
+        if(isset($id) && $forceinsert==FALSE){ // si l'id existe on va faire une mise à jour
             $fields = implode('=?, ',$keys);
             $req = "UPDATE " . $table . " SET $fields=? WHERE id=" . $id;
         }else{ // sinon on fait une insertion
