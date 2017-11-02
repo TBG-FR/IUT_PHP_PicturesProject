@@ -13,9 +13,9 @@ if ( $_GET ) {
         // If the User clicks on "Logout" AND is logged (An instance of User is still in $_SESSION)
         if ($_GET['action'] == 'disconnect' &&  $_SESSION['user'] instanceof User ) {
             
-            // Disconnect the user and empty the corresponding variable in Session         
+            // Disconnect the user and unset the corresponding variable in $_SESSION      
             $_SESSION['user']->disconnect();
-            $_SESSION['user']='';
+            unset($_SESSION['user']);
             
             // Send the User back on the page where he was
             $loc = "Location: ".$_GET['source']."?action=disconnected";
