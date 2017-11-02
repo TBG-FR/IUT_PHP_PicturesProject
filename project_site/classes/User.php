@@ -190,12 +190,19 @@ class User
         // Else, add the User into the Database
         else {
             
-            // Normally, we would use the "save()" method from "Database" class here, but it doesn't work... [+ $db->hash($pass) ]
-            $hash = $db->hash($pass);
-            $up = $db->query("INSERT INTO $bdd_table_user (username, password, admin, firstname, lastname, email) VALUES ('$login', '$hash', '0', '$f_name', '$l_name', '$mail')", array(), TRUE);
+            // Insert the new User into the corresponding table
+            $user_insert = $db->save($bdd_table_user, array(
+                    'username' => $login,
+                    'admin' => 0,
+                    'password' => $pass, // le mot de passe sera crypté automatiquement selon la règle choisi dans la méthode hash()
+                    'firstname' => $f_name,
+                    'lastname'  => $l_name,
+                    'email' => $mail
+                ));
             
-            // Normally, this part would be unnecessary, we would just check if $up return TRUE            
-            $req = $db->read($bdd_table_user, array(
+            
+            // Normally, this part would be unnecessary, we would just check if $up return TRUE, but the method save() strangely return an empty array...            
+            $user_check = $db->read($bdd_table_user, array(
                 'conditions' => array(
                     'username LIKE' => "$login" // Check if there is an entry with the same username
                 ),
@@ -204,11 +211,11 @@ class User
             
             // If the Insertion succeeded => Display a success message and add those values into the User instance created
             //if($up) {
-            if( empty($req) == FALSE ) {
+            if( empty($user_check) == FALSE ) {
                 
                 echo "<div class=\"notification alert alert-success\" role=\"alert\">You've been succesfully registered !</div><br />";
                 
-                //Then try to log the User, the same way as if he logged himself with the Login form (with Exceptions management, even if it shouldn't happen just after registering)           
+                //Then try to log the User, the same way as if he logged himself with the Login form (And ctach errors, even if it shouldn't happen just after registering)           
                 try { $user = User::constructByLogin($login, $pass); }
                     catch (Exception $e) {
                         
@@ -226,7 +233,7 @@ class User
             // Else, if the Insertion failed => Throw Exception
             else {
             
-                //echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Registering failed ! Please try again.</div>";
+                //echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Registering failed ! Please try again or contact us.</div>";
                 throw new Exception('Err_RegisterFail');
                 
             }
@@ -244,7 +251,6 @@ class User
     public function disconnect(){
         
         $this->status = 0;
-        echo " DISCONNECT (ADD DECONSTRUCTOR)";
         
     }
     
