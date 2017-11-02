@@ -67,8 +67,8 @@ create table phpproj_Picture
    description          varchar(254),
    date                 datetime,
    public               bool not null,
-   filename_original    int not null,
-   filename_watermarked int,
+   path_original    varchar(254) not null,
+   path_watermarked varchar(254),
    primary key (id)
 )
 ENGINE=InnoDB
