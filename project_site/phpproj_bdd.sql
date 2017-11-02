@@ -22,7 +22,6 @@ create table phpproj_Gallery
 (
    id                   int not null AUTO_INCREMENT,
    title                varchar(254) not null,
-   type                 int not null,
    primary key (id)
 )
 ENGINE=InnoDB
@@ -127,7 +126,14 @@ INSERT INTO phpproj_User VALUES
 #('1','NA','NA','FALSE'),
 ('2','Admin','Admin','1');
 
+INSERT INTO phpproj_Gallery (id, title) VALUES
+('2','Admin Gallery');
+
 /* ===== ===== Tests d'Insertion ===== ===== */
 INSERT INTO phpproj_User (username, password) VALUES
 ('Roger','Rabbit'),
 ('Jojo','LaCompote');
+
+INSERT INTO phpproj_Gallery (title) VALUES
+('Roger''s Gallery'),
+('Jojo''s Gallery');
