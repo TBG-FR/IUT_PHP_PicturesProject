@@ -137,6 +137,33 @@ alter TABLE phpproj_PictureKEYword add constraINT FK_PictureKEYwordP foreign KEY
 
 
 /*==============================================================*/
+/* ADDING TRIGGER (PRIVATE GALLERY FOR EACH USER)               */
+/*==============================================================*/
+
+DROP TRIGGER IF EXISTS USER_OWN_GALLERY;
+
+DELIMITER $
+
+CREATE TRIGGER USER_OWN_GALLERY
+AFTER INSERT ON phpproj_User FOR EACH ROW
+
+BEGIN
+
+    DECLARE id_g int;
+    DECLARE title_g varchar(150);
+	
+    SET id_g := NEW.id;
+    SET title_g := CONCAT(NEW.username,'\'s Gallery');
+    
+    INSERT INTO phpproj_Gallery VALUES (id_g,title_g);
+
+END;
+
+$
+DELIMITER ;
+
+
+/*==============================================================*/
 /* INSERTING DEFAULT/TEST VALUES                                */
 /*==============================================================*/
 
@@ -148,8 +175,10 @@ INSERT INTO phpproj_User (id, username, password, email, admin) VALUES
 #('2','Admin','Admin','1'); #This is the same entry, without hashed password
 ('2','Admin','$2y$10$WmJrNnMyaSEhP3ZzK190TOrcnj44qc3XtgS961U6tmc2.WFc.ibtC','admin@phpprojpictures.fr','1'); #This is the same entry, with hashed password
 
+/* ==> THE TRIGGER DOES IT AUTOMATICALLY
 INSERT INTO phpproj_Gallery (id, title) VALUES
 ('2','Admin Gallery');
+*/
 
 /* ===== ===== Tests d'Insertion ===== ===== */
 
@@ -161,6 +190,8 @@ INSERT INTO phpproj_User (username, password, firstname, lastname, address, zip,
 #('Jojo','LaCompote');
 ('Jojo','$2y$10$WmJrNnMyaSEhP3ZzK190TO6ZngeZdGcIttAQ7Jaf3UZv4MLv9DMWa','Jojo','DuRU','13 Rue Peter Fink','01000','Bourg-en-Bresse','jojo-labonnecompote@univ-lyon1.fr');
 
+/* ==> THE TRIGGER DOES IT AUTOMATICALLY
 INSERT INTO phpproj_Gallery (title) VALUES
 ('OSS117''s Gallery'),
 ('Jojo''s Gallery');
+*/
