@@ -17,15 +17,7 @@
         <!-- <meta name="description" content=""> -->
         <!-- <meta name="author" content=""> -->
 
-        <!-- CSS : Bootstrap -->
-        <link href="css/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">
-
-        <!-- CSS : Custom -->
-        <link href="css/style.css" rel="stylesheet" media="all" type="text/css">
-
-        <!-- Javascript -->
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <?php include_once("head.php"); // Make all the CSS & JavaScript links ?>
 
     </head>
 
