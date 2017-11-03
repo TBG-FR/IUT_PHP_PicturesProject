@@ -1,6 +1,6 @@
 <?php
 
-session_start(); // Session Creation or Recovery
+    require_once("classes/all.inc.php");
 
 ?>
 
@@ -121,6 +121,16 @@ session_start(); // Session Creation or Recovery
                 </div>
                 
                 <!-- ----- ----- ----- ----- Gallery Element #4 [END] ----- ----- ----- ----- -->
+                
+                <?php
+                
+                $test = new Picture(25,'Paysage','Mangifik truc la bas',TRUE,'/pb/aaaaaler.png','0');
+                var_dump($test);
+                
+                $testg = new Gallery(125,FALSE,TRUE);
+                var_dump($testg);
+                    
+                ?>
 
                 <!--
 

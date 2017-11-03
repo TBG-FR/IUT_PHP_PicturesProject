@@ -1,6 +1,6 @@
 <?php
 
-require_once("classes/all.inc.php");
+    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management    
 
 $visible=true;
 
@@ -19,6 +19,6 @@ while ($chain!=''){
 
 $pic->displayPicInfo();
 
-
+var_dump($pic);
 
 ?>

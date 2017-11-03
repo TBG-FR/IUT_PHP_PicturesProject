@@ -8,6 +8,9 @@
  */
 class Picture
 {
+
+    /* ----- ----- ----- Attributes ----- ----- ----- */
+    
     /**
      * @var int store the id
      */
@@ -38,23 +41,49 @@ class Picture
      */
     private $keywords;
     
+    /**
+     * @var string Filename/path
+     */
+    private $path;
     
-    
-    function Picture($pic_name="",$pic_desc="",$pic_date="",$pic_visible=false,$pic_id=-1) {
-        $this->id=$pic_id;
-        $this->name=$pic_name;
-        $this->desc=$pic_desc;
-        $this->date=$pic_date;
-        $this->visible=$pic_visible;
-        /*echo "1".$pic_name;
-        echo "2".$pic_desc;
-        echo "3".$pic_date;
-        echo "4".$name;
-        echo "5".$desc;
-        echo "6".$date;*/
+    /**
+     * @var int Define the status of the picture (0=normal, 1=in cart, 2=bought), useful for displaying gallery to the user
+     */
+    private $state;
+
+    /* ----- ----- ----- Constructors ----- ----- ----- */
+
+    /**
+     * _____
+     */
+    public function __construct($id, $title, $desc, $public, $path, $state) {
+        
+        $this->id = $id;
+        $this->name = $title;
+        $this->desc = $desc;
+        $this->visible = $public;
+        $this->path = $path;
+        $this->state = $state;
+        
+        return $this;
+        
     }
     
+//    function Picture($pic_name="",$pic_desc="",$pic_date="",$pic_visible=false,$pic_id=-1) {
+//        $this->id=$pic_id;
+//        $this->name=$pic_name;
+//        $this->desc=$pic_desc;
+//        $this->date=$pic_date;
+//        $this->visible=$pic_visible;
+//        /*echo "1".$pic_name;
+//        echo "2".$pic_desc;
+//        echo "3".$pic_date;
+//        echo "4".$name;
+//        echo "5".$desc;
+//        echo "6".$date;*/
+//    }
     
+    /* ----- ----- ----- Functions ----- ----- ----- */
     
     public function addKeword($new_keyword){
         $this->keywords[]=$new_keyword;

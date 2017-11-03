@@ -1,3 +1,9 @@
+<?php
+
+    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management    
+
+?>
+
 <html>
    <head>
       <title>Stock d'images</title>
