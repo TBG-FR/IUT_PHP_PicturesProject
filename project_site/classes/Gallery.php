@@ -186,9 +186,21 @@ class Gallery
      * @param _ _
      * @return _ _
      */
-    public function getPicture() {
+    public function getTitle() {
+        
+        return $this->title;
+        
+    }
 
-        //        return $this->status;
+    /**
+     * { DESCRIPTION }
+     * @param _ _
+     * @return _ _
+     */
+    public function getPictures() {
+        
+        return $this->pictures;
+        
     }
 
     /**
