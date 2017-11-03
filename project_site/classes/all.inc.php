@@ -11,9 +11,11 @@
 
     session_start(); // Session Creation or Recovery
 
-    if( isset($_SESSION['login_status']) == FALSE ) { $_SESSION['login_status'] = ''; }
-    if( isset($_SESSION['login_errors']) == FALSE ) { $_SESSION['login_errors'] = ''; }
+//    if( isset($_SESSION['login_status']) == FALSE ) { $_SESSION['login_status'] = ''; }
+//    if( isset($_SESSION['login_errors']) == FALSE ) { $_SESSION['login_errors'] = ''; }
     if( isset($_SESSION['user']) == FALSE ) { $_SESSION['user'] = ''; }
+    if( isset($_SESSION['public_gal']) == FALSE ) { $_SESSION['public_gal'] = new Gallery(0, FALSE, TRUE); }
+    if( isset($_SESSION['private_gal']) == FALSE ) { $_SESSION['private_gal'] = ''; }
 
     require_once("logout.inc.php"); // COMMENT
 

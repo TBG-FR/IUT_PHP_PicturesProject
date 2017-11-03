@@ -16,6 +16,8 @@ if ( $_GET ) {
             // Disconnect the user and unset the corresponding variable in $_SESSION      
             $_SESSION['user']->disconnect();
             unset($_SESSION['user']);
+            unset($_SESSION['public_gal']);
+            unset($_SESSION['private_gal']);
             
             // Send the User back on the page where he was
             $loc = "Location: ".$_GET['source']."?action=disconnected";
