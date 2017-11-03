@@ -1,6 +1,6 @@
 <?php
 
-    require_once("classes/all.inc.php");
+require_once("classes/all.inc.php");
 
 ?>
 
@@ -42,91 +42,72 @@
 
             <div class="gallery">
 
-                <!-- ----- ----- ----- ----- Gallery Element #1 [BEGIN] ----- ----- ----- ----- -->
-                <div class="gal_element"> 
-                    
-                    <img src="public_images/small_observation_deck___wallpaper_by_z_design-d2q7jic.jpg" alt="" />
-                    
-                    <div class="gal_overlay">
-                        <!-- DEFAULT STYLE FOR ITEM -->
-                        <a href='###add_to_cart'    class='btn btn-primary' role='button'>Add to Cart</a>
-                        <a href='##view_details'    class='btn btn-default' role='button'>View More</a>
-                        <!-- ONCE ITEM IS IN CART
-                        <a href='###add_to_cart'    class='btn btn-danger' role='button'>Remove from Cart</a>
-                        <a href='##view_details'    class='btn btn-default' role='button'>View More</a>         -->
-                        <!-- ONCE ITEM IS BOUGHT 
-                        <a href='###add_to_cart'    class='btn btn-success' role='button'>Already Bought</a>                
-                        <a href='##view_details'    class='btn btn-default' role='button'>View More</a>         -->
-                    </div>
-                    
-                </div> 
-                <!-- ----- ----- ----- ----- Gallery Element #1 [END] ----- ----- ----- ----- -->
-
-                <!-- ----- ----- ----- ----- Gallery Element #2 [BEGIN] ----- ----- ----- ----- -->
-                <div class="gal_element"> 
-                    
-                    <img src="public_images/smallatlantis_nebula_7-wallpaper-5120x3200.jpg" alt="" />
-                    
-                    <div class="gal_overlay">
-                        <!-- DEFAULT STYLE FOR ITEM 
-                        <a href='###add_to_cart'    class='btn btn-primary' role='button'>Add to Cart</a>
-                        <a href='##view_details'    class='btn btn-default' role='button'>View More</a>         -->
-                        <!-- ONCE ITEM IS IN CART -->
-                        <a href='###add_to_cart'    class='btn btn-danger' role='button'>Remove from Cart</a>
-                        <a href='##view_details'    class='btn btn-default' role='button'>View More</a>
-                        <!-- ONCE ITEM IS BOUGHT 
-                        <a href='###add_to_cart'    class='btn btn-success' role='button'>Already Bought</a>                
-                        <a href='##view_details'    class='btn btn-default' role='button'>View More</a>         -->
-                    </div>
-                    
-                </div> 
-                <!-- ----- ----- ----- ----- Gallery Element #2 [END] ----- ----- ----- ----- -->
-
-                <!-- ----- ----- ----- ----- Gallery Element #3 [BEGIN] ----- ----- ----- ----- -->
-                <div class="gal_element"> 
-                    
-                    <img src="public_images/small_observation_deck___wallpaper_by_z_design-d2q7jic.jpg" alt="" />
-                                        
-                    <div class="gal_overlay">
-                        <!-- DEFAULT STYLE FOR ITEM 
-                        <a href='###add_to_cart'    class='btn btn-primary' role='button'>Add to Cart</a>
-                        <a href='##view_details'    class='btn btn-default' role='button'>View More</a>         -->
-                        <!-- ONCE ITEM IS IN CART
-                        <a href='###add_to_cart'    class='btn btn-danger' role='button'>Remove from Cart</a>
-                        <a href='##view_details'    class='btn btn-default' role='button'>View More</a>         -->
-                        <!-- ONCE ITEM IS BOUGHT  -->
-                        <a href='###add_to_cart'    class='btn btn-success' role='button'>Already Bought</a>                
-                        <a href='##view_details'    class='btn btn-default' role='button'>View More</a>
-                    </div>
-                    
-                </div> 
-                <!-- ----- ----- ----- ----- Gallery Element #3 [END] ----- ----- ----- ----- -->
-
-                <!-- ----- ----- ----- ----- Gallery Element #4 [BEGIN] ----- ----- ----- ----- -->
-                <div class="gal_element"> 
-                    
-                    <img src="public_images/smallatlantis_nebula_7-wallpaper-5120x3200.jpg" alt="" />
-                                        
-                    <div class="gal_overlay">
-                        <a href='###add_to_cart'    class='btn btn-primary' role='button'>Add to Cart</a>
-                        <a href='##view_details'    class='btn btn-default' role='button'>View More</a>
-                        <!-- ONCE ITEM IS IN CART
-                        <a href='###add_to_cart'    class='btn btn-danger' role='button'>Remove from Cart</a>
-                        <a href='##view_details'    class='btn btn-default' role='button'>View More</a>         -->
-                        <!-- ONCE ITEM IS BOUGHT 
-                        <a href='###add_to_cart'    class='btn btn-success' role='button'>Already Bought</a>                
-                        <a href='##view_details'    class='btn btn-default' role='button'>View More</a>         -->
-                    </div>
-                    
-                </div>
-                
-                <!-- ----- ----- ----- ----- Gallery Element #4 [END] ----- ----- ----- ----- -->
-                
                 <?php
-                
+
+                foreach($_SESSION['public_gal']->getPictures() as $picture) {
+                    
+                    switch ($picture->getState()) {
+                            
+                            // State 0 : "normal" picture
+                        case 0:
+                            echo "
+                                <div class=\"gal_element\"> 
+
+                                    <img src='".$picture->getPath()."' alt='' />
+
+                                    <div class=\"gal_overlay\">
+                                    <a href='###add_to_cart'    class='btn btn-primary' role='button'>Add to Cart</a>
+                                    <a href='##view_details'    class='btn btn-default' role='button'>View More</a>
+                                    </div>
+
+                                </div>
+                            ";
+                            break;
+                            
+                            // State 1 : picture "selected" (in cart)
+                        case 1:
+                            echo "
+                                <div class=\"gal_element\"> 
+
+                                    <img src='public_images/seagulls.jpeg' alt='' />
+
+                                    <div class=\"gal_overlay\">
+                                    <a href='###add_to_cart'    class='btn btn-danger' role='button'>Remove from Cart</a>
+                                    <a href='##view_details'    class='btn btn-default' role='button'>View More</a>
+                                    </div>
+
+                                </div>
+                            ";
+                            break;
+                            
+                            // State 2 : picture already bought
+                        case 2:
+                            echo "
+                                <div class=\"gal_element\"> 
+
+                                    <img src='public_images/seagulls.jpeg' alt='' />
+
+                                    <div class=\"gal_overlay\">
+                                    <a href='###add_to_cart'    class='btn btn-success' role='button'>Already Bought</a>
+                                    <a href='##view_details'    class='btn btn-default' role='button'>View More</a>
+                                    </div>
+
+                                </div>
+                            ";
+                            break;
+                    }
+
+                }
+
+                ?>
+
+                <!-- ----- ----- ----- ----- ----- ------ ----- ----- ----- ----- ----- -->
+
+                <?php
+
                 $test = new Picture(25,'Paysage','Mangifik truc la bas',"20/12/1997",TRUE,'/pb/aaaaaler.png','0');
                 var_dump($test);
-                
+
                 //__construct($user_id, $logged, $public)
                 echo "--------------- NOT LOGGED + PUBLIC ---------- <br/><br/>";
                 $testa = new Gallery(125,FALSE,TRUE);
@@ -140,7 +121,7 @@
                 echo "--------------- ID=4 + LOGGED + PUBLIC ---------- <br/><br/>";
                 $testd = new Gallery(4,TRUE,TRUE);
                 var_dump($testd);
-                    
+
                 ?>
 
                 <!--

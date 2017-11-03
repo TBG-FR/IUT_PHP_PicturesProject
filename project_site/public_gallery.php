@@ -17,15 +17,7 @@
         <!-- <meta name="description" content=""> -->
         <!-- <meta name="author" content=""> -->
 
-        <!-- CSS : Bootstrap -->
-        <link href="css/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">
-
-        <!-- CSS : Custom -->
-        <link href="css/style.css" rel="stylesheet" media="all" type="text/css">
-
-        <!-- Javascript -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <?php include_once("head.php"); // Make all the CSS & JavaScript links ?>
 
     </head>
 
@@ -38,22 +30,74 @@
 
         <div class="content">
 
-            <!-- "Selection" Buttons -->
+            <div class="gallery">
 
-            <!-- Images (Gallery) -->
-            <img src="public_images/observation_deck___wallpaper_by_z_design-d2q7jic.jpg" alt="" title="" height="200px">
-            <img src="public_images/observation_deck___wallpaper_by_z_design-d2q7jic.jpg" alt="" title="" height="200px">
-            <img src="public_images/observation_deck___wallpaper_by_z_design-d2q7jic.jpg" alt="" title="" height="200px">
-            <img src="public_images/observation_deck___wallpaper_by_z_design-d2q7jic.jpg" alt="" title="" height="200px"> <br />
-            <img src="public_images/observation_deck___wallpaper_by_z_design-d2q7jic.jpg" alt="" title="" height="200px">
-            <img src="public_images/observation_deck___wallpaper_by_z_design-d2q7jic.jpg" alt="" title="" height="200px">
-            <img src="public_images/observation_deck___wallpaper_by_z_design-d2q7jic.jpg" alt="" title="" height="200px">
-            <img src="public_images/observation_deck___wallpaper_by_z_design-d2q7jic.jpg" alt="" title="" height="200px"> <br />
-            <img src="public_images/observation_deck___wallpaper_by_z_design-d2q7jic.jpg" alt="" title="" height="200px">
-            <img src="public_images/observation_deck___wallpaper_by_z_design-d2q7jic.jpg" alt="" title="" height="200px">
-            <img src="public_images/observation_deck___wallpaper_by_z_design-d2q7jic.jpg" alt="" title="" height="200px">
-            <img src="public_images/observation_deck___wallpaper_by_z_design-d2q7jic.jpg" alt="" title="" height="200px">
+                <?php
 
+                foreach($_SESSION['public_gal']->getPictures() as $picture) {
+                    
+                    switch ($picture->getState()) {
+                            
+                            // State 0 : "normal" picture
+                        case 0:
+                            echo "
+                                <div class=\"gal_element\"> 
+
+                                    <img src='".$picture->getPath()."' alt='' />
+
+                                    <div class=\"gal_overlay\">
+                                        <div class=\"gal_buttons\">
+                                            <a href='###add_to_cart'    class='btn btn-primary' role='button'>Add to Cart</a>
+                                            <a href='##view_details'    class='btn btn-default' role='button'>View More</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            ";
+                            break;
+                            
+                            // State 1 : picture "selected" (in cart)
+                        case 1:
+                            echo "
+                                <div class=\"gal_element\"> 
+
+                                    <img src='public_images/seagulls.jpeg' alt='' />
+
+                                    <div class=\"gal_overlay\">
+                                        <div class=\"gal_buttons\">
+                                            <a href='###add_to_cart'    class='btn btn-danger' role='button'>Remove from Cart</a>
+                                            <a href='##view_details'    class='btn btn-default' role='button'>View More</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            ";
+                            break;
+                            
+                            // State 2 : picture already bought
+                        case 2:
+                            echo "
+                                <div class=\"gal_element\"> 
+
+                                    <img src='public_images/seagulls.jpeg' alt='' />
+
+                                    <div class=\"gal_overlay\">
+                                        <div class=\"gal_buttons\">
+                                            <a href='###add_to_cart'    class='btn btn-success' role='button'>Already Bought</a>
+                                            <a href='##view_details'    class='btn btn-default' role='button'>View More</a>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            ";
+                            break;
+                    }
+
+                }
+
+                ?>
+
+            </div>
         </div>
 
         <footer>
