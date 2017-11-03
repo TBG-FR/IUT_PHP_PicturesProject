@@ -17,15 +17,7 @@
         <!-- <meta name="description" content=""> -->
         <!-- <meta name="author" content=""> -->
 
-        <!-- CSS : Bootstrap -->
-        <link href="css/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">
-
-        <!-- CSS : Custom -->
-        <link href="css/style.css" rel="stylesheet" media="all" type="text/css">
-
-        <!-- Javascript -->
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <?php include_once("head.php"); // Make all the CSS & JavaScript links ?>
 
     </head>
 
@@ -45,8 +37,8 @@
                 
                 $db = new Database();
                 
-                foreach ($_POST as $champ => $valeur)
-                    echo $champ.' --- '.$valeur.'<br />';
+                //foreach ($_POST as $champ => $valeur)
+                 //   echo $champ.' --- '.$valeur.'<br />';
                 //print_r($_POST);
                 
                 // If the User tried to Log himself to his account
@@ -59,7 +51,15 @@
                     $password=var_secure($_POST['password']);
                     
                     // Create a new Instance of User Class with the given credentials (and catch errors if they're wrong)                    
-                    try { $_SESSION['user'] = User::constructByLogin($username, $password); var_dump($_SESSION['user']); /* TEMP */ }
+                    try {
+                        
+                        $_SESSION['user'] = User::constructByLogin($username, $password);
+                    
+                        //Creating the public and private galleries for this user with construct : ($user_id, $logged, $public)
+                        $_SESSION['public_gal'] = new Gallery($_SESSION['user']->getID(), TRUE, TRUE);
+                        $_SESSION['private_gal'] = new Gallery($_SESSION['user']->getID(), TRUE, FALSE);
+                        
+                    }
                     
                     catch (Exception $e) {
                         
@@ -71,16 +71,10 @@
                         
                     }
                     
-                    //Creating the public and private galleries for this user with construct : ($user_id, $logged, $public)
-                    $_SESSION['public_gal'] = new Gallery($_SESSION['user']->getID(), TRUE, TRUE);
-                    $_SESSION['private_gal'] = new Gallery($_SESSION['user']->getID(), TRUE, FALSE);
-                    
                 }
                 
                 // If the User tried to Register a new account
                 else if ($_POST['action'] == 'register') {
-                    
-                    echo " ===== ===== ===== REGISTER ===== ===== ===== ".$db->hash(var_secure($_POST['password']))." ========== ";
                     
                     // Transform the given informations to avoid injections & other attacks
                     $username=var_secure($_POST['username']);
@@ -91,7 +85,16 @@
                     $mail=var_secure($_POST['mail']);
                     
                     // Create a new Instance of User Class with the given credentials (and catch errors if they're wrong)                    
-                    try { $_SESSION['user'] = User::constructByRegister($username, $password, $password_verif, $firstname, $lastname, $mail); }
+                    try {
+                        
+                        $_SESSION['user'] = User::constructByRegister($username, $password, $password_verif, $firstname, $lastname, $mail);
+                    
+                        //Creating the public and private galleries for this user with construct : ($user_id, $logged, $public)
+                        $_SESSION['public_gal'] = new Gallery($_SESSION['user']->getID(), TRUE, TRUE);
+                        $_SESSION['private_gal'] = new Gallery($_SESSION['user']->getID(), TRUE, FALSE);
+                        
+                    }
+                    
                     catch (Exception $e) {
                         
                         if($e->getMessage() == 'Err_UsernameExists') {                             
@@ -105,16 +108,8 @@
                         
                     }
                     
-                    //Creating the public and private galleries for this user with construct : ($user_id, $logged, $public)
-                    $_SESSION['public_gal'] = new Gallery($_SESSION['user']->getID(), TRUE, TRUE);
-                    $_SESSION['private_gal'] = new Gallery($_SESSION['user']->getID(), TRUE, FALSE);
-                    
                 }
             }
-           
-            echo "___________ [_]_[_] ___________ [_]_[_] ___________ [_]_[_] ___________";
-            var_dump($_SESSION['user']);
-            echo "___________ [_]_[_] ___________ [_]_[_] ___________ [_]_[_] ___________";
                 
             /* ===== ===== ===== IF USER IS CONNECTED => DISPLAY USEFUL LINKS ===== ===== ===== */ 
             if( $_SESSION['user'] instanceof User && $_SESSION['user']->getStatus() == TRUE ) {
@@ -128,9 +123,9 @@
                         <h3>Logged as ".$l_username."</h3><br />
 
                         <!-- Connected - Links -->
-                        <a href='p_account.php' class='btn btn-primary btn-block' role='button'><h4>Account Informations</h4></a>
-                        <a href='p_gallery.php' class='btn btn-primary btn-block' role='button'><h4>Personal Gallery</h4></a>
-                        <a href='p_history.php' class='btn btn-primary btn-block' role='button'><h4>Purchase History</h4></a>
+                        <a href='edit_account.php' class='btn btn-primary btn-block' role='button'><h4>Account Informations</h4></a>
+                        <a href='private_gallery.php' class='btn btn-primary btn-block' role='button'><h4>Personal Gallery</h4></a>
+                        <a href='purchase_history.php' class='btn btn-primary btn-block' role='button'><h4>Purchase History</h4></a>
                         <a href='?action=disconnect' class='btn btn-danger btn-block' role='button'><h4>Log out</h4></a>
                     </div>
                     
