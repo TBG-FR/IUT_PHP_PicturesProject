@@ -102,6 +102,17 @@ class Picture
      * @param _ _
      * @return _ _
      */
+    public function getPath() {
+
+        return $this->path;
+        
+    }
+
+    /**
+     * { DESCRIPTION }
+     * @param _ _
+     * @return _ _
+     */
     public function setState($new_state) {
 
         $this->state = $new_state;
