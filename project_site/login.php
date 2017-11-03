@@ -60,6 +60,7 @@
                     
                     // Create a new Instance of User Class with the given credentials (and catch errors if they're wrong)                    
                     try { $_SESSION['user'] = User::constructByLogin($username, $password); var_dump($_SESSION['user']); /* TEMP */ }
+                    
                     catch (Exception $e) {
                         
                         if($e->getMessage() == 'Err_BadCredentials') {                             
@@ -69,6 +70,10 @@
                             echo "<div class='notification alert alert-danger' role='alert'>Error : Unknown Username ! Please try again.</div>"; }
                         
                     }
+                    
+                    //Creating the public and private galleries for this user with construct : ($user_id, $logged, $public)
+                    $_SESSION['public_gal'] = new Gallery($_SESSION['user']->getID(), TRUE, TRUE);
+                    $_SESSION['private_gal'] = new Gallery($_SESSION['user']->getID(), TRUE, FALSE);
                     
                 }
                 
@@ -99,6 +104,10 @@
                             echo "<div class='notification alert alert-danger' role='alert'>Error : Registering failed ! Please try again or Contact us.</div>"; }
                         
                     }
+                    
+                    //Creating the public and private galleries for this user with construct : ($user_id, $logged, $public)
+                    $_SESSION['public_gal'] = new Gallery($_SESSION['user']->getID(), TRUE, TRUE);
+                    $_SESSION['private_gal'] = new Gallery($_SESSION['user']->getID(), TRUE, FALSE);
                     
                 }
             }
