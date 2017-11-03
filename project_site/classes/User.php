@@ -280,6 +280,15 @@ class User
         
         return $this->username;
     }
+    
+    /**
+     * { DESCRIPTION }
+     * @return string $username
+     */
+    public function getID() {
+        
+        return $this->id;
+    }
 
     
     /* ----- ----- ----- OTHER _ REMOVE ----- ----- ----- */
