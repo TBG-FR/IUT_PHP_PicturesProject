@@ -201,6 +201,7 @@ INSERT INTO phpproj_picture (id, title, description, date, public, path_original
 ('1', 'landscape_moutain', 'Beautiful picture of the Alps', '2017-10-18 00:00:00', '1', '/public_images/landmount.jpeg', '/private_images/landmount.jpeg'),
 ('2', 'landscape_sea', 'Beautiful picture taken in Marseillan', '2017-11-01 00:00:00', '1', '/public_images/landsea.jpeg', '/private_images/landsea.jpeg'),
 ('3', 'landscape_sea_wrong', 'This picture is wrongly taken, hide it', '2017-11-01 00:00:00', '0', '/public_images/landsea.jpeg', '/private_images/landsea_w.jpeg');
+('3', 'seagulls', 'Seagulls in UK', '2017-11-01 00:00:00', '1', '/public_images/seagulls.jpeg', '/private_images/seagulls.jpeg');
 
 /* Every picture should be automatically added under Admin & Public galleries
 

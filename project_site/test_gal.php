@@ -124,11 +124,22 @@
                 
                 <?php
                 
-                $test = new Picture(25,'Paysage','Mangifik truc la bas',TRUE,'/pb/aaaaaler.png','0');
+                $test = new Picture(25,'Paysage','Mangifik truc la bas',"20/12/1997",TRUE,'/pb/aaaaaler.png','0');
                 var_dump($test);
                 
-                $testg = new Gallery(125,FALSE,TRUE);
-                var_dump($testg);
+                //__construct($user_id, $logged, $public)
+                echo "--------------- NOT LOGGED + PUBLIC ---------- <br/><br/>";
+                $testa = new Gallery(125,FALSE,TRUE);
+                var_dump($testa);
+                echo "--------------- ID=2 + LOGGED + NOT PUBLIC ---------- <br/><br/>";
+                $testb = new Gallery(2,TRUE,FALSE);
+                var_dump($testb);
+                echo "--------------- ID=4 + LOGGED + NOT PUBLIC ---------- <br/><br/>";
+                $testc = new Gallery(4,TRUE,FALSE);
+                var_dump($testc);
+                echo "--------------- ID=4 + LOGGED + PUBLIC ---------- <br/><br/>";
+                $testd = new Gallery(4,TRUE,TRUE);
+                var_dump($testd);
                     
                 ?>
 
