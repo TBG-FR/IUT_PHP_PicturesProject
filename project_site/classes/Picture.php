@@ -56,14 +56,15 @@ class Picture
     /**
      * _____
      */
-    public function __construct($id, $title, $desc, $public, $path, $state) {
+    public function __construct($p_id, $p_title, $p_desc, $p_date, $p_public, $p_path, $p_state) {
         
-        $this->id = $id;
-        $this->name = $title;
-        $this->desc = $desc;
-        $this->visible = $public;
-        $this->path = $path;
-        $this->state = $state;
+        $this->id = $p_id;
+        $this->name = $p_title;
+        $this->desc = $p_desc;
+        $this->date = $p_date;
+        $this->visible = $p_public;
+        $this->path = $p_path;
+        $this->state = $p_state;
         
         return $this;
         
@@ -84,6 +85,30 @@ class Picture
 //    }
     
     /* ----- ----- ----- Functions ----- ----- ----- */
+
+    /**
+     * { DESCRIPTION }
+     * @param _ _
+     * @return _ _
+     */
+    public function getState() {
+
+        return $this->state;
+        
+    }
+
+    /**
+     * { DESCRIPTION }
+     * @param _ _
+     * @return _ _
+     */
+    public function setState($new_state) {
+
+        $this->state = $new_state;
+        
+    }
+    
+    //================================================================================================================
     
     public function addKeword($new_keyword){
         $this->keywords[]=$new_keyword;
