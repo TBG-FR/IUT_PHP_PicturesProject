@@ -59,6 +59,9 @@
                         $_SESSION['public_gal'] = new Gallery($_SESSION['user']->getID(), TRUE, TRUE);
                         $_SESSION['private_gal'] = new Gallery($_SESSION['user']->getID(), TRUE, FALSE);
                         
+                        //Creating the Cart for this user if it doesn't exist (Gallery with id -1)
+                        if( isset($_SESSION['cart']) == FALSE ) { $_SESSION['cart'] = new Gallery(-1, TRUE, FALSE); }
+                        
                     }
                     
                     catch (Exception $e) {
@@ -92,6 +95,9 @@
                         //Creating the public and private galleries for this user with construct : ($user_id, $logged, $public)
                         $_SESSION['public_gal'] = new Gallery($_SESSION['user']->getID(), TRUE, TRUE);
                         $_SESSION['private_gal'] = new Gallery($_SESSION['user']->getID(), TRUE, FALSE);
+                        
+                        //Creating the Cart for this user if it doesn't exist (Gallery with id -1)
+                        if( isset($_SESSION['cart']) == FALSE ) { $_SESSION['cart'] = new Gallery(-1, TRUE, FALSE); }
                         
                     }
                     
