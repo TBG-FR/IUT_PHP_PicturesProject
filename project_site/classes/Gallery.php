@@ -105,6 +105,8 @@ class Gallery
                 // IF THE USER IS THE ADMIN => CONSTRUCT THE "ADMIN" GALLERY
                 if( $user_id == 2 ) {
 
+                    $this->title = "Admin";
+
                     // ----------------------- STEP 1 : GET ALL PICTURES (PUBLIC & NOT)
                     $all_img = $db->read($bdd_table_picture, array(
                         'conditions' => array(),
@@ -120,18 +122,36 @@ class Gallery
 
                 }
 
+                // ELSE IF IT IS A "CART" GALLERY => CONSTRUCT THE GALLERY
+                else if( $user_id == -1 ) {
+
+                    // DO NOTHING : EMPTY GALLERY //
+                    $this->title = "Cart";
+
+                }
+
                 //ELSE (NORMAL USER) => CONSTRUCT USER PRIVATE GALLERY
                 else {
 
-                    // ----------------------- STEP 1 : GET USER "PRIVATE" (BOUGHT) PICTURES
+                    // ----------------------- STEP 1 : GET USER GALLERY FROM DATABASE
+                    $user_gal = $db->read($bdd_table_gallery, array(
+                        'conditions' => array(
+                            'id LIKE' => $user_id
+                        ),
+                        'fields' => array('id, title'),
+                    ));                    
+
+                    $this->title = $user_gal[0]['title'];
+
+                    // ----------------------- STEP 2 : GET USER "PRIVATE" (BOUGHT) PICTURES
                     $user_img_list = $db->read($bdd_table_gal_pic, array(
                         'conditions' => array(
-                            'gal_id LIKE' => $user_id
+                            'gal_id LIKE' => $user_gal[0]['id']
                         ),
                         'fields' => array('pic_id'),
                     ));
 
-                    // ----------------------- STEP 2 : ADD THEM ONE BY ONE IN THE GALLERY
+                    // ----------------------- STEP 3 : ADD THEM ONE BY ONE IN THE GALLERY
                     foreach($user_img_list as $user_img) {
 
                         $pic = $db->read($bdd_table_picture, array(
@@ -187,9 +207,9 @@ class Gallery
      * @return _ _
      */
     public function getTitle() {
-        
+
         return $this->title;
-        
+
     }
 
     /**
@@ -198,9 +218,20 @@ class Gallery
      * @return _ _
      */
     public function getPictures() {
-        
+
         return $this->pictures;
-        
+
+    }
+
+    /**
+     * { DESCRIPTION }
+     * @param _ _
+     * @return _ _
+     */
+    public function getNbPictures() {
+
+        return $this->nb_pictures;
+
     }
 
     /**
@@ -218,10 +249,45 @@ class Gallery
      * @param _ _
      * @return _ _
      */
-    private function addPicture($id, $title, $desc, $date, $public, $path, $state) {
+    public function addPicture($id, $title, $desc, $date, $public, $path, $state) {
 
         $this->pictures[$this->nb_pictures+1] = new Picture($id, $title, $desc, $date, $public, $path, $state);
         $this->nb_pictures = $this->nb_pictures + 1;
+
+    }
+
+    /**
+     * { DESCRIPTION }
+     * @param _ _
+     * @return _ _
+     */
+    public function addPictureByCopy($picture) {
+
+        $this->pictures[$this->nb_pictures+1] = new Picture($picture->getID(), $picture->getName(), $picture->getDesc(), $picture->getDate(), $picture->getPublic(), $picture->getPath(), $picture->getState());
+        $this->nb_pictures = $this->nb_pictures + 1;
+
+    }
+
+    /**
+     * { DESCRIPTION }
+     * @param _ _
+     * @return _ _
+     */
+    public function delPicture($id) {
+
+        $nb_pic = 0;
+
+        foreach($this->pictures as $picture) {
+
+            $nb_pic++;
+
+            if($picture->getID() == $id) {
+
+                unset($this->pictures[$nb_pic]);
+                $this->nb_pictures--;
+
+            }
+        }
 
     }
 
