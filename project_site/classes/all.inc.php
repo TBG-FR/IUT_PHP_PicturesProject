@@ -7,6 +7,7 @@
     //include_once("example.inc.php"); // COMMENT
     //include_once("imgwatermark.inc.php"); // COMMENT
     include_once("Picture.php"); // COMMENT
+    include_once("Gallery.php"); // COMMENT
 
     session_start(); // Session Creation or Recovery
 
