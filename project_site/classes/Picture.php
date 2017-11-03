@@ -84,16 +84,60 @@ class Picture
 //        echo "6".$date;*/
 //    }
     
-    /* ----- ----- ----- Functions ----- ----- ----- */
+    /* ----- ----- ----- Functions ----- ----- ----- */    
 
     /**
      * { DESCRIPTION }
      * @param _ _
      * @return _ _
      */
-    public function getState() {
+    public function getID() {
 
-        return $this->state;
+        return $this->id;
+        
+    }
+    
+    /**
+     * { DESCRIPTION }
+     * @param _ _
+     * @return _ _
+     */
+    public function getName() {
+
+        return $this->name;
+        
+    }
+    
+    /**
+     * { DESCRIPTION }
+     * @param _ _
+     * @return _ _
+     */
+    public function getDesc() {
+
+        return $this->desc;
+        
+    }
+    
+    /**
+     * { DESCRIPTION }
+     * @param _ _
+     * @return _ _
+     */
+    public function getDate() {
+
+        return $this->date;
+        
+    }
+    
+    /**
+     * { DESCRIPTION }
+     * @param _ _
+     * @return _ _
+     */
+    public function getPublic() {
+
+        return $this->visible;
         
     }
 
@@ -105,6 +149,17 @@ class Picture
     public function getPath() {
 
         return $this->path;
+        
+    }
+    
+    /**
+     * { DESCRIPTION }
+     * @param _ _
+     * @return _ _
+     */
+    public function getState() {
+
+        return $this->state;
         
     }
 
