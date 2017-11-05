@@ -11,14 +11,12 @@
 
     session_start(); // Session Creation or Recovery
 
-//    if( isset($_SESSION['login_status']) == FALSE ) { $_SESSION['login_status'] = ''; }
-//    if( isset($_SESSION['login_errors']) == FALSE ) { $_SESSION['login_errors'] = ''; }
-    if( isset($_SESSION['user']) == FALSE ) { $_SESSION['user'] = ''; }
-    if( isset($_SESSION['public_gal']) == FALSE ) { $_SESSION['public_gal'] = new Gallery(0, FALSE, TRUE); }
-    if( isset($_SESSION['private_gal']) == FALSE ) { $_SESSION['private_gal'] = ''; }
-    if( isset($_SESSION['cart']) == FALSE ) { $_SESSION['cart'] = new Gallery(-1, TRUE, FALSE); }
+echo "BEFORE <br/>"; var_dump($_SESSION['public_gal']); var_dump($_SESSION['cart']);
 
     require_once("logout.inc.php"); // COMMENT
     require_once("cart.inc.php"); // COMMENT
+    require_once("unsets.inc.php"); // COMMENT
+
+echo "AFTER <br/>"; var_dump($_SESSION['public_gal']); var_dump($_SESSION['cart']); 
 
 ?>
