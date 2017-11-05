@@ -44,8 +44,6 @@
                 // If the User tried to Log himself to his account
                 if ($_POST['action'] == 'login') {
                     
-                    echo " ===== ===== ===== AUTH ===== ===== ===== ".$db->hash(var_secure($_POST['password']))." ========== ";
-                    
                     // Transform the given credentials to avoid injections & other attacks
                     $username=var_secure($_POST['username']);
                     $password=var_secure($_POST['password']);
