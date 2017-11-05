@@ -63,6 +63,7 @@ class Gallery
             if($public) {
 
                 $this->id = 1; /* A Gallery of id 1 is a Customised Public Gallery */
+                $this->title = "Public (Customised)";
 
                 // ----------------------- STEP 1 : GET ALL PUBLIC PICTURES
                 $all_public_img = $db->read($bdd_table_picture, array(
@@ -105,7 +106,7 @@ class Gallery
                 // IF THE USER IS THE ADMIN => CONSTRUCT THE "ADMIN" GALLERY
                 if( $user_id == 2 ) {
 
-                    $this->title = "Admin";
+                    $this->title = "Admin Gallery";
 
                     // ----------------------- STEP 1 : GET ALL PICTURES (PUBLIC & NOT)
                     $all_img = $db->read($bdd_table_picture, array(
@@ -177,6 +178,7 @@ class Gallery
         else {
 
             $this->id = 0; /* A Gallery of id 0 is the "Basic" Public Gallery */
+            $this->title = "Public (Basic)";
 
             $all_public_img = $db->read($bdd_table_picture, array(
                 'conditions' => array(
