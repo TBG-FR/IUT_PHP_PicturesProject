@@ -1,7 +1,5 @@
 <?php   // File "cart.inc.php" : Cart Management (by GET Method), included on each page
 
-var_dump($_SESSION['cart']);
-
 if ( $_GET ) {
 
     // Some useful variable(s) here
@@ -16,14 +14,14 @@ if ( $_GET ) {
         if($_SESSION['cart']->getPictures() != NULL) {
             foreach($_SESSION['cart']->getPictures() as $picture) {
 
-                // Checks if the Picture has already been added to the Cart
+                // Check if the Picture has already been added to the Cart
                 if($picture->getID() == $_GET['item_id']) { $already_in_cart = TRUE; }
 
             }
 
         }
 
-        // If not, adds it to the Cart
+        // If not (Picture hasn't already been added to the Cart), add it to the Cart
         if($already_in_cart == FALSE) {
 
             foreach($_SESSION['public_gal']->getPictures() as $picture) {
@@ -31,7 +29,7 @@ if ( $_GET ) {
                 // Verifies that it is in $_SESSION['public_gal'] (to avoid adding an hidden picture)
                 if($picture->getID() == $_GET['item_id']) {
 
-                    // Modify the State in Public_Gallery
+                    // Modify the State in Public_Gallery to "selected"
                     $picture->setState(1);
 
                     // Add the Picture to the Cart
@@ -65,15 +63,14 @@ if ( $_GET ) {
     if ($_GET['action'] == 'cart_empty') {
 
         unset($_SESSION['cart']);
-        
-        /* ALED : REMETTRE A ZERO LA PUBLIC GALLERY (LOGGED AND NOT LOGGED) */
+        unset($_SESSION['public_gal']);
 
     }
 
     // If the User has just been disconnected
     if ($_GET['action'] == 'highlight') {
 
-        //
+        // HIGHLIGHT THE CLICKED PICTURE IN PRIVAE GALLERY
 
     }
 
