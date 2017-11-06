@@ -216,5 +216,6 @@ catch (Exception $e) {
 
 //echo "<script type='text/javascript'>document.location.replace('private_gallery.php');</script>";
 echo "<br /><a href='private_gallery.php' class='btn btn-default' role='button'>Continue</a>";
+echo "<br /><a href='add_picture.php' class='btn btn-primary' role='button'>Add another image</a>";
 
 ?>
