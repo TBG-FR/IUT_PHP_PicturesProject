@@ -23,6 +23,7 @@ function imagecopymerge_alpha($dst_im, $src_im, $dst_x, $dst_y, $src_x, $src_y, 
     // insert cut resource to destination image 
     imagecopymerge($dst_im, $cut, $dst_x, $dst_y, 0, 0, $src_w, $src_h, $pct); 
 } 
+
 /* ------------------------------------------------------------------------------------------------ */
 
 function apply_watermark($white, $src_path) {
