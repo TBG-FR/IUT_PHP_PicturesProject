@@ -30,15 +30,15 @@ require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
 
         <div class="content">
 
-            <h1>Error 404 - Page not found</h1>
-            <h3>
+            <p class="title">Error 404 - Page not found<br /></p>
+            <p class="text">
                 Looks like this page doesn't exist... <br/>
                 Maybe you need to be logged to see it ?
-            </h3>
+            </p>
             
             <img class='large_image' src='img/404.jpg' alt='Abandoned Place : Old Control Room (404 Page Picture)' />
 
-            <br /><br /><a href='index.php' class='btn btn-primary' role='button'><h4>Back to the Homepage</h4></a>
+            <br /><br /><a href='index.php' class='btntext btn btn-primary' role='button'><h4>Back to the Homepage</h4></a>
 
         </div>
 
