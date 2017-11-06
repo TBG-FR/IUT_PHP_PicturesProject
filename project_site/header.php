@@ -1,7 +1,7 @@
 <!-- ------ "Header" : Haut de page (Logo, Contact, Boutons) ------ -->
 <div id="header_head">
     <div class="lamd3">
-        <img src="images/Logo.png" id="logo" alt="Logo de Ducrozet-Moninot" title="TODO">
+        <img src="Logo.png" id="logo" alt="Logo de Ducrozet-Moninot" title="TODO">
     </div>
 
     <div class="lamd5">

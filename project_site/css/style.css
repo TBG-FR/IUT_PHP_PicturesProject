@@ -68,7 +68,7 @@ header {
     text-align: center;
     margin: auto; /* USELESS ? */
     width: 100%; /* USELESS ? */
-    background-color: rgba(72,222,125,0.5); /* TEMP REMOVE */
+    background-color:gainsboro; /* TEMP REMOVE */
 }
 
 #header_head .lamd4  { /* TEMP REMOVE */
@@ -416,7 +416,7 @@ header {
     text-align: center;
     margin: auto; /* USELESS ? */
     width: 100%; /* USELESS ? */
-    background-color: rgba(72,222,125,0.5); /* TEMP REMOVE */
+    /*background-color: rgba(72,222,125,0.5); /* TEMP REMOVE */*/
 }
 
 #header_head .lamd4  { /* TEMP REMOVE */
