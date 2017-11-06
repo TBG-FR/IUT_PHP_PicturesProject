@@ -130,7 +130,7 @@ function apply_watermark($white, $src_path) {
         }
 
         // Rendering the image into the watermark folder
-        ImagePng ($img_src, "public_images/".$src_path);
+        ImagePng($img_src, "public_images/".$src_path);
 
     }
 
@@ -192,14 +192,10 @@ foreach ($pic->getKeywords() as &$value) {
 
 // ADD : Verif Picture in Database + Picture in Folder
 
-$fullpath = dirname(__DIR__)."\public_images\\".$pic->getPath();
-$path = $pic->getPath();
+if( $_POST["wtmk_color"] == "black" ) { apply_watermark(0, $pic->getPath()); }
+else { apply_watermark(1, $pic->getPath()); }
 
-    // Here we should use a try-catch but we get a false positive when rendering a JPEG (due to alpha channel, I think)
-    if( $_POST["wtmk_color"] == "black" ) { apply_watermark(0, $path); }
-    else { apply_watermark(1, $path); }
-    echo "<div class='notification alert alert-success' role='alert'>Watermarked picture successfully created !</div>";
-
+// Here is what the code should look like (we should use a try-catch, display eventual errors, etc) but we get a false positive when rendering a JPEG (due to alpha channel, I think)
 /*
 try {
     if( $_POST["wtmk_color"] == "black" ) { apply_watermark(0, $path); }
@@ -218,9 +214,13 @@ catch (Exception $e) {
         echo "<div class='notification alert alert-danger' role='alert'>Error while creating watermark ! Please try again with PNG, JPG or JPEG.</div>";
     }
 }
-*/
 
 echo "<br /><a href='private_gallery.php' class='btn btn-default' role='button'>Continue</a>";
 echo "<br /><a href='add_picture.php' class='btn btn-primary' role='button'>Add another image</a>";
+
+*/
+
+// Send the user back to the Picture Management
+echo "<script type='text/javascript'>document.location.replace('private_gallery.php');</script>"
 
 ?>
