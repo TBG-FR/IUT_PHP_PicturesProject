@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* ----- ----- ----- ----- [ "Custom" CSS : Overrides & Complete the Bootstrap CSS ] ----- ----- ----- ----- */
 
 /* ----- -----  General (Page) ----- ----- */
@@ -695,3 +696,350 @@ flex-flow: column wrap;     /* Header_Head : Afficher les éléments en colonne,
 
 
 >>>>>>> ef118fef716784b7c13be286259958cfe189cf44
+=======
+/* ----- ----- ----- ----- [ "Custom" CSS : Overrides & Complete the Bootstrap CSS ] ----- ----- ----- ----- */
+
+/* ----- -----  General (Page) ----- ----- */
+
+html { 
+    /* ATTRIBUTES */
+}
+
+body {
+    /* ATTRIBUTES */    
+}
+
+/* ----- Added Fonts & Font Modifications ----- */
+
+@font-face {
+    font-family: 'Archive';
+    src: url('fonts/Archive.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Champagne';
+    src: url('fonts/Champagne & Limousines.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Champagne'; /* Italic version */
+    src: url('fonts/Champagne & Limousines Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'ChampagneBold';
+    src: url('fonts/Champagne & Limousines Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ChampagneBold'; /* Italic version */
+    src: url('fonts/Champagne & Limousines Bold Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+/* False bold, to get ChampagneBold in Bold */
+strong { text-shadow: 1px 0px 1px currentColor; /* 1px 0px 0px pour enlever le "flou" */ }
+
+/* ----- ----- Header (Page's Upper Part) ----- ----- */
+
+header {
+    font-family: 'Archive','Trebuchet MS', Arial, sans-serif; /* Polices, dans l'ordre */
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    margin-top: 1.5%;
+    /*background-color: cyan;*/ /* TEMP REMOVE */
+}
+
+#header_head {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around; /*justify-content: center;*/
+    align-items: center;
+    text-align: center;
+    margin: auto; /* USELESS ? */
+    width: 100%; /* USELESS ? */
+    background-color: rgba(72,222,125,0.5); /* TEMP REMOVE */
+}
+
+#header_head .lamd4  { /* TEMP REMOVE */
+
+    /*background-color: brown;*/
+
+}
+
+#header_head .lamd3  { /* TEMP REMOVE */
+
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+
+}
+
+#header_head .lamd5  { /* TEMP REMOVE */
+
+    margin-right: 15%;
+
+}
+
+#logo  {    
+    width: 12vw;
+    min-width: 150px;
+}
+
+#header_contact {   
+    text-align: center;
+    font-size:calc(1em + 1vw);    
+    white-space: nowrap;
+
+}
+
+#header_buttons { 
+    margin: auto; /* USELESS ? */
+}
+
+#header_buttons .glyphicon-envelope, #header_buttons .glyphicon-earphone, #header_buttons .glyphicon-map-marker {
+
+    font-size:calc(2em + 2vw);
+    margin-left: 1vw;
+    margin-right: 1vw;
+    flex-flow: column wrap;
+    text-decoration: none;
+
+}
+
+#header_buttons a {
+    
+    text-decoration: none;
+    color: #000;
+
+}
+
+#header_buttons a:hover {
+    
+    opacity: 0.5;
+    text-decoration: none;
+    text-decoration-line: none;
+    color: #000;
+
+}
+/* ----- Menu de Navigation (navbar) ----- */
+
+
+.menu-bar {
+    position: absolute;
+    top: 20px;    
+    left: 50%;
+    height: 14px;
+    margin-left: -10px;
+}
+
+.menu {
+    display: block !important;
+    width: 100%;
+    padding: 15px 10px 15px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #fff;
+    font-size: calc(0.75em + 0.75vw);
+}
+
+.menu ul {
+    margin-bottom: 0;
+}
+
+.menu a {
+    color: grey; 
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+.menu a:hover {
+    text-decoration: none;
+    background-image:radial-gradient(white 100%, black 100%);
+    color: black;
+    opacity: 0.8; 
+}
+
+/* ----- -----  Content (Page's Body) ----- ----- */
+
+.content {
+
+    /*background-color: aqua;*/
+    width: 100%;
+    text-align: center;
+
+}
+
+/* INDEX */
+
+.Carousel_container {
+    
+    width: 65%;
+    margin: auto;
+    
+}
+
+/* GALLERY */
+
+.gallery  {
+
+    background-color: red;
+    width: 95%;
+    margin: auto;
+    text-align: center;
+    padding-top: 5%;
+    padding-bottom: 5%;
+
+}
+
+.gal_element {
+
+    position: relative;
+    display: inline-block;
+
+    margin:auto;
+    margin-bottom: 1%;
+
+}
+
+.gal_element > img {
+
+    /* */
+
+}
+
+.gal_overlay {
+
+    /* Placing the overlay on the image */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+
+    /* Adding visual effects and hiding the overlay when not hovered */
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgba(70,70,70,0.8);
+
+    text-align: center;
+
+}
+
+
+.gal_element:hover .gal_overlay {
+
+    opacity: 1; /* Displaying the overlay only when hovered */
+
+}
+
+.gal_overlay > .btn {
+
+    display: block;
+    width: 100%;
+    margin: auto;
+
+}
+
+.gal_buttons {
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.mini_menu {
+    background-color: lightgrey;
+    width: 35%;
+    margin: auto;
+    text-align: center;
+    padding: 2.5%;
+}
+
+/* ------------------- sort ----------------- */
+.gallery-title
+{
+    font-size: 36px;
+    color: #42B32F;
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 70px;
+}
+.gallery-title:after {
+    content: "";
+    position: absolute;
+    width: 7.5%;
+    left: 46.5%;
+    height: 45px;
+    border-bottom: 1px solid #5e5e5e;
+}
+.filter-button
+{
+    font-size: 18px;
+    border: 1px solid #42B32F;
+    border-radius: 5px;
+    text-align: center;
+    color: #42B32F;
+    margin-bottom: 30px;
+
+}
+.filter-button:hover
+{
+    font-size: 18px;
+    border: 1px solid #42B32F;
+    border-radius: 5px;
+    text-align: center;
+    color: #ffffff;
+    background-color: #42B32F;
+
+}
+.btn-default:active .filter-button:active
+{
+    background-color: #42B32F;
+    color: white;
+}
+
+.port-image
+{
+    width: 100%;
+}
+
+
+/* ----- ----- Footer (Page's Lower Part)  ----- ----- */
+
+footer {
+    /* ATTRIBUTES */
+}
+
+.legal {
+    font-family: 'ChampagneBold','Trebuchet MS', Arial, sans-serif; /* Polices, dans l'ordre */
+    font-size:calc(1em + 0.2vw);
+    color: #000;
+}
+
+/* ----- ----- ----- ----- CSS "@media" (Responsive) ----- ----- ----- ----- */
+
+/*@media all and (max-width:500px) { /* Sur tous les médias, si la largeur d'affichage est plus petite que 500px *//*  
+#header_head {
+flex-flow: column wrap;     /* Header_Head : Afficher les éléments en colonne, les uns sous les autres *//*
+}
+}*/
+
+/* ----- ----- ----- ----- [ CSS "Backend" : Administration Elements ] ----- ----- ----- ----- */
+
+#admin {
+    /* ATTRIBUTES */
+
+}
+>>>>>>> 82af26a6d7693e174735b2897f8b1704135812fe
