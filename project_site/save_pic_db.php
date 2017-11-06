@@ -48,6 +48,8 @@ foreach ($pic->getKeywords() as &$value) {
         ));
 }
 
+
+unset($_SESSION['private_gal']);
 echo "<script type='text/javascript'>document.location.replace('private_gallery.php');</script>"; 
 
 ?>

@@ -215,6 +215,18 @@ class Picture
         }
         return $keyStr;
     }
+
+    public function getKeywordsSortable(){
+        $keyStr="";
+        //var_dump($this->keywords);
+        if($this->keywords != NULL){
+            foreach ($this->keywords as $value) {
+            $keyStr=$keyStr.$value." ";
+            }
+        }
+        return $keyStr;
+    }
+    
     
      public function setId ($id){
         $this->id=$id;
@@ -246,7 +258,6 @@ class Picture
         if ( in_array($extension_upload,$extensions_valides) )
             {
                 $resultat = move_uploaded_file($tmp_pic_name,"private_images/{$pic_name}");
-            
                 if ($resultat){
                     return 1;
                 } else {

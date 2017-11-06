@@ -166,7 +166,7 @@ class Gallery
 
                         //  FCT : addPicture($id, $title, $desc, $public, $path, $state)
                         $this->addPicture($pic[0]['id'], $pic[0]['title'], $pic[0]['description'], $pic[0]['date'], $pic[0]['public'], $pic[0]['path'], 2);
-                        $this->getPicture($pic['id'])->setKeywordsFromDB();
+                        $this->getPicture($pic[0]['id'])->setKeywordsFromDB();
 
                     }
 
