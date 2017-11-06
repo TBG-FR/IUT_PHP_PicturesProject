@@ -168,7 +168,7 @@ header {
     opacity: 0.8; 
 }
 
-/* ----- -----  Content (Page's Body) ----- ----- */
+/* ----- -----  Design Rules & Elements ----- ----- */
 
 .content {
 
@@ -215,6 +215,13 @@ header {
     
 }
 
+.littletextbtn {
+    
+    font-family: 'ChampagneBold','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance */
+    font-size: calc(1em + 1vh);
+    
+}
+
 .btntext {
     
     font-family: 'Archive','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance */
@@ -222,6 +229,26 @@ header {
     margin-top: 5vh;
     margin-bottom: 5vh;
     
+}
+
+/* Creates an horizontal line after the element */
+.hline-bottom {
+    margin: auto;
+    width: 65%;
+    margin-top: 2.5vh;
+    padding-bottom: 2vh;
+    margin-bottom: 2.5vh;
+    border-bottom: 2px solid #000;
+}
+
+/* ----- -----  Content (Page's Body) ----- ----- */
+
+.content {
+
+    /*background-color: aqua;*/
+    width: 100%;
+    text-align: center;
+
 }
 
 /* INDEX */

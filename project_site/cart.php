@@ -38,8 +38,8 @@
                 
                 echo "                
                 <p class='text'>Your cart is empty, there is no pictures in it !</p><br />                                 \r\n
-                <img class='responsive_img' src='img/empty_cart.png' alt='Empty cart image (sad handbag)' /><br/>                                  \r\n                
-                <a href='index.php' class='btntext btn btn-primary' role='button'>Let's find some you'll love !</a>         \r\n
+                <img class='responsive_img' src='img/empty_cart.png' alt='Empty cart image (sad handbag)' /><br/>          \r\n                
+                <a href='index.php' class='btntext btn btn-primary' role='button'>Let's find some you'll love !</a>        \r\n
                 ";
                 
             }
@@ -52,23 +52,21 @@
                     
                     echo "
                     
-                        <img src='private_images/".$picture->getPath()."' alt='".$picture->getTitle()."' height='100px' /> {$picture->getName()} | {$picture->getDesc()} | {$picture->getDate()} 
-                    
-                        <a href='?action=edit&id={$picture->getId()}'    class='btn btn-default' role='button'> Edit </a>
+                        <img src='private_images/".$picture->getPath()."' alt='".$picture->getTitle()."' height='50px' /> {$picture->getName()} | {$picture->getDesc()} | {$picture->getDate()}
                         
-                        <a href='?action=delete&id={$picture->getId()}'  class='btn btn-default' role='button'> Delete </a>
+                        <a href='?action=cart_del&item_id=".$picture->getID()."'  class='littletextbtn btn btn-default' role='button'> Remove </a>
                         
-                        <br/><br/>
-                        
-                        ";  
+                        <br/><br/>";  
                 
                 }
+                
+                echo "<div class='hline-bottom'></div>";
             
             $price = 25;
-            echo "<p class='text'>All my pictures have the same price : $price €</p><br />";
+            echo "<p class='littletext'>All my pictures are selled at the same price : $price €<br /></p>";
             
             $total = $_SESSION['cart']->getNbPictures() * 25;
-            echo "Subtotal for your cart : $total €";
+            echo "<p class='littletextbtn'>Subtotal for your cart : $total €</p>";
                 
                 
             }
