@@ -179,6 +179,13 @@ INSERT INTO phpproj_Gallery (id, title) VALUES
 ('2','Admin Gallery');
 */
 
+/* Homepage Pictures (Carousel) */
+INSERT INTO phpproj_Picture VALUES
+(10001,'Homepage Picture #1', 'A beautiful sky at night, somewhere in a lost field in France','25/01/2005',0,'home_pictures/sky_grass_stars_night.jpg'),
+(10002,'Homepage Picture #2', 'Electric and foggy atmosphere in Indonesia','25/01/2005',0,'home_pictures/sky_lake_fog_steam_ominous_darkness_reflection_trees.jpg'),
+(10003,'Homepage Picture #3', 'A flaming sunset... one of the best I\'ve ever seen !','25/01/2005',0,'home_pictures/sky_lake_trees_sunset.jpg'),
+(10004,'Homepage Picture #4', 'Blue sky and wonderful river in Georgie','25/01/2005',0,'home_pictures/sky_nature_river_landscape.jpg');
+
 /* ===== ===== Tests d'Insertion ===== ===== */
 
 INSERT INTO phpproj_User (username, password, firstname, lastname, address, zip, city, email) VALUES
@@ -201,8 +208,6 @@ INSERT INTO phpproj_picture (id, title, description, date, public, path) VALUES
 ('2', 'landscape_sea', 'Beautiful picture taken in Marseillan', '01/11/2017', '1', 'landsea.jpeg'),
 ('3', 'landscape_sea_wrong', 'This picture is wrongly taken, hide it', '01/11/2017', '0', 'landsea.jpeg'),
 ('4', 'seagulls', 'Seagulls in UK', '01/11/2017', '1', 'seagulls.jpeg');
-
-/* Every picture should be automatically added under Admin & Public galleries
 
 /* Let's say User #4 (Jojo) bought them */
 INSERT INTO phpproj_gallerypicture (pic_id, gal_id) VALUES
