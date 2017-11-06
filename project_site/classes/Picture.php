@@ -178,6 +178,44 @@ class Picture
         return $this->keywords;
     }
     
+    public function setKeywordsFromDB (){
+        $db=new Database();
+        $all_public_img = $db->read("phpproj_picturekeyword", array(
+                'conditions' => array(
+                    'pic_id =' => $this->id
+                ),
+                'fields' => array('KEY_id'),
+            ));
+        //var_dump($all_public_img);
+        foreach ($all_public_img as $value){
+             $res=$db->read("phpproj_keyword", array(
+                'conditions' => array(
+                    'id =' => $value['KEY_id']
+                ),
+                'fields' => array('name'),
+            ));
+            $this->addKeyword($res[0]['name']);
+        }
+        
+        
+        
+        
+    }
+    
+    
+    
+    public function getKeywordsStr(){
+        $keyStr="";
+        //var_dump($this->keywords);
+        if($this->keywords != NULL){
+            foreach ($this->keywords as $value) {
+            $keyStr=$keyStr.$value.",";
+            }
+            $keyStr=substr($keyStr,0,-1);
+        }
+        return $keyStr;
+    }
+    
      public function setId ($id){
         $this->id=$id;
     }

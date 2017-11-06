@@ -77,6 +77,7 @@ class Gallery
 
                     //  FCT : addPicture($id, $title, $desc, $public, $path, $state)
                     $this->addPicture($pic['id'], $pic['title'], $pic['description'], $pic['date'], $pic['public'], $pic['path'], 0);
+                    $this->getPicture($pic['id'])->setKeywordsFromDB();
 
                 }
 
@@ -118,7 +119,8 @@ class Gallery
 
                         //  FCT : addPicture($id, $title, $desc, $public, $path, $state)
                         $this->addPicture($pic['id'], $pic['title'], $pic['description'], $pic['date'], $pic['public'], $pic['path'], 0);
-
+                        $this->getPicture($pic['id'])->setKeywordsFromDB();
+                        //var_dump($this->getPicture($pic['id']));
                     }
 
                 }
@@ -164,6 +166,7 @@ class Gallery
 
                         //  FCT : addPicture($id, $title, $desc, $public, $path, $state)
                         $this->addPicture($pic[0]['id'], $pic[0]['title'], $pic[0]['description'], $pic[0]['date'], $pic[0]['public'], $pic[0]['path'], 2);
+                        $this->getPicture($pic['id'])->setKeywordsFromDB();
 
                     }
 
@@ -191,6 +194,7 @@ class Gallery
 
                 //  FCT : addPicture($id, $title, $desc, $public, $path, $state)
                 $this->addPicture($pic['id'], $pic['title'], $pic['description'], $pic['date'], $pic['public'], $pic['path'], 0);
+                $this->getPicture($pic['id'])->setKeywordsFromDB();
 
             }
 
@@ -287,6 +291,23 @@ class Gallery
 
                 unset($this->pictures[$nb_pic]);
                 $this->nb_pictures--;
+
+            }
+        }
+
+    }
+    
+    public function getPicture($id) {
+
+        $nb_pic = 0;
+
+        foreach($this->pictures as $picture) {
+
+            $nb_pic++;
+
+            if($picture->getID() == $id) {
+
+                return $picture;
 
             }
         }

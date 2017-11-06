@@ -15,6 +15,7 @@
 
     require_once("logout.inc.php"); // COMMENT
     require_once("cart.inc.php"); // COMMENT
+    require_once("admin.inc.php"); // COMMENT
     require_once("unsets.inc.php"); // COMMENT
 
 //echo "AFTER <br/>"; var_dump($_SESSION['public_gal']); var_dump($_SESSION['cart']); 

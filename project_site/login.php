@@ -178,7 +178,7 @@
                              <br />
                              Username : <input type='text' name='username' value='$temp_user' required> <br />
                              Password : <input type='password' name='password' placeholder='Enter your desired password' required> <br />
-                             Password (Repeat) : <input type='password' name='password_verif' placeholder='Repeat your desired password' required> <br />
+                             Password (Repeat) : <input type='password' name='password_verif' placeholder='Repeat your desired  password' required> <br />
                              <!-- ADD : Captcha [] -->
                              
                              <input type='hidden' name='action' value='register'/>                
