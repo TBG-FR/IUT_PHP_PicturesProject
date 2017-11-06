@@ -53,7 +53,7 @@
                             echo "
                                 <div class=\"gal_element\"> 
 
-                                    <img src='private_images/".$picture->getPath()."' alt='".$picture->getTitle()."' height='150px' />
+                                    <img src='private_images/".$picture->getPath()."' alt='".$picture->getTitle()."' height='250px' />
 
                                     <div class=\"gal_overlay\">
                                         <div class=\"gal_buttons\">
