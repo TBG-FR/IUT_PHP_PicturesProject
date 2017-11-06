@@ -31,9 +31,14 @@ require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
         <div class="content">
 
             <!-- Short Description -->
-            <p class="short_text">
+            <p class="title">
+                Welcome to my Website<br />
+            </p>
+
+            <!-- Short Description -->
+            <p class="text">
                 I'm Andrew Blind, a professional photographer since 1997, located in the USA. <br />
-                Welcome to my Website, where you can have a look at my pictures, and even buy them if you like them and want to support my work ! <br />
+                Here you can have a look at my pictures, and even buy them to support my work ! <br />
                 Don't hesitate to contact me for any questions or inquiries ! <br />
             </p>
 
