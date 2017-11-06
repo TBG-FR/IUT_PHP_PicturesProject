@@ -220,8 +220,9 @@ echo "<br /><a href='add_picture.php' class='btn btn-primary' role='button'>Add 
 
 */
 
-// Send the user back to the Picture Management & Unset his Private Gallery (in order to refresh it)
+// Send the user back to the Picture Management & Unset his Galleries (in order to refresh it)
 unset($_SESSION['private_gal']);
+unset($_SESSION['public_gal']);
 echo "<script type='text/javascript'>document.location.replace('private_gallery.php');</script>";
 
 ?>

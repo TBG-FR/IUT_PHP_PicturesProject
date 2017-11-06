@@ -49,7 +49,9 @@ foreach ($pic->getKeywords() as &$value) {
         ));
 }
 
+// Send the user back to the Picture Management & Unset his Galleries (in order to refresh it)
 unset($_SESSION['private_gal']);
-echo "<script type='text/javascript'>document.location.replace('private_gallery.php');</script>"; 
+unset($_SESSION['public_gal']);
+echo "<script type='text/javascript'>document.location.replace('private_gallery.php');</script>";
 
 ?>
