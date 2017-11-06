@@ -38,7 +38,7 @@ require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
             
             <img class='large_image' src='img/404.jpg' alt='Abandoned Place : Old Control Room (404 Page Picture)' />
 
-            <br /><br /><a href='index.php' class='btntext btn btn-primary' role='button'><h4>Back to the Homepage</h4></a>
+            <a href='index.php' class='btntext btn btn-primary' role='button'>Back to the Homepage</a>
 
         </div>
 

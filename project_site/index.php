@@ -125,10 +125,9 @@ require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-            </div>
 
             <!-- Link to Gallery -->
-            <h3><a href="gallery.php">See/Buy all my Pictures</a></h3>
+            <a href='public_gallery.php' class='btntext btn btn-primary' role='button'>See all my Pictures</a>
 
         </div>
 
