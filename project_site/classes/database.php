@@ -323,10 +323,18 @@ class Database
     
      public function getAllKeyword()
     {
-        $res=$this->read('phpproj_keyword',array('fields'=>array('name')));
-        //var_dump($res);    
+        
+        $res=$this->read('phpproj_keyword',array('fields'=>array('id','name')));
+        //var_dump($res);
+        $res2=$this->read('phpproj_picturekeyword',array('fields'=>array('KEY_id')));
+         //var_dump($res2);
+         foreach ($res2 as &$value) {
+            $keywordsID[$value['KEY_id']]=1;
+        }
         foreach ($res as &$value) {
-            $keywords[]=$value['name'];
+            if (isset($keywordsID[$value['id']])){
+                $keywords[]=$value['name'];
+            }
         }
         return $keywords;
     }

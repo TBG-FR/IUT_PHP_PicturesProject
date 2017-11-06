@@ -343,3 +343,13 @@ flex-flow: column wrap;     /* Header_Head : Afficher les éléments en colonne,
     /* ATTRIBUTES */
 
 }
+
+
+table
+{
+    border-collapse: collapse;
+}
+td, th /* Mettre une bordure sur les td ET les th */
+{
+    border: 1px solid black;
+}

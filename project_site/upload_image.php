@@ -6,6 +6,10 @@
 // "Empty" picture creation
 $pic= new Picture(-1,"","","",0,"",0);
 var_dump($pic);
+if(file_exists ("private_images/".$_FILES['pic']['name'])){
+    $_SESSION['error']='alreadyexist';
+    echo "<script type='text/javascript'>document.location.replace('add_picture.php');</script>";
+}
 
 if($pic->addImage($_FILES['pic']['name'],$_FILES['pic']['error'],$_FILES['pic']['tmp_name'])) {
     
