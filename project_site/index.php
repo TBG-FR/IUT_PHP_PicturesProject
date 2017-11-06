@@ -1,6 +1,6 @@
 <?php
 
-    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management    
+require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management    
 
 ?>
 
@@ -30,52 +30,103 @@
 
         <div class="content">
 
-             <!-- Short Description -->
+            <!-- Short Description -->
             <p class="short_text">
-                I'm Andrew Blind, a professional photographer since 2012, located in the USA. <br />
+                I'm Andrew Blind, a professional photographer since 1997, located in the USA. <br />
                 Welcome to my Website, where you can have a look at my pictures, and even buy them if you like them and want to support my work ! <br />
-                Don't hesitate to contact me for any questions or inquiries ~ <br />
+                Don't hesitate to contact me for any questions or inquiries ! <br />
             </p>
 
-            <!-- Carousel / Slider -->
+            <!-- Slider "Carousel" -->
+
             <div class="Carousel_container">
-            <img src="public_images/observation_deck___wallpaper_by_z_design-d2q7jic.jpg" alt="" title="" height="250px"></div>
+                <div id="Carousel_Index" class="carousel slide" data-ride="carousel">
+                        
+                    <?php
+                   
+                    echo " <!-- Navigation Buttons -->
+                            <ol class='carousel-indicators'>";
+
+                        $db = new Database();
+                        
+                        // Forward all "Homepage" pictures (ID>10000)
+
+                        $carousel_img = $db->read($bdd_table_picture, array(
+                            'conditions' => array(
+                                'id <' => '0'
+                            ),
+                            'fields' => array('*'),
+                        ));
+
+                        $i=0;
+                        
+                        // For each image, display a button
+                    
+                    foreach($carousel_img as $pic) {
+
+                            if($i==0) { echo "<li data-target='#Carousel_Index' data-slide-to='0' class='active'></li>"; }
+
+                            else  { echo "<li data-target='#Carousel_Index' data-slide-to='$i'></li>"; }
+                            
+                            $i++; 
+                    }
+                        
+                        echo "</ol>";
+
+                        
+                        echo "<!-- Div containing Slides -->
+                                <div class='carousel-inner'>";
+                        
+                        // For each image, display a picture with details
+
+                        $i=0;
+
+                        foreach($carousel_img as $pic) {
+
+                            if($i==0) {
+
+                                echo "
+                                    <!-- Slide #0 (Active) -->
+                                    <div class='item active item-0'>
+                                        <img src='public_images/".$pic['path']."' alt='".$pic['title']."' />
+                                        <div class='carousel-caption'>".$pic['description']."</div>
+                                    </div>                            
+                                ";
+                            }
+
+                            else {
+
+                                echo "
+                                 <!-- Slide #$i -->
+                                 <div class='item item-$i'>
+                                     <img src='public_images/".$pic['path']."' alt='".$pic['title']."' />
+                                     <div class='carousel-caption'>".$pic['description']."</div>
+                                 </div>                            
+                                ";
+                            }
+                            
+                            $i++;                                
+                                
+                        }
+
+                        ?>
+                        
+                    </div>
+
+                    <!-- "Previous" & "Next" Buttons -->
+                    <a class="left carousel-control" href="#Carousel_Index" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#Carousel_Index" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
 
             <!-- Link to Gallery -->
             <h3><a href="gallery.php">See/Buy all my Pictures</a></h3>
-			
-			<?php
-            
-            //include_once("classes/all.inc.php");
-			
-			$db = new Database();
-			
-			/*$req = $db->query('SELECT * FROM phpproj_user');
-			foreach ($req as $champ => $valeur)
-				echo $champ.' --- '.$valeur.'<br />';
-				
-			print_r($req);*/
-			print_r($db);
-			
-			$res = $db->read($bdd_table_user);
-			
-			var_dump($res);
-		/*
-			foreach ($res as $row=>$entry) {
-				foreach ($entry as $field=>$entry) {
-					echo $field."---".$value."<br />";
-			}}*/
-			
-			// Lecture de chaque ligne du tableau
-			foreach($res as $ligne){
-        // Lecture de chaque tableau de chaque ligne
-				foreach($ligne as $cle=>$valeur){
-                // Affichage
-				echo $cle.': '.$valeur.'<br>';
-				}
-			}
-				
-			?>
 
         </div>
 

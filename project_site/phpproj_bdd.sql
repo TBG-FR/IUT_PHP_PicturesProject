@@ -72,7 +72,7 @@ CREATE TABLE phpproj_Picture
     description             VARCHAR(510),
     date                    VARCHAR(100),
     public                  BOOL NOT NULL,
-    path			        VARCHAR(255) NOT NULL
+    path			        VARCHAR(255) NOT NULL,
     
     PRIMARY KEY (id)
 )
@@ -168,16 +168,23 @@ DELIMITER ;
 
 INSERT INTO phpproj_User (id, username, password, email, admin) VALUES
 
-#('0','NA','NA','na@na.com','0'), #This value should not exist, ids start from 3, and user with id=2 is the Admin
-#('1','NA','NA','na@na.com','0'), #This value should not exist, ids start from 3, and user with id=2 is the Admin
+/*(0,'NA','NA','na@na.com','0'), #This value should not exist, ids start from 3, and user with id=2 is the Admin */
+/*(1,'NA','NA','na@na.com','0'), #This value should not exist, ids start from 3, and user with id=2 is the Admin */
 
-#('2','Admin','Admin','1'); #This is the same entry, without hashed password
-('2','Admin','$2y$10$WmJrNnMyaSEhP3ZzK190TOrcnj44qc3XtgS961U6tmc2.WFc.ibtC','admin@phpprojpictures.fr','1'); #This is the same entry, with hashed password
+/*(2,'Admin','Admin','1'); #This is the same entry, without hashed password */
+(2,'Admin','$2y$10$WmJrNnMyaSEhP3ZzK190TOrcnj44qc3XtgS961U6tmc2.WFc.ibtC','admin@phpprojpictures.fr','1'); #This is the same entry, with hashed password
 
 /* ==> THE TRIGGER DOES IT AUTOMATICALLY
 INSERT INTO phpproj_Gallery (id, title) VALUES
 ('2','Admin Gallery');
 */
+
+/* Homepage Pictures (Carousel) */
+INSERT INTO phpproj_Picture VALUES
+(-1,'Homepage Picture #1', 'A beautiful sky at night, somewhere in a lost field in France','25/01/2005',0,'home_pictures/sky_grass_stars_night.jpg'),
+(-2,'Homepage Picture #2', 'Electric and foggy atmosphere in Indonesia','25/01/2005',0,'home_pictures/sky_lake_fog_steam_ominous_darkness_reflection_trees.jpg'),
+(-3,'Homepage Picture #3', 'A flaming sunset... one of the best I\'ve ever seen !','25/01/2005',0,'home_pictures/sky_lake_trees_sunset.jpg'),
+(-4,'Homepage Picture #4', 'Blue sky and wonderful river in Georgie','25/01/2005',0,'home_pictures/sky_nature_river_landscape.jpg');
 
 /* ===== ===== Tests d'Insertion ===== ===== */
 
@@ -197,14 +204,12 @@ INSERT INTO phpproj_Gallery (title) VALUES
 
 /* Let's say we have those two pictures */
 INSERT INTO phpproj_picture (id, title, description, date, public, path) VALUES
-('1', 'landscape_moutain', 'Beautiful picture of the Alps', '18/10/2017', '1', 'landmount.jpeg'),
-('2', 'landscape_sea', 'Beautiful picture taken in Marseillan', '01/11/2017', '1', 'landsea.jpeg'),
-('3', 'landscape_sea_wrong', 'This picture is wrongly taken, hide it', '01/11/2017', '0', 'landsea.jpeg'),
-('4', 'seagulls', 'Seagulls in UK', '01/11/2017', '1', 'seagulls.jpeg');
-
-/* Every picture should be automatically added under Admin & Public galleries
+(1, 'landscape_moutain', 'Beautiful picture of the Alps', '18/10/2017', '1', 'landmount.jpeg'),
+(2, 'landscape_sea', 'Beautiful picture taken in Marseillan', '01/11/2017', '1', 'landsea.jpeg'),
+(3, 'landscape_sea_wrong', 'This picture is wrongly taken, hide it', '01/11/2017', '0', 'landsea.jpeg'),
+(4, 'seagulls', 'Seagulls in UK', '01/11/2017', '1', 'seagulls.jpeg');
 
 /* Let's say User #4 (Jojo) bought them */
 INSERT INTO phpproj_gallerypicture (pic_id, gal_id) VALUES
-('1', '4'),
-('2', '4');
+(1, 4),
+(2, 4);

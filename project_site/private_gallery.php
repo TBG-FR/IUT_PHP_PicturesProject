@@ -1,6 +1,9 @@
 <?php
 
-    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management    
+    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management
+
+    // IF the user isn't logged, send him to the 404 page
+    if ( $_SESSION['user'] instanceof User == FALSE ) { header("Location: 404.php"); }
 
 ?>
 
@@ -30,18 +33,32 @@
 
         <div class="content">
             
-            //if $_SESSION['user']->getID() == 2
+            <?php //if $_SESSION['user']->getID() == 2 ?>
 
             <div class="edit_page">
-             CONTENT
+            <?php 
+                foreach($_SESSION['private_gal']->getPictures() as $picture) {
+                echo "<img src='private_images/".$picture->getPath()."' alt='' height=100 /> {$picture->getName()} | {$picture->getDesc()} | {$picture->getDate()} 
+                 
+                 
+                 <a href='?action=edit&id={$picture->getId()}'    class='btn btn-default' role='button'> Edit </a>
+                 <a href='?action=delete&id={$picture->getId()}'  class='btn btn-default' role='button'> Delete </a>
+                
+                
+                
+                </br></br>";
+                
+                
+                }
+                ?>
             </div>
             
             
-            //else
+            <?php //else ?>
 
             <div class="gallery">
 
-                <?php
+                <?php /*
 
                 foreach($_SESSION['private_gal']->getPictures() as $picture) {
                     
@@ -50,11 +67,11 @@
                             echo "
                                 <div class=\"gal_element\"> 
 
-                                    <img src='private_images/".$picture->getPath()."' alt='' />
+                                    <img src='private_images/".$picture->getPath()."' alt='".$picture->getTitle()."' height='250px' />
 
                                     <div class=\"gal_overlay\">
                                         <div class=\"gal_buttons\">
-                                            <a href='?action=delete&item_id=".$picture->getID()."'    class='btn btn-default' role='button'>Delete</a>
+                                            <a href='##view_details'    class='btn btn-default' role='button'>View More</a>
                                         </div>
                                     </div>
 
@@ -63,7 +80,7 @@
                     //}
                 }
 
-                ?>
+                */ ?>
 
             </div>
         </div>
