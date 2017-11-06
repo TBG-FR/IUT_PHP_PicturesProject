@@ -27,14 +27,11 @@ function apply_watermark($white, $src_path) {
         // Destination image width and height
         $width_dest = imagesx($img_src);
         $height_dest = imagesy($img_src);
-        
-        // Divider, depending on the size
-        $divider = $width_dest / 452;
 
         // Watermark image  width and height (here, we choosed to use destination image dimensions divided by 4)
-        $width_wtmk = $width_dest / $divider;
-        $height_wtmk = $height_dest / $divider;
-
+        $width_wtmk = $width_dest / 4;
+        $height_wtmk = $height_dest / 4;
+        
         // Creation of the image ressources for the watermark image, with the defined dimensions
         $img_wtmk = ImageCreate($width_wtmk, $height_wtmk) or die ("Error while creating Watermark...");
 
@@ -51,8 +48,8 @@ function apply_watermark($white, $src_path) {
         imagecolortransparent($img_wtmk, $wtmk_bg);
 
         // Adding the Watermark text to the Watermark image | imagettftext(image, size, angle, x, y, color, fontfile, text);
-        imagettftext($img_wtmk, $height_wtmk/4, -25, $width_wtmk/8, $height_wtmk/3, $wtmk_txt, "../fonts/Champagne & Limousines.ttf", "Andrew Blind");
-        imagettftext($img_wtmk, $height_wtmk/4, 25, $width_wtmk/8, $height_wtmk/1.5, $wtmk_txt, "../fonts/Champagne & Limousines.ttf", "Andrew Blind");
+        imagettftext($img_wtmk, $height_wtmk/4, -25, $width_wtmk/8, $height_wtmk/3, $wtmk_txt, "fonts/Champagne & Limousines.ttf", "Andrew Blind");
+        imagettftext($img_wtmk, $height_wtmk/4, 25, $width_wtmk/8, $height_wtmk/1.5, $wtmk_txt, "fonts/Champagne & Limousines.ttf", "Andrew Blind");
 
         // Applying the Watermak all around the image (to cover it entirely with Watermark)
         for ($i=4; $i>=0; $i--) {
@@ -79,6 +76,8 @@ function apply_watermark($white, $src_path) {
     // ELSE IF the given image is a PNG => Use the functions related to PNG
     //else if( exif_imagetype($src_path) == IMAGETYPE_PNG ) {
     if( strpos($src_path, ".png") || strpos($src_path, ".PNG") ) {
+        
+        echo "PNG!!!";
 
         // Indicates which file type we will create (here, a png image)
         //header ("Content-type: image/png");
@@ -196,6 +195,12 @@ foreach ($pic->getKeywords() as &$value) {
 $fullpath = dirname(__DIR__)."\public_images\\".$pic->getPath();
 $path = $pic->getPath();
 
+    // Here we should use a try-catch but we get a false positive when rendering a JPEG (due to alpha channel, I think)
+    if( $_POST["wtmk_color"] == "black" ) { apply_watermark(0, $path); }
+    else { apply_watermark(1, $path); }
+    echo "<div class='notification alert alert-success' role='alert'>Watermarked picture successfully created !</div>";
+
+/*
 try {
     if( $_POST["wtmk_color"] == "black" ) { apply_watermark(0, $path); }
     else { apply_watermark(1, $path); }
@@ -213,8 +218,8 @@ catch (Exception $e) {
         echo "<div class='notification alert alert-danger' role='alert'>Error while creating watermark ! Please try again with PNG, JPG or JPEG.</div>";
     }
 }
+*/
 
-//echo "<script type='text/javascript'>document.location.replace('private_gallery.php');</script>";
 echo "<br /><a href='private_gallery.php' class='btn btn-default' role='button'>Continue</a>";
 echo "<br /><a href='add_picture.php' class='btn btn-primary' role='button'>Add another image</a>";
 

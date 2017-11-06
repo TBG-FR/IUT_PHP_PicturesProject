@@ -1,6 +1,9 @@
 <?php
 
-    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management    
+    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management
+
+    // IF the user isn't logged, send him to the 404 page
+    if ( $_SESSION['user'] instanceof User == FALSE ) { header("Location: 404.php"); }
 
 ?>
 
@@ -50,7 +53,7 @@
                             echo "
                                 <div class=\"gal_element\"> 
 
-                                    <img src='private_images/".$picture->getPath()."' alt='' />
+                                    <img src='private_images/".$picture->getPath()."' alt='".$picture->getTitle()."' height='150px' />
 
                                     <div class=\"gal_overlay\">
                                         <div class=\"gal_buttons\">

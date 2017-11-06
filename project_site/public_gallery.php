@@ -43,7 +43,7 @@ require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
                             echo "
                                 <div class=\"gal_element\"> 
 
-                                    <img src='public_images/".$picture->getPath()."' alt='' />
+                                    <img src='public_images/".$picture->getPath()."' alt='".$picture->getTitle()."' height='250px' />
 
                                     <div class='gal_overlay'>
                                         <div class='gal_buttons'>
@@ -61,7 +61,7 @@ require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
                             echo "
                                 <div class=\"gal_element\"> 
 
-                                    <img src='public_images/".$picture->getPath()."' alt='' />
+                                    <img src='public_images/".$picture->getPath()."' alt='".$picture->getTitle()."' height='250px' />
 
                                     <div class='gal_overlay'>
                                         <div class='gal_buttons'>
@@ -79,7 +79,7 @@ require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
                             echo "
                                 <div class=\"gal_element\"> 
 
-                                    <img src='public_images/".$picture->getPath()."' alt='' />
+                                    <img src='public_images/".$picture->getPath()."' alt='".$picture->getTitle()."' height='250px' />
 
                                     <div class='gal_overlay'>
                                         <div class='gal_buttons'>
