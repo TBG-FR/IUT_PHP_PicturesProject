@@ -326,10 +326,10 @@ class Database
         
         $res=$this->read('phpproj_keyword',array('fields'=>array('id','name')));
         //var_dump($res);
-        $res2=$this->read('phpproj_picturekeyword',array('fields'=>array('KEY_id')));
+        $res2=$this->read('phpproj_picturekeyword',array('conditions' => array('pic_id >' => '0'),'fields' => array('key_id')));
          //var_dump($res2);
          foreach ($res2 as &$value) {
-            $keywordsID[$value['KEY_id']]=1;
+            $keywordsID[$value['key_id']]=1;
         }
         foreach ($res as &$value) {
             if (isset($keywordsID[$value['id']])){
@@ -339,5 +339,7 @@ class Database
         return $keywords;
     }
 }
+
+
 
 // on évitera de fermer la balise php pour ne pas injecter de caratères invible sur les pages parentes

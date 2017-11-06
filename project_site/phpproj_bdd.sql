@@ -87,9 +87,9 @@ COLLATE utf8_bin;
 CREATE TABLE phpproj_PictureKeyword
 (
     pic_id      INT NOT NULL,
-    KEY_id      INT NOT NULL,
+    key_id      INT NOT NULL,
     
-    PRIMARY KEY (pic_id, Key_id)
+    PRIMARY KEY (pic_id, key_id)
 )
 ENGINE=InnoDB
 CHARACTER SET utf8
@@ -129,7 +129,7 @@ alter TABLE phpproj_GalleryPicture ADD CONSTRAINT FK_GalleryPictureG foreign KEY
       references phpproj_Gallery (id) on delete restrict on update restrict;
 alter TABLE phpproj_GalleryPicture ADD CONSTRAINT FK_GalleryPictureP foreign KEY (pic_id)
       references phpproj_Picture (id) on delete restrict on update restrict;
-alter TABLE phpproj_PictureKeyword ADD CONSTRAINT FK_PictureKeywordK foreign KEY (KEY_id)
+alter TABLE phpproj_PictureKeyword ADD CONSTRAINT FK_PictureKeywordK foreign KEY (key_id)
       references phpproj_Keyword (id) on delete restrict on update restrict;
 alter TABLE phpproj_PictureKeyword ADD CONSTRAINT FK_PictureKeywordP foreign KEY (pic_id)
       references phpproj_Picture (id) on delete restrict on update restrict;
