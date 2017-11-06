@@ -54,7 +54,7 @@
 
                                     <div class=\"gal_overlay\">
                                         <div class=\"gal_buttons\">
-                                            <a href='?action=delete&item_id=".$picture->getID()."'    class='btn btn-default' role='button'>Delete</a>
+                                            <a href='##view_details'    class='btn btn-default' role='button'>View More</a>
                                         </div>
                                     </div>
 
