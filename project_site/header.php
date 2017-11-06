@@ -1,5 +1,0 @@
-<html>
-
-    <!-- HEADER -->
-
-</html>

@@ -1,6 +1,6 @@
 <?php
 
-    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management    
+    require_once("php/includes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management    
 
 ?>
 
@@ -17,15 +17,14 @@
         <!-- <meta name="description" content=""> -->
         <!-- <meta name="author" content=""> -->
 
-        <?php include_once("head.php"); // Make all the CSS & JavaScript links ?>
+        <?php include_once("php/pages_parts/head.php"); // Make all the CSS & JavaScript links ?>
 
     </head>
 
     <body>
 
         <header>
-            <?php include_once("header.php"); ?>
-            <?php include_once("navbar.php"); ?>
+            <?php include_once("php/pages_parts/header.php"); ?>
         </header>
 
         <div class="content">
@@ -80,7 +79,7 @@
         </div>
 
         <footer>
-            <?php include_once("footer.php"); ?>
+            <?php include_once("php/pages_parts/footer.php"); ?>
         </footer>
 
     </body>
