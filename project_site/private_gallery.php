@@ -33,18 +33,32 @@
 
         <div class="content">
             
-            //if $_SESSION['user']->getID() == 2
+            <?php //if $_SESSION['user']->getID() == 2 ?>
 
             <div class="edit_page">
-             CONTENT
+            <?php 
+                foreach($_SESSION['private_gal']->getPictures() as $picture) {
+                echo "<img src='private_images/".$picture->getPath()."' alt='' height=100 /> {$picture->getName()} | {$picture->getDesc()} | {$picture->getDate()} 
+                 
+                 
+                 <a href='?action=edit&id={$picture->getId()}'    class='btn btn-default' role='button'> Edit </a>
+                 <a href='?action=delete&id={$picture->getId()}'  class='btn btn-default' role='button'> Delete </a>
+                
+                
+                
+                </br></br>";
+                
+                
+                }
+                ?>
             </div>
             
             
-            //else
+            <?php //else ?>
 
             <div class="gallery">
 
-                <?php
+                <?php /*
 
                 foreach($_SESSION['private_gal']->getPictures() as $picture) {
                     
@@ -66,7 +80,7 @@
                     //}
                 }
 
-                ?>
+                */ ?>
 
             </div>
         </div>

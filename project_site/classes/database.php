@@ -320,6 +320,16 @@ class Database
         }
         return false;
     }
+    
+     public function getAllKeyword()
+    {
+        $res=$this->read('phpproj_keyword',array('fields'=>array('name')));
+        //var_dump($res);    
+        foreach ($res as &$value) {
+            $keywords[]=$value['name'];
+        }
+        return $keywords;
+    }
 }
 
 // on évitera de fermer la balise php pour ne pas injecter de caratères invible sur les pages parentes
