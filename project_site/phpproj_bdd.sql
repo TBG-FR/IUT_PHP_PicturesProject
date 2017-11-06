@@ -72,7 +72,7 @@ CREATE TABLE phpproj_Picture
     description             VARCHAR(510),
     date                    VARCHAR(100),
     public                  BOOL NOT NULL,
-    path			        VARCHAR(255) NOT NULL
+    path			        VARCHAR(255) NOT NULL,
     
     PRIMARY KEY (id)
 )
