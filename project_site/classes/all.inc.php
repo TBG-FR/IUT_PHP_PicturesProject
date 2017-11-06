@@ -11,12 +11,12 @@
 
     session_start(); // Session Creation or Recovery
 
-echo "BEFORE <br/>"; var_dump($_SESSION['public_gal']); var_dump($_SESSION['cart']);
+//echo "BEFORE <br/>"; var_dump($_SESSION['public_gal']); var_dump($_SESSION['cart']);
 
     require_once("logout.inc.php"); // COMMENT
     require_once("cart.inc.php"); // COMMENT
     require_once("unsets.inc.php"); // COMMENT
 
-echo "AFTER <br/>"; var_dump($_SESSION['public_gal']); var_dump($_SESSION['cart']); 
+//echo "AFTER <br/>"; var_dump($_SESSION['public_gal']); var_dump($_SESSION['cart']); 
 
 ?>

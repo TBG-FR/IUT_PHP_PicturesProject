@@ -56,7 +56,7 @@ class Picture
     /**
      * _____
      */
-    public function __construct($p_id, $p_title, $p_desc, $p_date, $p_public, $p_path, $p_state) {
+    public function __construct($p_id, $p_title, $p_desc, $p_date, $p_public, $p_path, $p_state = 0) {
         
         $this->id = $p_id;
         $this->name = $p_title;
@@ -69,20 +69,6 @@ class Picture
         return $this;
         
     }
-    
-//    function Picture($pic_name="",$pic_desc="",$pic_date="",$pic_visible=false,$pic_id=-1) {
-//        $this->id=$pic_id;
-//        $this->name=$pic_name;
-//        $this->desc=$pic_desc;
-//        $this->date=$pic_date;
-//        $this->visible=$pic_visible;
-//        /*echo "1".$pic_name;
-//        echo "2".$pic_desc;
-//        echo "3".$pic_date;
-//        echo "4".$name;
-//        echo "5".$desc;
-//        echo "6".$date;*/
-//    }
     
     /* ----- ----- ----- Functions ----- ----- ----- */    
 
@@ -103,6 +89,17 @@ class Picture
      * @return _ _
      */
     public function getName() {
+
+        return $this->name;
+        
+    }
+    
+    /**
+     * { DESCRIPTION }
+     * @param _ _
+     * @return _ _
+     */
+    public function getTitle() {
 
         return $this->name;
         
@@ -176,7 +173,16 @@ class Picture
     
     //================================================================================================================
     
-    public function addKeword($new_keyword){
+    
+    public function getKeywords (){
+        return $this->keywords;
+    }
+    
+     public function setId ($id){
+        $this->id=$id;
+    }
+    
+    public function addKeyword($new_keyword){
         $this->keywords[]=$new_keyword;
         
     }
@@ -194,14 +200,14 @@ class Picture
     }
     
     
-    public function addImage($pic_name,$pic_error,$tmp_pic_name){
-        if ($pic_error > 0) $erreur = "Erreur lors du transfert";
+    public function addImage($pic_name, $pic_error, $tmp_pic_name){
+        if ($pic_error > 0) { $erreur = "Erreur lors du transfert"; }
         $extensions_valides = array( 'jpg' , 'jpeg' , 'png' );
         $extension_upload = strtolower(substr(strrchr($pic_name, '.'),1));
         
         if ( in_array($extension_upload,$extensions_valides) )
             {
-                $resultat = move_uploaded_file($tmp_pic_name,"public_images/{$pic_name}");
+                $resultat = move_uploaded_file($tmp_pic_name,"private_images/{$pic_name}");
             
                 if ($resultat){
                     return 1;

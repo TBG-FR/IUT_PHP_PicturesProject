@@ -7,9 +7,9 @@
 /*==============================================================*/
 /* TABLES CLEANING                                              */
 /*==============================================================*/
-DROP TABLE IF EXISTS phpproj_PictureKEYword;
+DROP TABLE IF EXISTS phpproj_PictureKeyword;
 DROP TABLE IF EXISTS phpproj_GalleryPicture;
-DROP TABLE IF EXISTS phpproj_KEYword;
+DROP TABLE IF EXISTS phpproj_Keyword;
 DROP TABLE IF EXISTS phpproj_Picture;
 DROP TABLE IF EXISTS phpproj_Gallery;
 DROP TABLE IF EXISTS phpproj_User;
@@ -47,9 +47,9 @@ COLLATE utf8_bin;
 
 
 /*==============================================================*/
-/* TABLE CREATION : phpproj_KEYword                             */
+/* TABLE CREATION : phpproj_Keyword                             */
 /*==============================================================*/
-CREATE TABLE phpproj_KEYword
+CREATE TABLE phpproj_Keyword
 (
     id          INT NOT NULL AUTO_INCREMENT,
     name        VARCHAR(100) NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE phpproj_Picture
     id                      INT NOT NULL AUTO_INCREMENT,
     title                   VARCHAR(255) NOT NULL,
     description             VARCHAR(510),
-    date                    DATETIME,
+    date                    VARCHAR(100),
     public                  BOOL NOT NULL,
     path_original           VARCHAR(255) NOT NULL,
     path_watermarked        VARCHAR(255),
@@ -83,14 +83,14 @@ COLLATE utf8_bin;
 
 
 /*==============================================================*/
-/* TABLE CREATION : phpproj_PictureKEYword                      */
+/* TABLE CREATION : phpproj_PictureKeyword                      */
 /*==============================================================*/
-CREATE TABLE phpproj_PictureKEYword
+CREATE TABLE phpproj_PictureKeyword
 (
     pic_id      INT NOT NULL,
     KEY_id      INT NOT NULL,
     
-    PRIMARY KEY (pic_id, KEY_id)
+    PRIMARY KEY (pic_id, Key_id)
 )
 ENGINE=InnoDB
 CHARACTER SET utf8
@@ -124,15 +124,15 @@ AUTO_INCREMENT=3;
 /*==============================================================*/
 /* ADDING CONSTRAINTS (FOREIGN KEYS)                            */
 /*==============================================================*/
-alter TABLE phpproj_Gallery add constraINT FK_UserGallery foreign KEY (id)
+alter TABLE phpproj_Gallery ADD CONSTRAINT FK_UserGallery foreign KEY (id)
       references phpproj_User (id) on delete restrict on update restrict;
-alter TABLE phpproj_GalleryPicture add constraINT FK_GalleryPictureG foreign KEY (gal_id)
+alter TABLE phpproj_GalleryPicture ADD CONSTRAINT FK_GalleryPictureG foreign KEY (gal_id)
       references phpproj_Gallery (id) on delete restrict on update restrict;
-alter TABLE phpproj_GalleryPicture add constraINT FK_GalleryPictureP foreign KEY (pic_id)
+alter TABLE phpproj_GalleryPicture ADD CONSTRAINT FK_GalleryPictureP foreign KEY (pic_id)
       references phpproj_Picture (id) on delete restrict on update restrict;
-alter TABLE phpproj_PictureKEYword add constraINT FK_PictureKEYwordK foreign KEY (KEY_id)
-      references phpproj_KEYword (id) on delete restrict on update restrict;
-alter TABLE phpproj_PictureKEYword add constraINT FK_PictureKEYwordP foreign KEY (pic_id)
+alter TABLE phpproj_PictureKeyword ADD CONSTRAINT FK_PictureKeywordK foreign KEY (KEY_id)
+      references phpproj_Keyword (id) on delete restrict on update restrict;
+alter TABLE phpproj_PictureKeyword ADD CONSTRAINT FK_PictureKeywordP foreign KEY (pic_id)
       references phpproj_Picture (id) on delete restrict on update restrict;
 
 
@@ -198,10 +198,10 @@ INSERT INTO phpproj_Gallery (title) VALUES
 
 /* Let's say we have those two pictures */
 INSERT INTO phpproj_picture (id, title, description, date, public, path_watermarked, path_original) VALUES
-('1', 'landscape_moutain', 'Beautiful picture of the Alps', '2017-10-18 00:00:00', '1', 'public_images/landmount.jpeg', 'private_images/landmount.jpeg'),
-('2', 'landscape_sea', 'Beautiful picture taken in Marseillan', '2017-11-01 00:00:00', '1', 'public_images/landsea.jpeg', 'private_images/landsea.jpeg'),
-('3', 'landscape_sea_wrong', 'This picture is wrongly taken, hide it', '2017-11-01 00:00:00', '0', 'public_images/landsea.jpeg', 'private_images/landsea_w.jpeg'),
-('4', 'seagulls', 'Seagulls in UK', '2017-11-01 00:00:00', '1', 'public_images/seagulls.jpeg', 'private_images/seagulls.jpeg');
+('1', 'landscape_moutain', 'Beautiful picture of the Alps', '18/10/2017', '1', 'public_images/landmount.jpeg', 'private_images/landmount.jpeg'),
+('2', 'landscape_sea', 'Beautiful picture taken in Marseillan', '01/11/2017', '1', 'public_images/landsea.jpeg', 'private_images/landsea.jpeg'),
+('3', 'landscape_sea_wrong', 'This picture is wrongly taken, hide it', '01/11/2017', '0', 'public_images/landsea.jpeg', 'private_images/landsea_w.jpeg'),
+('4', 'seagulls', 'Seagulls in UK', '01/11/2017', '1', 'public_images/seagulls.jpeg', 'private_images/seagulls.jpeg');
 
 /* Every picture should be automatically added under Admin & Public galleries
 

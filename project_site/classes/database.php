@@ -1,6 +1,6 @@
 <?php
 
-	//require_once('conf.bdd.php');
+//require_once('conf.bdd.php');
 
 /**
  * Class Database
@@ -57,7 +57,7 @@ class Database
             'salt' => 'Zbk6s2i!!?vs+_tM2-&-=mvTpW4ReC945VH64Vb9&7$+R2UxW6Gb!@6eH#7P' // on choisi un code pour que l'algo de cryptage soit réversible
         );
         return password_hash($password, CRYPT_BLOWFISH, $options);
-                                        /* PASSWORD_BCRYPT ? */
+        /* PASSWORD_BCRYPT ? */
 
     }
 
@@ -151,8 +151,8 @@ class Database
         $req = $this->getPdo()->prepare($query);
         $req->execute($values);
         //$req->setFetchMode(PDO::FETCH_OBJ); //**MODIF_PROJ***
-		//$req->setFetchMode(PDO::FETCH_BOTH);
-		$req->setFetchMode(PDO::FETCH_ASSOC);
+        //$req->setFetchMode(PDO::FETCH_BOTH);
+        $req->setFetchMode(PDO::FETCH_ASSOC);
         if(is_bool($req)){
             return $req;
         }
@@ -276,8 +276,50 @@ class Database
         }
         return $cpt;
     }
+
+
+
+    public function getMaxPicId()
+    {
+        $res=$this->query("SELECT max(id) as '0' from phpproj_picture");
+        $id=$res[0]['0'];
+        if(empty($id)){
+            return 0;
+        } else {
+            return $id;
+        }
+
+    }
+
+    public function getKeywordId($keyword)
+    {
+        $res=$this->read('phpproj_keyword',array('fields'=>array('id','name')));
+        //var_dump($res);  
+        //echo $keyword;
+        foreach ($res as &$value) {
+            //echo $value['name'];
+            //echo $value['id'];
+            if($value['name'] == $keyword){
+                //echo $value['id'];
+                return $value['id'];
+
+            }
+        }
+
+    }
+
+    public function isKeywordInDB($keyword)
+    {
+        $res=$this->read('phpproj_keyword',array('fields'=>array('name')));
+        //var_dump($res);    
+        foreach ($res as &$value) {
+            //echo $value['name'];
+            if($value['name'] == $keyword){
+                return true;
+            }
+        }
+        return false;
+    }
 }
-
-
 
 // on évitera de fermer la balise php pour ne pas injecter de caratères invible sur les pages parentes
