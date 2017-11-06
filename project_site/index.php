@@ -53,7 +53,7 @@ require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
 
                         $carousel_img = $db->read($bdd_table_picture, array(
                             'conditions' => array(
-                                'id >' => '10000'
+                                'id <' => '0'
                             ),
                             'fields' => array('*'),
                         ));
