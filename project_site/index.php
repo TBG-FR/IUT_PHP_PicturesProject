@@ -29,11 +29,8 @@ require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
         </header>
 
         <div class="content">
-
-            <!-- Short Description -->
-            <p class="title">
-                Welcome to my Website<br />
-            </p>
+            
+            <p class="title">Welcome to my Website<br /></p>
 
             <!-- Short Description -->
             <p class="text">
@@ -94,7 +91,7 @@ require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
                                     <!-- Slide #0 (Active) -->
                                     <div class='item active item-0'>
                                         <img src='public_images/".$pic['path']."' alt='".$pic['title']."' />
-                                        <div class='carousel-caption'>".$pic['description']."</div>
+                                        <div class='carousel-caption'><p class='littletext'>".$pic['description']."</p></div>
                                     </div>                            
                                 ";
                             }
@@ -105,7 +102,7 @@ require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
                                  <!-- Slide #$i -->
                                  <div class='item item-$i'>
                                      <img src='public_images/".$pic['path']."' alt='".$pic['title']."' />
-                                     <div class='carousel-caption'>".$pic['description']."</div>
+                                     <div class='carousel-caption'><p class='littletext'>".$pic['description']."</p></div>
                                  </div>                            
                                 ";
                             }
