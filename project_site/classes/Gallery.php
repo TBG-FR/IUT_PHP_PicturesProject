@@ -68,7 +68,8 @@ class Gallery
                 // ----------------------- STEP 1 : GET ALL PUBLIC PICTURES
                 $all_public_img = $db->read($bdd_table_picture, array(
                     'conditions' => array(
-                        'public LIKE' => '1'
+                        'public LIKE' => '1',
+                        'id >' => '0' // Avoid getting "Homepage" pictures
                     ),
                     'fields' => array('*'),
                 ));
@@ -111,7 +112,9 @@ class Gallery
 
                     // ----------------------- STEP 1 : GET ALL PICTURES (PUBLIC & NOT)
                     $all_img = $db->read($bdd_table_picture, array(
-                        'conditions' => array(),
+                        'conditions' => array(
+                            'id >' => '0' // Avoid getting "Homepage" pictures
+                        ),
                         'fields' => array('*'),
                     ));
 

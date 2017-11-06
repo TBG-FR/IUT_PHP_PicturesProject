@@ -32,10 +32,13 @@
         </header>
 
         <div class="content">
+          
+            <?php
             
-            <?php //if $_SESSION['user']->getID() == 2 ?>
+            // IF THE USER IS THE ADMIN => DISPLAY ADMIN EDIT PAGE
+            if( $_SESSION['user'] instanceof User && $_SESSION['user']->getID() == 2 ) {
 
-            <div class="edit_page">
+            /*<div class="edit_page">
                 <table>
             <?php 
                 foreach($_SESSION['private_gal']->getPictures() as $picture) {
@@ -50,24 +53,42 @@
                  </td>
                 
                 
-                </tr> ";
+                </tr> ";*/
                 
+                echo "<div class='edit_page'><br>";
                 
-                }
-                ?>
-                </table>
-            </div>
-            
-            
-            <?php //else ?>
-
-            <div class="gallery">
-
-                <?php /*
-
+                echo "Picture | Picture Title | Picture Description | Date <br>";
+                
                 foreach($_SESSION['private_gal']->getPictures() as $picture) {
                     
-                    //if($picture->getState()==2) {
+                    echo "
+                    
+                        <img src='private_images/".$picture->getPath()."' alt='".$picture->getTitle()."' height='100px' /> {$picture->getName()} | {$picture->getDesc()} | {$picture->getDate()} 
+                    
+                        <a href='?action=edit&id={$picture->getId()}'    class='btn btn-default' role='button'> Edit </a>
+                        
+                        <a href='?action=delete&id={$picture->getId()}'  class='btn btn-default' role='button'> Delete </a>
+                        
+                        <br/><br/>
+                        
+                        ";  
+                
+                }
+              
+               /* ?>
+                </table>
+            </div>*/
+              
+                echo "</div>";
+                
+            }
+            
+            // ELSE (IF IT IS A NORMAL USER) => DISPLAY USER GALLERY
+            else {
+                
+                echo "<div class='gallery'>";
+
+                foreach($_SESSION['private_gal']->getPictures() as $picture) {
                         
                             echo "
                                 <div class=\"gal_element\"> 
@@ -82,12 +103,14 @@
 
                                 </div>
                             ";
-                    //}
                 }
-
-                */ ?>
-
-            </div>
+                
+                echo "</div>";
+                
+            }
+            
+            ?>
+            
         </div>
 
         <footer>

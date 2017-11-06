@@ -99,8 +99,8 @@ $(this).addClass("active");
                                     
                                     <div class='gal_overlay'>
                                         <div class='gal_buttons'>
-                                            <a href='?action=cart_add&item_id=".$picture->getID()."' class='btn btn-primary' role='button'>Add to Cart</a>
-                                            <a href='##view_details' class='btn btn-default' role='button'>View More</a>
+                                            <a href='?action=cart_add&item_id=".$picture->getID()."' class='littletextbtn btn btn-primary' role='button'>Add to Cart</a>
+                                            <a href='##view_details' class='littletextbtn btn btn-default' role='button'>View More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -117,8 +117,8 @@ $(this).addClass("active");
                                     
                                     <div class='gal_overlay'>
                                         <div class='gal_buttons'>
-                                            <a href='?action=cart_del&item_id=".$picture->getID()."' class='btn btn-danger' role='button'>Remove from Cart</a>
-                                            <a href='##view_details' class='btn btn-default' role='button'>View More</a>
+                                            <a href='?action=cart_del&item_id=".$picture->getID()."' class='littletextbtn btn btn-danger' role='button'>Remove from Cart</a>
+                                            <a href='##view_details' class='littletextbtn btn btn-default' role='button'>View More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -135,8 +135,8 @@ $(this).addClass("active");
                                     
                                     <div class='gal_overlay'>
                                         <div class='gal_buttons'>
-                                            <a href='private_gallery.php?action=highlight&item_id=".$picture->getID()."' class='btn btn-success' role='button'>Already Bought</a>
-                                            <a href='##view_details' class='btn btn-default' role='button'>View More</a>
+                                            <a href='private_gallery.php?action=highlight&item_id=".$picture->getID()."' class='littletextbtn btn btn-success' role='button'>Already Bought</a>
+                                            <a href='##view_details' class='littletextbtn btn btn-default' role='button'>View More</a>
                                         </div>
                                     </div>
                                 </div>

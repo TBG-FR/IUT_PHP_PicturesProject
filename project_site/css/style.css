@@ -14,33 +14,33 @@ body {
 
 @font-face {
     font-family: 'Archive';
-    src: url('fonts/Archive.otf') format('truetype');
+    src: url('../fonts/Archive.otf') format('truetype');
 }
 
 @font-face {
     font-family: 'Champagne';
-    src: url('fonts/Champagne & Limousines.ttf') format('truetype');
+    src: url('../fonts/Champagne & Limousines.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Champagne'; /* Italic version */
-    src: url('fonts/Champagne & Limousines Italic.ttf') format('truetype');
+    src: url('../fonts/Champagne & Limousines Italic.ttf') format('truetype');
     font-weight: normal;
     font-style: italic;
 }
 
 @font-face {
     font-family: 'ChampagneBold';
-    src: url('fonts/Champagne & Limousines Bold.ttf') format('truetype');
+    src: url('../fonts/Champagne & Limousines Bold.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'ChampagneBold'; /* Italic version */
-    src: url('fonts/Champagne & Limousines Bold Italic.ttf') format('truetype');
+    src: url('../fonts/Champagne & Limousines Bold Italic.ttf') format('truetype');
     font-weight: normal;
     font-style: italic;
 }
@@ -168,6 +168,89 @@ header {
     opacity: 0.8; 
 }
 
+/* ----- -----  Design Rules & Elements ----- ----- */
+
+.content {
+
+    /*background-color: aqua;*/
+    width: 100%;
+    text-align: center;
+
+}
+
+.large_image {
+    
+    height: 50vh;
+    margin: auto;
+    
+}
+
+.responsive_img {
+    
+    display: block;
+    max-width: 100%;
+    /*height: auto;*/
+    margin: auto;
+    
+}
+
+.title {
+    
+    font-family: 'Archive','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance */
+    font-size: calc(1.5em + 5vh);
+    
+}
+
+.text {
+    
+    font-family: 'ChampagneBold','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance */
+    font-size: calc(1em + 2.5vh);
+    
+}
+
+.littletext {
+    
+    font-family: 'Champagne','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance */
+    font-size: calc(1em + 1vh);
+    
+}
+
+.littletextbtn {
+    
+    font-family: 'ChampagneBold','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance */
+    font-size: calc(1em + 1vh);
+    
+}
+
+.btntext {
+    
+    font-family: 'Archive','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance */
+    font-size: calc(1em + 1.5vh);
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    
+}
+
+/* Creates an horizontal line after the element */
+.hline-bottom {
+    margin: auto;
+    width: 65%;
+    margin-top: 2.5vh;
+    padding-bottom: 2vh;
+    margin-bottom: 2.5vh;
+    border-bottom: 2px solid #000;
+}
+
+table
+{
+    border-collapse: collapse;
+}
+
+td, th /* Border on td and th */
+{
+    border: 1px solid black;
+}
+
 /* ----- -----  Content (Page's Body) ----- ----- */
 
 .content {
@@ -184,6 +267,40 @@ header {
     
     width: 65%;
     margin: auto;
+    
+}
+
+.carousel-caption {
+    
+    background-color: rgba(15,15,15,0.5);
+    text-shadow: 2px 5px 5px black;
+    
+}
+
+/* LOGIN */
+
+#inline-forms {
+    
+    display: inline-block;
+    width: 85%;
+    
+}
+
+#login {
+    
+    
+    width: 50%;
+    float: left;
+    padding: 0;
+    
+}
+
+#register {
+    
+    
+    width: 50%;
+    float: right;
+    padding: 0;
     
 }
 
@@ -341,15 +458,4 @@ flex-flow: column wrap;     /* Header_Head : Afficher les éléments en colonne,
 
 #admin {
     /* ATTRIBUTES */
-
-}
-
-
-table
-{
-    border-collapse: collapse;
-}
-td, th /* Mettre une bordure sur les td ET les th */
-{
-    border: 1px solid black;
 }
