@@ -32,11 +32,28 @@
         </header>
 
         <div class="content">
-            
+          
             <?php
             
             // IF THE USER IS THE ADMIN => DISPLAY ADMIN EDIT PAGE
             if( $_SESSION['user'] instanceof User && $_SESSION['user']->getID() == 2 ) {
+
+            /*<div class="edit_page">
+                <table>
+            <?php 
+                foreach($_SESSION['private_gal']->getPictures() as $picture) {
+                    
+                echo "<tr> <td> <img src='private_images/".$picture->getPath()."' alt='' height=100 /> </td> <td> {$picture->getName()} </td> {$picture->getDesc()} <td> {$picture->getDate()} </td>
+                 
+                 <td>
+                 <a href='?action=edit&id={$picture->getId()}'    class='btn btn-default' role='button'> Edit </a>
+                 </td>
+                 <td>
+                 <a href='?action=delete&id={$picture->getId()}'  class='btn btn-default' role='button'> Delete </a>
+                 </td>
+                
+                
+                </tr> ";*/
                 
                 echo "<div class='edit_page'><br>";
                 
@@ -57,7 +74,11 @@
                         ";  
                 
                 }
-                
+              
+               /* ?>
+                </table>
+            </div>*/
+              
                 echo "</div>";
                 
             }

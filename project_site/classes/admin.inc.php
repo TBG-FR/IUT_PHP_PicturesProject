@@ -12,6 +12,7 @@ if ( $_GET ) {
     if ($_GET['action'] == 'edit') {
         //var_dump($_SESSION['private_gal']->getPicture($_GET['id']));
         //echo $_SESSION['private_gal']->getPicture($_GET['id'])->getKeywordsStr();
+        
         $img="private_images/{$_SESSION['private_gal']->getPicture($_GET['id'])->getPath()}";
         //echo $img;
         

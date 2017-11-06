@@ -14,5 +14,16 @@
          <input type="file" name="pic" required>
          <input type="submit" value="Envoyer" >
       </form>
+       
+     <br/>
+       <?php 
+            if(isset($_SESSION['error'])){
+                echo"<div class='alert alert-danger'>
+                filename already taken
+                </div>";
+            }
+            unset($_SESSION['error']);
+       
+       ?>
    </body>
 </html>
