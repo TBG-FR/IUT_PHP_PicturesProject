@@ -29,6 +29,15 @@
         </header>
 
         <div class="content">
+            
+            //if $_SESSION['user']->getID() == 2
+
+            <div class="edit_page">
+             CONTENT
+            </div>
+            
+            
+            //else
 
             <div class="gallery">
 
@@ -41,11 +50,11 @@
                             echo "
                                 <div class=\"gal_element\"> 
 
-                                    <img src='".$picture->getPath()."' alt='' />
+                                    <img src='private_images/".$picture->getPath()."' alt='' />
 
                                     <div class=\"gal_overlay\">
                                         <div class=\"gal_buttons\">
-                                            <a href='##view_details'    class='btn btn-default' role='button'>View More</a>
+                                            <a href='?action=delete&item_id=".$picture->getID()."'    class='btn btn-default' role='button'>Delete</a>
                                         </div>
                                     </div>
 

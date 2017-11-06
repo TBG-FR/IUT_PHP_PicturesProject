@@ -43,7 +43,7 @@ require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
                             echo "
                                 <div class=\"gal_element\"> 
 
-                                    <img src='".$picture->getPath()."' alt='' />
+                                    <img src='public_images/".$picture->getPath()."' alt='' />
 
                                     <div class='gal_overlay'>
                                         <div class='gal_buttons'>
@@ -61,7 +61,7 @@ require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
                             echo "
                                 <div class=\"gal_element\"> 
 
-                                    <img src='".$picture->getPath()."' alt='' />
+                                    <img src='public_images/".$picture->getPath()."' alt='' />
 
                                     <div class='gal_overlay'>
                                         <div class='gal_buttons'>
@@ -79,11 +79,11 @@ require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
                             echo "
                                 <div class=\"gal_element\"> 
 
-                                    <img src='".$picture->getPath()."' alt='' />
+                                    <img src='public_images/".$picture->getPath()."' alt='' />
 
                                     <div class='gal_overlay'>
                                         <div class='gal_buttons'>
-                                            <a href='private_gallery.php?action=highlight&id=".$picture->getID()."' class='btn btn-success' role='button'>Already Bought</a>
+                                            <a href='private_gallery.php?action=highlight&item_id=".$picture->getID()."' class='btn btn-success' role='button'>Already Bought</a>
                                             <a href='##view_details' class='btn btn-default' role='button'>View More</a>
                                         </div>
                                     </div>

@@ -72,8 +72,7 @@ CREATE TABLE phpproj_Picture
     description             VARCHAR(510),
     date                    VARCHAR(100),
     public                  BOOL NOT NULL,
-    path_original           VARCHAR(255) NOT NULL,
-    path_watermarked        VARCHAR(255),
+    path			        VARCHAR(255) NOT NULL
     
     PRIMARY KEY (id)
 )
@@ -197,11 +196,11 @@ INSERT INTO phpproj_Gallery (title) VALUES
 */
 
 /* Let's say we have those two pictures */
-INSERT INTO phpproj_picture (id, title, description, date, public, path_watermarked, path_original) VALUES
-('1', 'landscape_moutain', 'Beautiful picture of the Alps', '18/10/2017', '1', 'public_images/landmount.jpeg', 'private_images/landmount.jpeg'),
-('2', 'landscape_sea', 'Beautiful picture taken in Marseillan', '01/11/2017', '1', 'public_images/landsea.jpeg', 'private_images/landsea.jpeg'),
-('3', 'landscape_sea_wrong', 'This picture is wrongly taken, hide it', '01/11/2017', '0', 'public_images/landsea.jpeg', 'private_images/landsea_w.jpeg'),
-('4', 'seagulls', 'Seagulls in UK', '01/11/2017', '1', 'public_images/seagulls.jpeg', 'private_images/seagulls.jpeg');
+INSERT INTO phpproj_picture (id, title, description, date, public, path) VALUES
+('1', 'landscape_moutain', 'Beautiful picture of the Alps', '18/10/2017', '1', 'landmount.jpeg'),
+('2', 'landscape_sea', 'Beautiful picture taken in Marseillan', '01/11/2017', '1', 'landsea.jpeg'),
+('3', 'landscape_sea_wrong', 'This picture is wrongly taken, hide it', '01/11/2017', '0', 'landsea.jpeg'),
+('4', 'seagulls', 'Seagulls in UK', '01/11/2017', '1', 'seagulls.jpeg');
 
 /* Every picture should be automatically added under Admin & Public galleries
 

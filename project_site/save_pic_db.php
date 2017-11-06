@@ -15,22 +15,23 @@ while ($chain!=''){
     $chain=substr(strstr($chain, ','),1);
     //echo "{$chain} left </br> ";
 }
+
 //$pic->displayPicInfo();
 $db=new Database();
+
 var_dump($pic);
-//$path=$pic->getPath();//.$pic->getTitle();
-//$path_watermarked=$pic->getPath(); //.$pic->getTitle();
+
 /*$req = $db->query("INSERT INTO phpproj_picture (id,title,description,date,public,path_original,path_watermarked) VALUES ({$pic->getId()},{$pic->getTitle()},{$pic->getDescription()},{$pic->getDate()},{$pic->getPublic()},{$path},{$path_watermarked})");*/
 $res=$db->save("phpproj_picture", array(
         'title'=>$pic->getTitle(),
         'description'=>$pic->getDesc(),
         'date'=>$pic->getDate(),
         'public'=>$pic->getPublic(),
-        'path_original'=>$pic->getPath(),
-        'path_watermarked'=>$pic->getPath()
+        'path'=>$pic->getPath()
     ));
 $pic->setId($db->getMaxPicId());
 echo $pic->getId();
+
 var_dump($pic);
 
 //$db->isKeywordInDB('');
