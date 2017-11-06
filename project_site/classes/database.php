@@ -1,6 +1,6 @@
 <?php
 
-	//require_once('conf.bdd.php');
+//require_once('conf.bdd.php');
 
 /**
  * Class Database
@@ -49,13 +49,15 @@ class Database
      * @param string $password
      * @return string hashed
      */
-    private function hash($password){
+    //private function hash($password){ //***MODIF_PROJECT***
+    public function hash($password){
         // on choisira ici la méthode de cryptage de mot de passe
         //return md5($password);
         $options = array(
             'salt' => 'Zbk6s2i!!?vs+_tM2-&-=mvTpW4ReC945VH64Vb9&7$+R2UxW6Gb!@6eH#7P' // on choisi un code pour que l'algo de cryptage soit réversible
         );
         return password_hash($password, CRYPT_BLOWFISH, $options);
+        /* PASSWORD_BCRYPT ? */
 
     }
 
@@ -149,8 +151,8 @@ class Database
         $req = $this->getPdo()->prepare($query);
         $req->execute($values);
         //$req->setFetchMode(PDO::FETCH_OBJ); //**MODIF_PROJ***
-		//$req->setFetchMode(PDO::FETCH_BOTH);
-		$req->setFetchMode(PDO::FETCH_ASSOC);
+        //$req->setFetchMode(PDO::FETCH_BOTH);
+        $req->setFetchMode(PDO::FETCH_ASSOC);
         if(is_bool($req)){
             return $req;
         }
@@ -210,9 +212,10 @@ class Database
      * ajoute des données dans la table (si l'id est défini dans $datas alors la requète fera un UPDATE
      * @param string $table le nom de la table
      * @param array $datas un tableau des valeurs à ajouter ex: array('col1' => 'val1', 'col2' => 'val2', 'col3' => 'val3', ...)
+     * @param bool $forceinsert If we want to insert something with the id, without updating but inserting !
      * @return bool
      */
-    public function save($table, $datas){
+    public function save($table, $datas, $forceinsert = TRUE){
         if(count($datas) == 0){
             return false;
         }
@@ -227,7 +230,7 @@ class Database
         $datas = array_merge($datas, $this->setDate($table, !isset($id))); // on appelle la méthode qui vérifie pour compléter les dates created/updated
         $keys = array_keys($datas);
         $values = substr(str_repeat('?,',count($keys)),0,-1);
-        if(isset($id)){ // si l'id existe on va faire une mise à jour
+        if(isset($id) && $forceinsert==FALSE){ // si l'id existe on va faire une mise à jour
             $fields = implode('=?, ',$keys);
             $req = "UPDATE " . $table . " SET $fields=? WHERE id=" . $id;
         }else{ // sinon on fait une insertion
@@ -273,8 +276,50 @@ class Database
         }
         return $cpt;
     }
+
+
+
+    public function getMaxPicId()
+    {
+        $res=$this->query("SELECT max(id) as '0' from phpproj_picture");
+        $id=$res[0]['0'];
+        if(empty($id)){
+            return 0;
+        } else {
+            return $id;
+        }
+
+    }
+
+    public function getKeywordId($keyword)
+    {
+        $res=$this->read('phpproj_keyword',array('fields'=>array('id','name')));
+        //var_dump($res);  
+        //echo $keyword;
+        foreach ($res as &$value) {
+            //echo $value['name'];
+            //echo $value['id'];
+            if($value['name'] == $keyword){
+                //echo $value['id'];
+                return $value['id'];
+
+            }
+        }
+
+    }
+
+    public function isKeywordInDB($keyword)
+    {
+        $res=$this->read('phpproj_keyword',array('fields'=>array('name')));
+        //var_dump($res);    
+        foreach ($res as &$value) {
+            //echo $value['name'];
+            if($value['name'] == $keyword){
+                return true;
+            }
+        }
+        return false;
+    }
 }
-
-
 
 // on évitera de fermer la balise php pour ne pas injecter de caratères invible sur les pages parentes

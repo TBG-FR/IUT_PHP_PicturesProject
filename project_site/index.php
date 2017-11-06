@@ -1,12 +1,10 @@
 <?php
 
-    session_start(); // Session Creation or Recovery
-
-    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
+    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management    
 
 ?>
 
-<!-- index.php ~ Homepage -->
+<!-- 'index.php' ~ Homepage -->
 
 <!doctype html>
 
@@ -19,15 +17,7 @@
         <!-- <meta name="description" content=""> -->
         <!-- <meta name="author" content=""> -->
 
-        <!-- CSS : Bootstrap -->
-        <link href="css/bootstrap.min.css" rel="stylesheet" media="all" type="text/css">
-
-        <!-- CSS : Custom -->
-        <link href="css/style.css" rel="stylesheet" media="all" type="text/css">
-
-        <!-- Javascript -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <?php include_once("head.php"); // Make all the CSS & JavaScript links ?>
 
     </head>
 
@@ -55,6 +45,8 @@
             <h3><a href="gallery.php">See/Buy all my Pictures</a></h3>
 			
 			<?php
+            
+            //include_once("classes/all.inc.php");
 			
 			$db = new Database();
 			
@@ -65,7 +57,7 @@
 			print_r($req);*/
 			print_r($db);
 			
-			$res = $db->read('phpproj_user');
+			$res = $db->read($bdd_table_user);
 			
 			var_dump($res);
 		/*
