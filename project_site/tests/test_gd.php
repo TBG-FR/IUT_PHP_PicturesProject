@@ -173,5 +173,4 @@ catch (Exception $e) { echo $e->getMessage(); }
 
 echo "END JPG";
 
-
 ?>
