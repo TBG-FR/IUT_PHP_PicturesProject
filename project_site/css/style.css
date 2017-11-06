@@ -98,8 +98,20 @@ header {
 
     /*background-color: aqua;*/
     width: 100%;
+    text-align: center;
 
 }
+
+/* INDEX */
+
+.Carousel_container {
+    
+    width: 65%;
+    margin: auto;
+    
+}
+
+/* GALLERY */
 
 .gallery  {
 

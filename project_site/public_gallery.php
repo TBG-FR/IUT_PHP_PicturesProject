@@ -61,19 +61,16 @@ $(this).addClass("active");
 
             <div class="gallery">
 
-                
                  <div align="center">
-            <?php 
-                     $db=new Database();
-                     $keywords=$db->getAllKeyword();
-                     foreach($keywords as $keyword){
-                         echo "<button class='btn btn-default filter-button' data-filter={$keyword}>{$keyword}</button>";
-                         
-                     }
-                     
-                     
+                    <?php 
+                        $db=new Database();
+                   
+                        $keywords=$db->getAllKeyword();
+                   
+                        foreach($keywords as $keyword) { echo "<button class='btn btn-default filter-button' data-filter={$keyword}>{$keyword}</button>"; }
+                   
                      ?>
-        </div>
+           </div>
                 
         <br/>
                 
@@ -84,15 +81,15 @@ $(this).addClass("active");
                     switch ($picture->getState()) {
 
                             // State 0 : "normal" picture
+                        //<img src='public_images/".$picture->getPath()."' alt='".$picture->getTitle()."' height='250px' />
+                        //<div class='gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter {$picture->getKeywordsSortable()}'>
+                        //<img src='public_images/".$picture->getPath()."' alt='' />
                         case 0:
                             //echo $picture->getKeywordsSortable();
                             echo "
-                                <div class=\"gal_element\"> 
+                                <div class='gal_element filter {$picture->getKeywordsSortable()}'>
                                 
-                                    <div class='gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter {$picture->getKeywordsSortable()}'>
-                                    
-                                    <img src='public_images/".$picture->getPath()."' alt='' />
-                                    
+                                    <img src='public_images/".$picture->getPath()."' alt='".$picture->getTitle()."' height='250px' />
                                     
                                     <div class='gal_overlay'>
                                         <div class='gal_buttons'>
@@ -100,8 +97,6 @@ $(this).addClass("active");
                                             <a href='##view_details' class='btn btn-default' role='button'>View More</a>
                                         </div>
                                     </div>
-                                    </div>
-
                                 </div>
                             ";
                             break;
@@ -109,18 +104,15 @@ $(this).addClass("active");
                             // State 1 : picture "selected" (in cart)
                         case 1:
                             echo "
-                                <div class=\"gal_element\"> 
+                                <div class='gal_element filter {$picture->getKeywordsSortable()}'>
                                 
-                                    <div class='gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter {$picture->getKeywordsSortable()}'>
+                                    <img src='public_images/".$picture->getPath()."' alt='".$picture->getTitle()."' height='250px' />
                                     
-                                    <img src='public_images/".$picture->getPath()."' alt='' />
-
                                     <div class='gal_overlay'>
                                         <div class='gal_buttons'>
                                             <a href='?action=cart_del&item_id=".$picture->getID()."' class='btn btn-danger' role='button'>Remove from Cart</a>
                                             <a href='##view_details' class='btn btn-default' role='button'>View More</a>
                                         </div>
-                                    </div>
                                     </div>
                                 </div>
                             ";
@@ -129,18 +121,15 @@ $(this).addClass("active");
                             // State 2 : picture already bought
                         case 2:
                             echo "
-                                <div class=\"gal_element\"> 
+                                <div class='gal_element filter {$picture->getKeywordsSortable()}'>
                                 
-                                    <div class='gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter {$picture->getKeywordsSortable()}'>
-
-                                    <img src='public_images/".$picture->getPath()."' alt='' />
-
+                                    <img src='public_images/".$picture->getPath()."' alt='".$picture->getTitle()."' height='250px' />
+                                    
                                     <div class='gal_overlay'>
                                         <div class='gal_buttons'>
                                             <a href='private_gallery.php?action=highlight&item_id=".$picture->getID()."' class='btn btn-success' role='button'>Already Bought</a>
                                             <a href='##view_details' class='btn btn-default' role='button'>View More</a>
                                         </div>
-                                    </div>
                                     </div>
                                 </div>
                             ";
