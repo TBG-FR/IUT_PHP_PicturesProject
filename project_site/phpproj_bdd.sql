@@ -190,10 +190,10 @@ INSERT INTO phpproj_Picture VALUES
 
 INSERT INTO phpproj_User (username, password, firstname, lastname, address, zip, city, email) VALUES
 
-#('OSS 117','OSS117'),
+/*('OSS 117','OSS117'),*/
 ('OSS 117','$2y$10$WmJrNnMyaSEhP3ZzK190TOScGHQ6QVpxRDR9O8spBsDqqdrlbMduy','Hubert','Bonisseur de La Bath','5, rue du nid d\'espions','1954','Le Caire','cebonvieuxhubert@gmail.com'),
 
-#('Jojo','LaCompote');
+/*('Jojo','LaCompote');*/
 ('Jojo','$2y$10$WmJrNnMyaSEhP3ZzK190TO6ZngeZdGcIttAQ7Jaf3UZv4MLv9DMWa','Jojo','DuRU','13 Rue Peter Fink','01000','Bourg-en-Bresse','jojo-labonnecompote@univ-lyon1.fr');
 
 /* ==> THE TRIGGER DOES IT AUTOMATICALLY
@@ -204,10 +204,10 @@ INSERT INTO phpproj_Gallery (title) VALUES
 
 /* Let's say we have those two pictures */
 INSERT INTO phpproj_picture (id, title, description, date, public, path) VALUES
-(1, 'landscape_moutain', 'Beautiful picture of the Alps', '18/10/2017', '1', 'landmount.jpeg'),
-(2, 'landscape_sea', 'Beautiful picture taken in Marseillan', '01/11/2017', '1', 'landsea.jpeg'),
-(3, 'landscape_sea_wrong', 'This picture is wrongly taken, hide it', '01/11/2017', '0', 'landsea.jpeg'),
-(4, 'seagulls', 'Seagulls in UK', '01/11/2017', '1', 'seagulls.jpeg');
+(1, 'Calm Ocean', 'Beautiful picture the ocean', '18/10/2017', '1', 'calm_ocean.jpg'),
+(2, 'Mountain Eagle', 'Flying eagle, shot in the mountains', '27/05/2005', '1', 'majestuous_eagle.jpg'),
+(3, 'Pig', 'Hidden Picture', '01/11/2017', '0', 'pig.jpg'),
+(4, 'Wolpack', 'A pack of wolves, in Europe', '01/11/2017', '1', 'wolfpack.jpg');
 
 /* Let's say User #4 (Jojo) bought them */
 INSERT INTO phpproj_gallerypicture (pic_id, gal_id) VALUES
