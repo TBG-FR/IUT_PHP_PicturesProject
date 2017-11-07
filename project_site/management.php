@@ -3,7 +3,7 @@
     require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management 
 
     // IF the user isn't logged, send him to the 404 page, unless he just disconnected himself
-    if ($_GET['action'] == 'disconnect' ) { header("Location: index.php?action=disconnected"); }
+    if ($_GET) {if ($_GET['action'] == 'disconnect' || $_GET['action'] == 'disconnected' ) { header("Location: index.php?action=disconnected"); }}
     else if ( $_SESSION['user'] instanceof User == FALSE) { header("Location: 404.php"); }
     else if ( $_SESSION['user']->getID() != 2 ) { header("Location: 404.php"); }
 
