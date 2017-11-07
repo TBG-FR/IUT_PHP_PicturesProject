@@ -60,7 +60,7 @@ $(this).addClass("active");
         <div class="content">
 
             <div class="gallery">              
-                     <?php  
+                     <?php
                 
                 // -------------------------- Filters Buttons (Keywords)
 

@@ -151,7 +151,7 @@ function apply_watermark($white, $src_path) {
 
 $visible=true;
 
-var_dump($_POST); //REMOVE
+//var_dump($_POST); //REMOVE
 
 //construct($p_id, $p_title, $p_desc, $p_date, $p_public, $p_path, $p_state = 0)
 $pic= new Picture(-1, $_POST["pic_title"], $_POST["pic_desc"], $_POST["pic_date"], $visible, $_POST["pic_name"]);
@@ -177,7 +177,8 @@ $res=$db->save("phpproj_picture", array(
         'path'=>$pic->getPath()
     ));
 $pic->setId($db->getMaxPicId());
-echo $pic->getId();
+
+//echo $pic->getId();
 
 //$db->isKeywordInDB('');
 foreach ($pic->getKeywords() as &$value) {

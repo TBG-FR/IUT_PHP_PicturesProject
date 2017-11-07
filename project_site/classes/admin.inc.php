@@ -21,7 +21,7 @@ if ( $_GET ) {
     
         echo "<form  action='update_pic_db.php' method='post'>
         <input type='hidden' value={$_SESSION['private_gal']->getPicture($_GET['id'])->getID()} name='pic_ID'/>
-        <br/> Nom du fichier : <br/> <input type='text' name='pic_name' value={$_SESSION['private_gal']->getPicture($_GET['id'])->getPath()} >
+        <br/> Nom du fichier : <br/> <input type='text' name='pic_name' value={$_SESSION['private_gal']->getPicture($_GET['id'])->getPath()} readonly >
         <br/> Titre : <br/> <input type='text' name='pic_title' value= {$_SESSION['private_gal']->getPicture($_GET['id'])->getName()}>
         <br/> Description : <br/> <input type='text' name='pic_desc' value = {$_SESSION['private_gal']->getPicture($_GET['id'])->getDesc()}>
         <br/> Date (DD/MM/YYYY) : <br/> <input type='text' name='pic_date' value = {$_SESSION['private_gal']->getPicture($_GET['id'])->getDate()}> <br/>

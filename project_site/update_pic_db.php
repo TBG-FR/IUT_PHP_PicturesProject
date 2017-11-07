@@ -19,7 +19,7 @@ while ($chain!=''){
 //$pic->displayPicInfo();
 $db=new Database();
 
-var_dump($pic);
+//var_dump($pic);
 
 /*$req = $db->query("INSERT INTO phpproj_picture (id,title,description,date,public,path_original,path_watermarked) VALUES ({$pic->getId()},{$pic->getTitle()},{$pic->getDescription()},{$pic->getDate()},{$pic->getPublic()},{$path},{$path_watermarked})");*/
 $res=$db->save("phpproj_picture", array(
