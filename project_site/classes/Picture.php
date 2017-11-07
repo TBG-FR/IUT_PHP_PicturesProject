@@ -217,7 +217,7 @@ class Picture
     }
 
     public function getKeywordsSortable(){
-        $keyStr="";
+        $keyStr="all ";
         //var_dump($this->keywords);
         if($this->keywords != NULL){
             foreach ($this->keywords as $value) {

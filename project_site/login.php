@@ -1,6 +1,15 @@
 <?php
 
-    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management    
+    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management
+
+    if ( $_GET ) {
+
+        if($_GET['action'] == 'bought') {
+
+            echo "<div class='notification alert alert-success' role='alert'>You've successfully bought those pictures ! They're now available in your personal Gallery, enjoy !</div>";
+            
+        }        
+    }
 
 ?>
 
@@ -124,13 +133,13 @@
                 
                     <div class='mini_menu'>
                         <!-- Connected - Header -->
-                        <h3>Logged as ".$l_username."</h3><br />
+                        <p class='title'>Logged as ".$l_username."</p><br />
 
                         <!-- Connected - Links -->
-                        <a href='edit_account.php' class='btn btn-primary btn-block' role='button'><h4>Account Informations</h4></a>
-                        <a href='private_gallery.php' class='btn btn-primary btn-block' role='button'><h4>Personal Gallery</h4></a>
-                        <a href='purchase_history.php' class='btn btn-primary btn-block' role='button'><h4>Purchase History</h4></a>
-                        <a href='?action=disconnect' class='btn btn-danger btn-block' role='button'><h4>Log out</h4></a>
+                        <a href='edit_account.php' class='btn btn-primary btn-block btntext' role='button'>Account Informations</a>
+                        <a href='private_gallery.php' class='btn btn-primary btn-block btntext' role='button'>Personal Gallery</a>
+                        <a href='###NOT_YET_IMPLEMENTED' class='btn btn-warning btn-block btntext' role='button'>Purchase History</a>
+                        <a href='?action=disconnect' class='btn btn-danger btn-block btntext' role='button'>Log out</a>
                     </div>
                     
                 "; /* Echo[HTML] : End */
@@ -139,26 +148,24 @@
             /* ===== ===== ===== ELSE (FIRST ACCESS, OR ERRORS WERE FOUND WHILE PROCESSING THE FORM) => DISPLAY THE FORMS ===== ===== ===== */
             else {
                 
-                /* KEEP THE USER'S ENTRIES IN CASE OF ERRORS => DEPENDING ON THE ERROR ? */
-                $temp_user = 'USER';
-                $temp_mail = 'MAIL';
-                $temp_firstname = 'F.NAME';
-                $temp_lastname = 'L.NAME';
+                /* Here we could keep the user's entries in case of error or reconnection */
 
                 echo "
                 
+                <div id='inline-forms'
                     <!-- Logging Form -->
                     <div id='login'>
 
-                        <h2>Login</h2>
+                        <p class='title'>Login</p><br />
 
-                        <form action='login.php' method='post'>
+                        <form class='text' action='login.php' method='post'>
                         
                             <!-- ADD : Mail or Username -->
-                            Username : <input type='text' name='username' value='$temp_user' required> <br />
+                            Username : <input type='text' name='username' value='' required> <br />
                             Password : <input type='password' name='password' placeholder='Enter your password' required> <br />
                             <!-- ADD : Captcha [] -->
                             
+                             <br />
                             <input type='hidden' name='action' value='login'/>                
                             <input type='submit' value='Login'>
                         </form>
@@ -168,24 +175,26 @@
                     <!-- Registering Form -->
                     <div id='register'>
 
-                         <h2>Register</h2>
+                         <p class='title'>Register</p><br />
 
-                         <form action='login.php' method='post'>
+                         <form class='text' action='login.php' method='post'>
                          
-                             Mail : <input type='text' name='mail' value='$temp_mail' required> <br />
-                             First name : <input type='text' name='firstname' value='$temp_firstname'> <br />
-                             Last name : <input type='text' name='lastname' value='$temp_lastname'> <br />
+                             Mail : <input type='text' name='mail' value='' required> <br />
+                             First name : <input type='text' name='firstname' value=''> <br />
+                             Last name : <input type='text' name='lastname' value=''> <br />
                              <br />
-                             Username : <input type='text' name='username' value='$temp_user' required> <br />
+                             Username : <input type='text' name='username' value='' required> <br />
                              Password : <input type='password' name='password' placeholder='Enter your desired password' required> <br />
                              Password (Repeat) : <input type='password' name='password_verif' placeholder='Repeat your desired  password' required> <br />
                              <!-- ADD : Captcha [] -->
                              
+                             <br />
                              <input type='hidden' name='action' value='register'/>                
                              <input type='submit' value='Register'>
                          </form>
 
                     </div>
+                </div>
 
                 "; /* Echo[HTML] : End */
 

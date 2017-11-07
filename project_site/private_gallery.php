@@ -1,9 +1,10 @@
 <?php
 
-    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management
+require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management
 
-    // IF the user isn't logged, send him to the 404 page
-    if ( $_SESSION['user'] instanceof User == FALSE ) { header("Location: 404.php"); }
+// IF the user isn't logged, send him to the 404 page, unless he just disconnected himself
+if ($_GET) {if ($_GET['action'] == 'disconnect' || $_GET['action'] == 'disconnected' ) { header("Location: index.php?action=disconnected"); }}
+else if ( $_SESSION['user'] instanceof User == FALSE) { header("Location: 404.php"); }
 
 ?>
 
@@ -32,39 +33,74 @@
         </header>
 
         <div class="content">
-            
-            <?php //if $_SESSION['user']->getID() == 2 ?>
 
-            <div class="edit_page">
+            <?php
+
+            // IF THE USER IS THE ADMIN => DISPLAY ADMIN EDIT PAGE
+            if( $_SESSION['user'] instanceof User && $_SESSION['user']->getID() == 2 ) {
+
+                echo "<p class='title'>Edit or Delete Pictures</p><br />";
+
+                /*<div class="edit_page">
+                <table>
             <?php 
                 foreach($_SESSION['private_gal']->getPictures() as $picture) {
-                echo "<img src='private_images/".$picture->getPath()."' alt='' height=100 /> {$picture->getName()} | {$picture->getDesc()} | {$picture->getDate()} 
-                 
-                 
+
+                echo "<tr> <td> <img src='private_images/".$picture->getPath()."' alt='' height=100 /> </td> <td> {$picture->getName()} </td> {$picture->getDesc()} <td> {$picture->getDate()} </td>
+
+                 <td>
                  <a href='?action=edit&id={$picture->getId()}'    class='btn btn-default' role='button'> Edit </a>
+                 </td>
+                 <td>
                  <a href='?action=delete&id={$picture->getId()}'  class='btn btn-default' role='button'> Delete </a>
-                
-                
-                
-                </br></br>";
-                
-                
-                }
-                ?>
-            </div>
-            
-            
-            <?php //else ?>
+                 </td>
 
-            <div class="gallery">
 
-                <?php /*
+                </tr> ";*/
+
+                echo "<div class='edit_page'><br>
+                        <table>";
+
+                echo "
+                    <tr>
+                        <th>Picture</th>
+                        <th>Picture Title</th>
+                        <th>Picture Description</th>
+                        <th>Date</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                        ";
 
                 foreach($_SESSION['private_gal']->getPictures() as $picture) {
-                    
-                    //if($picture->getState()==2) {
-                        
-                            echo "
+
+                    echo "
+                        <tr>
+                            <td><img src='private_images/".$picture->getPath()."' alt='".$picture->getTitle()."' height='100px' /></td> 
+                            <td>{$picture->getName()}</td>
+                            <td>{$picture->getDesc()}</td>
+                            <td>{$picture->getDate()}</td>
+                            <td><a href='?action=edit&id={$picture->getId()}' class='btn btn-default' role='button'>Edit</a></td>                        
+                            <td><a href='?action=delete&id={$picture->getId()}' class='btn btn-default' role='button'>Delete</a></td>
+                        </tr>                        
+                        ";  
+
+                }
+
+                echo "</table>
+                    </div>";
+
+            }
+
+            // ELSE (IF IT IS A NORMAL USER) => DISPLAY USER GALLERY
+            else {
+
+                echo "<div class='gallery'>";
+
+                if($_SESSION['private_gal']->getPictures() != 0) {
+                    foreach($_SESSION['private_gal']->getPictures() as $picture) {
+
+                        echo "
                                 <div class=\"gal_element\"> 
 
                                     <img src='private_images/".$picture->getPath()."' alt='".$picture->getTitle()."' height='250px' />
@@ -77,12 +113,25 @@
 
                                 </div>
                             ";
-                    //}
+                    }
+
+                    echo "</div>";
+
                 }
+                
+                else {
+                
+                echo "                
+                <p class='text'>You don't have any Picture here...</p><br />                                 \r\n
+                <img class='responsive_img' src='img/empyy_gallery.jpg' alt='Empty gallery image (just a potato)' height='350px' /><br/>          \r\n                
+                <a href='public_gallery.php' class='btntext btn btn-primary' role='button'>Let's have a look at the Pictures you can buy !</a>        \r\n
+                ";
+                
+            }
+            }
 
-                */ ?>
+            ?>
 
-            </div>
         </div>
 
         <footer>

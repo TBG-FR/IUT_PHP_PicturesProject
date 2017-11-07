@@ -68,7 +68,8 @@ class Gallery
                 // ----------------------- STEP 1 : GET ALL PUBLIC PICTURES
                 $all_public_img = $db->read($bdd_table_picture, array(
                     'conditions' => array(
-                        'public LIKE' => '1'
+                        'public LIKE' => '1',
+                        'id >' => '0' // Avoid getting "Homepage" pictures
                     ),
                     'fields' => array('*'),
                 ));
@@ -93,7 +94,8 @@ class Gallery
                 // ----------------------- STEP 3 : EDIT PICTURES STATE (FROM 0 TO 2) ONE BY ONE 
                 foreach($user_img_list as $user_img) {
 
-                    $this->pictures[$user_img['pic_id']]->setState(2);
+                    //$this->pictures[$this->pictures.getPicture($user_img['pic_id'])]->setState(2);
+                    $this->getPicture($user_img['pic_id'])->setState(2);
 
                 }                
 
@@ -111,7 +113,9 @@ class Gallery
 
                     // ----------------------- STEP 1 : GET ALL PICTURES (PUBLIC & NOT)
                     $all_img = $db->read($bdd_table_picture, array(
-                        'conditions' => array(),
+                        'conditions' => array(
+                            'id >' => '0' // Avoid getting "Homepage" pictures
+                        ),
                         'fields' => array('*'),
                     ));
 
@@ -299,11 +303,7 @@ class Gallery
     
     public function getPicture($id) {
 
-        $nb_pic = 0;
-
         foreach($this->pictures as $picture) {
-
-            $nb_pic++;
 
             if($picture->getID() == $id) {
 
