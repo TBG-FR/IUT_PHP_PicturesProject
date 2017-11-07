@@ -213,3 +213,18 @@ INSERT INTO phpproj_Picture (id, title, description, date, public, path) VALUES
 INSERT INTO phpproj_GalleryPicture (pic_id, gal_id) VALUES
 (1, 4),
 (2, 4);
+
+/* Let's create some Keywords */
+INSERT INTO phpproj_Keyword VALUES
+(1,'animal',1),
+(2,'landscape',1),
+(3,'water',1);
+
+/* Let's add them to the pictures */
+INSERT INTO phpproj_PictureKeyword VALUES
+(1,2),
+(1,3),
+(2,1),
+(2,2),
+(3,1),
+(4,1);
