@@ -203,13 +203,13 @@ INSERT INTO phpproj_Gallery (title) VALUES
 */
 
 /* Let's say we have those two pictures */
-INSERT INTO phpproj_picture (id, title, description, date, public, path) VALUES
+INSERT INTO phpproj_Picture (id, title, description, date, public, path) VALUES
 (1, 'Calm Ocean', 'Beautiful picture the ocean', '18/10/2017', '1', 'calm_ocean.jpg'),
 (2, 'Mountain Eagle', 'Flying eagle, shot in the mountains', '27/05/2005', '1', 'majestuous_eagle.jpg'),
 (3, 'Pig', 'Hidden Picture', '01/11/2017', '0', 'pig.jpg'),
 (4, 'Wolpack', 'A pack of wolves, in Europe', '01/11/2017', '1', 'wolfpack.jpg');
 
 /* Let's say User #4 (Jojo) bought them */
-INSERT INTO phpproj_gallerypicture (pic_id, gal_id) VALUES
+INSERT INTO phpproj_GalleryPicture (pic_id, gal_id) VALUES
 (1, 4),
 (2, 4);
