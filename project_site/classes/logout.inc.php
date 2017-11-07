@@ -20,15 +20,7 @@ if ( $_GET ) {
         unset($_SESSION['private_gal']);
         unset($_SESSION['cart']);
 
-        if( $_GET['source'] == "private_gallery.php" || strpos($_GET['source'], admin) == TRUE /*|| $_GET['source'] == "other_page_requiring_login.php"*/ ) {
-
-            // Send the User back on the page where he was
-            $loc = "Location: index.php?action=disconnected";
-            header($loc);
-
-        }
-
-        else  {
+        if( isset($_GET['source']) ) {
 
             // Send the User back on the page where he was
             $loc = "Location: ".$_GET['source']."?action=disconnected";
@@ -36,6 +28,13 @@ if ( $_GET ) {
 
         }
 
-    }
+        else  {
 
+            // Send the User back on the Homepage
+            $loc = "Location: index.php?action=disconnected";
+            header($loc);
+
+        }
+
+    }
 }

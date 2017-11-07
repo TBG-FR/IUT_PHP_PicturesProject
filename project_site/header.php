@@ -1,20 +1,9 @@
-<!-- ------ "Header" : Haut de page (Logo, Contact, Boutons) ------ -->
-<div id="header_head">
-    <div class="lamd3">
-        <img src="Logo.png" id="logo" alt="Logo de Ducrozet-Moninot" title="TODO">
-    </div>
+<!-- ------ "Header" : Page's Upper Part (Logo & Title) ------ -->
+<div id="header_head" class="hline-bottom">
+    
+    <img src="img/logo.png" id="logo" alt="Andrew Blind's Logo (Camera)">
 
-    <div class="lamd5">
-        <div id="header_contact">
-            Andrew
-            <br/>BLIND 
-        </div>
-    </div>
-
-    <div class="lamd4">
-        <div id="header_buttons">
-            
-        </div>
-    </div>
+    <p class="title">Andrew BLIND</p>
+    
 </div>
 <!-- ------ "Header" : Fin du Bloc ------ -->

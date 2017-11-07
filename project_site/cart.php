@@ -39,14 +39,12 @@
                 echo "                
                 <p class='text'>Your cart is empty, there is no pictures in it !</p><br />                                 \r\n
                 <img class='responsive_img' src='img/empty_cart.png' alt='Empty cart image (sad handbag)' /><br/>          \r\n                
-                <a href='index.php' class='btntext btn btn-primary' role='button'>Let's find some you'll love !</a>        \r\n
+                <a href='public_gallery.php' class='btntext btn btn-primary' role='button'>Let's find some you'll love !</a>        \r\n
                 ";
                 
             }
             
             else {
-                
-                echo "Picture | Picture Title | Picture Description | Date <br>";
                 
                 foreach($_SESSION['cart']->getPictures() as $picture) {
                     
@@ -63,11 +61,17 @@
                 echo "<div class='hline-bottom'></div>";
             
             $price = 25;
-            echo "<p class='littletext'>All my pictures are selled at the same price : $price €<br /></p>";
+            echo "<p class='littletextbtn'>All my pictures are sold at the same price : $price €<br /></p>";
             
             $total = $_SESSION['cart']->getNbPictures() * 25;
             echo "<p class='littletextbtn'>Subtotal for your cart : $total €</p>";
                 
+                    echo"
+                    <form class='btntext' action='checkout.php' method='post'>
+                        <input type='hidden' name='action' value='checkout'/>                
+                        <input type='submit' value='Checkout'>
+                    </form>
+                    ";              
                 
             }
             

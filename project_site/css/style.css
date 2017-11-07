@@ -48,6 +48,83 @@ body {
 /* False bold, to get ChampagneBold in Bold */
 strong { text-shadow: 1px 0px 1px currentColor; /* 1px 0px 0px pour enlever le "flou" */ }
 
+/* ----- -----  Design Rules & Elements ----- ----- */
+
+.large_image {
+
+    height: 50vh;
+    margin: auto;
+
+}
+
+.responsive_img {
+
+    display: block;
+    max-width: 100%;
+    /*height: auto;*/
+    margin: auto;
+
+}
+
+.title {
+
+    font-family: 'Archive','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance */
+    font-size: calc(1.5em + 5vh);
+
+}
+
+.text {
+
+    font-family: 'ChampagneBold','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance */
+    font-size: calc(1em + 2.5vh);
+
+}
+
+.littletext {
+
+    font-family: 'Champagne','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance */
+    font-size: calc(1em + 1vh);
+
+}
+
+.littletextbtn {
+
+    font-family: 'ChampagneBold','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance */
+    font-size: calc(1em + 1vh);
+
+}
+
+.btntext {
+
+    font-family: 'Archive','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance */
+    font-size: calc(1em + 1.5vh);
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+
+}
+
+/* Creates an horizontal line after the element */
+.hline-bottom {
+    margin: auto;
+    width: 65%;
+    margin-top: 2.5vh;
+    padding-bottom: 2vh;
+    margin-bottom: 2.5vh;
+    border-bottom: 2px solid #000;
+}
+
+table
+{
+    border-collapse: collapse;
+    width: 75%;
+    margin: auto;
+}
+
+/*td, th /* Border on td and th */
+/*{
+    border: 1px solid black;
+}*/
+
 /* ----- ----- Header (Page's Upper Part) ----- ----- */
 
 header {
@@ -55,83 +132,38 @@ header {
     margin-left: 2.5%;
     margin-right: 2.5%;
     margin-top: 1.5%;
-    /*background-color: cyan;*/ /* TEMP REMOVE */
 }
 
 #header_head {
+
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-around; /*justify-content: center;*/
+    justify-content: space-around;
     align-items: center;
     text-align: center;
-    margin: auto; /* USELESS ? */
-    width: 100%; /* USELESS ? */
-    background-color:gainsboro; /* TEMP REMOVE */
-}
 
-#header_head .lamd4  { /* TEMP REMOVE */
+    margin: auto;
+    width: 100%;
 
-    /*background-color: brown;*/
-
-}
-
-#header_head .lamd3  { /* TEMP REMOVE */
-
-    margin-top: 2.5%;
-    margin-bottom: 2.5%;
+    background-color:gainsboro;
+    padding-bottom: 2.5vh;
+    padding-top: 2.5vh;
 
 }
 
-#header_head .lamd5  { /* TEMP REMOVE */
-
-    margin-right: 15%;
-
+#header_head #logo {    
+    width: 22vh;
+    min-width: 100px;
+    margin: auto;
 }
 
-#logo  {    
-    width: 12vw;
-    min-width: 150px;
+#header_head .title  {
+    width: 50%;
+    margin: auto;
 }
 
-#header_contact {   
-    text-align: center;
-    font-size:calc(1em + 1vw);    
-    white-space: nowrap;
-
-}
-
-#header_buttons { 
-    margin: auto; /* USELESS ? */
-}
-
-#header_buttons .glyphicon-envelope, #header_buttons .glyphicon-earphone, #header_buttons .glyphicon-map-marker {
-
-    font-size:calc(2em + 2vw);
-    margin-left: 1vw;
-    margin-right: 1vw;
-    flex-flow: column wrap;
-    text-decoration: none;
-
-}
-
-#header_buttons a {
-    
-    text-decoration: none;
-    color: #000;
-
-}
-
-#header_buttons a:hover {
-    
-    opacity: 0.5;
-    text-decoration: none;
-    text-decoration-line: none;
-    color: #000;
-
-}
-/* ----- Menu de Navigation (navbar) ----- */
-
+/* ----- Navigation Menu (Navbar) ----- */
 
 .menu-bar {
     position: absolute;
@@ -148,7 +180,8 @@ header {
     margin: 0 auto;
     text-align: center;
     background-color: #fff;
-    font-size: calc(0.75em + 0.75vw);
+    font-size: calc(2em + 2vh);
+    background-color: gainsboro;
 }
 
 .menu ul {
@@ -163,157 +196,73 @@ header {
 
 .menu a:hover {
     text-decoration: none;
-    background-image:radial-gradient(white 100%, black 100%);
+    background-color:gainsboro;
     color: black;
     opacity: 0.8; 
-}
-
-/* ----- -----  Design Rules & Elements ----- ----- */
-
-.content {
-
-    /*background-color: aqua;*/
-    width: 100%;
-    text-align: center;
-
-}
-
-.large_image {
-    
-    height: 50vh;
-    margin: auto;
-    
-}
-
-.responsive_img {
-    
-    display: block;
-    max-width: 100%;
-    /*height: auto;*/
-    margin: auto;
-    
-}
-
-.title {
-    
-    font-family: 'Archive','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance */
-    font-size: calc(1.5em + 5vh);
-    
-}
-
-.text {
-    
-    font-family: 'ChampagneBold','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance */
-    font-size: calc(1em + 2.5vh);
-    
-}
-
-.littletext {
-    
-    font-family: 'Champagne','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance */
-    font-size: calc(1em + 1vh);
-    
-}
-
-.littletextbtn {
-    
-    font-family: 'ChampagneBold','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance */
-    font-size: calc(1em + 1vh);
-    
-}
-
-.btntext {
-    
-    font-family: 'Archive','Trebuchet MS', Arial, sans-serif; /* Fonts, in order of appearance */
-    font-size: calc(1em + 1.5vh);
-    margin-top: 5vh;
-    margin-bottom: 5vh;
-    
-}
-
-/* Creates an horizontal line after the element */
-.hline-bottom {
-    margin: auto;
-    width: 65%;
-    margin-top: 2.5vh;
-    padding-bottom: 2vh;
-    margin-bottom: 2.5vh;
-    border-bottom: 2px solid #000;
-}
-
-table
-{
-    border-collapse: collapse;
-}
-
-td, th /* Border on td and th */
-{
-    border: 1px solid black;
 }
 
 /* ----- -----  Content (Page's Body) ----- ----- */
 
 .content {
 
-    /*background-color: aqua;*/
     width: 100%;
     text-align: center;
+    margin: auto;
+    margin-top: 5vh;   
+    margin-bottom: 5vh;    
 
 }
 
 /* INDEX */
 
 .Carousel_container {
-    
-    width: 65%;
+
+    width: 60%;
     margin: auto;
-    
+    margin-top: 2.5vh;   
+
 }
 
 .carousel-caption {
-    
+
     background-color: rgba(15,15,15,0.5);
     text-shadow: 2px 5px 5px black;
-    
+
 }
 
 /* LOGIN */
 
 #inline-forms {
-    
+
     display: inline-block;
     width: 85%;
-    
+
 }
 
 #login {
-    
-    
+
     width: 50%;
     float: left;
     padding: 0;
-    
+
 }
 
 #register {
-    
-    
+
     width: 50%;
     float: right;
     padding: 0;
-    
+
 }
 
 /* GALLERY */
 
 .gallery  {
 
-    background-color: red;
     width: 95%;
-    margin: auto;
     text-align: center;
-    padding-top: 5%;
-    padding-bottom: 5%;
+    margin: auto;
+    margin-bottom: 2.5vh;
 
 }
 
@@ -377,9 +326,19 @@ td, th /* Border on td and th */
 
 }
 
+/* LOGIN & ADMIN */
+
 .mini_menu {
     background-color: lightgrey;
-    width: 35%;
+    width: 45%;
+    margin: auto;
+    text-align: center;
+    padding: 2.5%;
+}
+
+.large_menu {
+    background-color: lightgrey;
+    width: 65%;
     margin: auto;
     text-align: center;
     padding: 2.5%;
@@ -433,29 +392,18 @@ td, th /* Border on td and th */
     width: 100%;
 }
 
-
 /* ----- ----- Footer (Page's Lower Part)  ----- ----- */
 
 footer {
-    /* ATTRIBUTES */
-}
-
-.legal {
     font-family: 'ChampagneBold','Trebuchet MS', Arial, sans-serif; /* Polices, dans l'ordre */
     font-size:calc(1em + 0.2vw);
     color: #000;
-}
 
-/* ----- ----- ----- ----- CSS "@media" (Responsive) ----- ----- ----- ----- */
+    background-color: gainsboro;
+    text-align: center;
 
-/*@media all and (max-width:500px) { /* Sur tous les médias, si la largeur d'affichage est plus petite que 500px *//*  
-#header_head {
-flex-flow: column wrap;     /* Header_Head : Afficher les éléments en colonne, les uns sous les autres *//*
-}
-}*/
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    margin-bottom: 1.5%;
 
-/* ----- ----- ----- ----- [ CSS "Backend" : Administration Elements ] ----- ----- ----- ----- */
-
-#admin {
-    /* ATTRIBUTES */
 }

@@ -1,6 +1,15 @@
 <?php
 
-    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management    
+    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management
+
+    if ( $_GET ) {
+
+        if($_GET['action'] == 'bought') {
+
+            echo "<div class='notification alert alert-success' role='alert'>You've successfully bought those pictures ! They're now available in your personal Gallery, enjoy !</div>";
+            
+        }        
+    }
 
 ?>
 
@@ -124,13 +133,13 @@
                 
                     <div class='mini_menu'>
                         <!-- Connected - Header -->
-                        <h3>Logged as ".$l_username."</h3><br />
+                        <p class='title'>Logged as ".$l_username."</p><br />
 
                         <!-- Connected - Links -->
-                        <a href='edit_account.php' class='btn btn-primary btn-block' role='button'><h4>Account Informations</h4></a>
-                        <a href='private_gallery.php' class='btn btn-primary btn-block' role='button'><h4>Personal Gallery</h4></a>
-                        <a href='purchase_history.php' class='btn btn-primary btn-block' role='button'><h4>Purchase History</h4></a>
-                        <a href='?action=disconnect' class='btn btn-danger btn-block' role='button'><h4>Log out</h4></a>
+                        <a href='edit_account.php' class='btn btn-primary btn-block btntext' role='button'>Account Informations</a>
+                        <a href='private_gallery.php' class='btn btn-primary btn-block btntext' role='button'>Personal Gallery</a>
+                        <a href='###NOT_YET_IMPLEMENTED' class='btn btn-warning btn-block btntext' role='button'>Purchase History</a>
+                        <a href='?action=disconnect' class='btn btn-danger btn-block btntext' role='button'>Log out</a>
                     </div>
                     
                 "; /* Echo[HTML] : End */

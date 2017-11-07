@@ -6,7 +6,7 @@ else { $cart_items="0"; }
 ?>
 
 <!-- ------ "Navbar" : Menu de Navigation ------ -->
-<div class="collapse menu">
+<div class="collapse menu hline-bottom">
     <ul class="list-inline">
         <li><a href="index.php">Home</a></li>
         <li><a href="public_gallery.php">Gallery</a></li>

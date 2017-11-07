@@ -2,8 +2,9 @@
 
     require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management
 
-    // IF the user isn't logged, send him to the 404 page
-    if ( $_SESSION['user'] instanceof User == FALSE ) { header("Location: 404.php"); }
+    // IF the user isn't logged, send him to the 404 page, unless he just disconnected himself
+    if ($_GET['action'] == 'disconnect' ) { header("Location: index.php?action=disconnected"); }
+    else if ( $_SESSION['user'] instanceof User == FALSE) { header("Location: 404.php"); }
 
 ?>
 
@@ -37,6 +38,8 @@
             
             // IF THE USER IS THE ADMIN => DISPLAY ADMIN EDIT PAGE
             if( $_SESSION['user'] instanceof User && $_SESSION['user']->getID() == 2 ) {
+                
+                echo "<p class='title'>Edit or Delete Pictures</p><br />";
 
             /*<div class="edit_page">
                 <table>
@@ -55,31 +58,37 @@
                 
                 </tr> ";*/
                 
-                echo "<div class='edit_page'><br>";
+                echo "<div class='edit_page'><br>
+                        <table>";
                 
-                echo "Picture | Picture Title | Picture Description | Date <br>";
+                echo "
+                    <tr>
+                        <th>Picture</th>
+                        <th>Picture Title</th>
+                        <th>Picture Description</th>
+                        <th>Date</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                        ";
                 
                 foreach($_SESSION['private_gal']->getPictures() as $picture) {
                     
                     echo "
-                    
-                        <img src='private_images/".$picture->getPath()."' alt='".$picture->getTitle()."' height='100px' /> {$picture->getName()} | {$picture->getDesc()} | {$picture->getDate()} 
-                    
-                        <a href='?action=edit&id={$picture->getId()}'    class='btn btn-default' role='button'> Edit </a>
-                        
-                        <a href='?action=delete&id={$picture->getId()}'  class='btn btn-default' role='button'> Delete </a>
-                        
-                        <br/><br/>
-                        
+                        <tr>
+                            <td><img src='private_images/".$picture->getPath()."' alt='".$picture->getTitle()."' height='100px' /></td> 
+                            <td>{$picture->getName()}</td>
+                            <td>{$picture->getDesc()}</td>
+                            <td>{$picture->getDate()}</td>
+                            <td><a href='?action=edit&id={$picture->getId()}' class='btn btn-default' role='button'>Edit</a></td>                        
+                            <td><a href='?action=delete&id={$picture->getId()}' class='btn btn-default' role='button'>Delete</a></td>
+                        </tr>                        
                         ";  
                 
                 }
               
-               /* ?>
-                </table>
-            </div>*/
-              
-                echo "</div>";
+                echo "</table>
+                    </div>";
                 
             }
             

@@ -1,7 +1,9 @@
 <?php
 
-require_once("classes/all.inc.php");
-    require_once("head.php");
+    require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management 
+
+    // IF the user isn't logged, send him to the 404 page
+    if ( $_SESSION['user'] instanceof User == FALSE && $_SESSION['user']->getID() != 2 ) { header("Location: 404.php"); }   
 
 /** 
 * WATERMARKING FUNCTION 
@@ -138,7 +140,8 @@ function apply_watermark($white, $src_path) {
     else {
 
         //echo "<br /><div class=\"notification alert alert-danger\" role=\"alert\">Error : Unsupported image format ! Please try again with PNG, JPG or JPEG.</div>";
-        throw new Exception('Err_UnsupportedFormat');
+        //throw new Exception('Err_UnsupportedFormat');
+        // DESACTIVATED THE EXCEPTION THROWING AS WE CAN'T HANDLE THE ERROR WITH JPEG BUT IT WORKS WITH THAT ERROR
 
     }
     
@@ -221,6 +224,7 @@ echo "<br /><a href='add_picture.php' class='btn btn-primary' role='button'>Add 
 */
 
 // Send the user back to the Picture Management & Unset his Galleries (in order to refresh it)
+unset($_FILES);
 unset($_SESSION['private_gal']);
 unset($_SESSION['public_gal']);
 echo "<script type='text/javascript'>document.location.replace('private_gallery.php');</script>";

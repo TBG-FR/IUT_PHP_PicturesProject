@@ -1,13 +1,6 @@
-
 <?php
 
-require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management    
-
-
-                            //echo $picture->getKeywordsSortable();
-                        //<img src='public_images/".$picture->getPath()."' alt='".$picture->getTitle()."' height='250px' />
-                        //<div class='gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter {$picture->getKeywordsSortable()}'>
-                        //<img src='public_images/".$picture->getPath()."' alt='' />
+require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co + Session Start + Disconnection Management
 
 ?>
 
@@ -40,7 +33,7 @@ $(this).addClass("active");
 });
 </script>
 
-<!-- 'gallery.php' ~ Displays the public gallery (without login, and with watermarked pictures) -->
+<!-- 'public_gallery.php' ~ Displays the public gallery (without login, and with watermarked pictures) -->
 
 <!doctype html>
 
@@ -66,25 +59,22 @@ $(this).addClass("active");
 
         <div class="content">
 
-            <div class="gallery">
+            <div class="gallery">              
+                     <?php  
+                
+                // -------------------------- Filters Buttons (Keywords)
 
-                 <div align="center">                     
-                     <?php 
+                 echo "<div>";
+                        echo "<button class='btn btn-default btntext filter-button' data-filter=all>all</button>";
                      
-                        echo "<button class='btn btn-default filter-button' data-filter=all>all</button>";
-                     
-                        $db=new Database();
-                   
+                        $db=new Database();                   
                         $keywords=$db->getAllKeyword();
                    
-                        foreach($keywords as $keyword) { echo "<button class='btn btn-default filter-button' data-filter={$keyword}>{$keyword}</button>"; }
-                     
-                     ?>
-                </div>
+                        foreach($keywords as $keyword) { echo "<button class='btn btn-default btntext filter-button' data-filter={$keyword}>{$keyword}</button>"; }
                 
-                <br/>
+                echo "<div>";
                 
-                <?php
+                // -------------------------- Pictures
 
                 foreach($_SESSION['public_gal']->getPictures() as $picture) {
 
@@ -100,7 +90,7 @@ $(this).addClass("active");
                                     <div class='gal_overlay'>
                                         <div class='gal_buttons'>
                                             <a href='?action=cart_add&item_id=".$picture->getID()."' class='littletextbtn btn btn-primary' role='button'>Add to Cart</a>
-                                            <a href='##view_details' class='littletextbtn btn btn-default' role='button'>View More</a>
+                                            <a href='##NOT_IMPLEMENTED_YET' class='littletextbtn btn btn-default' role='button'>View More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +108,7 @@ $(this).addClass("active");
                                     <div class='gal_overlay'>
                                         <div class='gal_buttons'>
                                             <a href='?action=cart_del&item_id=".$picture->getID()."' class='littletextbtn btn btn-danger' role='button'>Remove from Cart</a>
-                                            <a href='##view_details' class='littletextbtn btn btn-default' role='button'>View More</a>
+                                            <a href='##NOT_IMPLEMENTED_YET' class='littletextbtn btn btn-default' role='button'>View More</a>
                                         </div>
                                     </div>
                                 </div>
@@ -136,7 +126,7 @@ $(this).addClass("active");
                                     <div class='gal_overlay'>
                                         <div class='gal_buttons'>
                                             <a href='private_gallery.php?action=highlight&item_id=".$picture->getID()."' class='littletextbtn btn btn-success' role='button'>Already Bought</a>
-                                            <a href='##view_details' class='littletextbtn btn btn-default' role='button'>View More</a>
+                                            <a href='##NOT_IMPLEMENTED_YET' class='littletextbtn btn btn-default' role='button'>View More</a>
                                         </div>
                                     </div>
                                 </div>

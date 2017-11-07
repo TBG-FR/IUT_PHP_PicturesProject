@@ -127,7 +127,7 @@ require_once("classes/all.inc.php"); // Include all the Classes & Functions & Co
                 </div>
 
             <!-- Link to Gallery -->
-            <a href='public_gallery.php' class='btntext btn btn-primary' role='button'>See all my Pictures</a>
+            <a href='public_gallery.php' class='btntext btn btn-primary' role='button'> ~ Click here to see all my Pictures ~ </a>
 
         </div>
 
