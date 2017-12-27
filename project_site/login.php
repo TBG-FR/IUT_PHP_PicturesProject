@@ -152,7 +152,7 @@
 
                 echo "
                 
-                <div id='inline-forms'
+                <div id='inline-forms'>
                     <!-- Logging Form -->
                     <div id='login'>
 
